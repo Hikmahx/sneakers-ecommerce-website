@@ -1,6 +1,6 @@
 import React from "react";
 import DesktopPreview from "./DesktopPreview";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { prevPreview, nextPreview } from "../../redux/reducers/productSlice";
 
 const DesktopLightBox = () => {
@@ -26,7 +26,7 @@ const DesktopLightBox = () => {
           <div className="modal-content">
             <DesktopPreview />
           </div>
-        <div className="directions absolute inset-x-0 top-[40%] w-ful flex items-end justify-between z-40 -mx-4">
+        <div className="directions absolute inset-x-0 top-0 mt-3 h-[448px] flex items-center justify-between z-40 -mx-4">
           <button
             onClick={()=>dispatch(prevPreview())}
             className="back-arrow w-14 h-14 bg-white rounded-full"
