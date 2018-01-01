@@ -18,11 +18,11 @@ const productSlice = createSlice({
   // productSlice
   reducers: {
     getProducts: (state, action) => {
-      state.products= AllProducts
+      state.products = AllProducts
     },
     getFilteredProducts: (state, action) => {
-      state.filteredProducts = state.products.filter((item)=>
-      item.category.at(-1).gender.includes(action.payload)
+      state.filteredProducts = state.products.filter((item) =>
+        item.category.at(-1).gender.includes(action.payload)
       )
     },
     changeImage: (state, action) => {
@@ -66,15 +66,19 @@ const productSlice = createSlice({
       state.product = AllProducts[action.payload - 1]
     },
     quantityCount: (state, action) => {
-      if (action.payload === '') {
-        state.quantity = 0
-      }else if (action.payload === 'decrease') {
-        state.quantity = Math.max(state.quantity - 1, 0)
-      } else if (action.payload === 'increase') {
-        state.quantity = Math.min(state.quantity + 1, 100)
-      }
-      else {
+      switch (action.payload) {
+        case '':
+          state.quantity = 0
+          break;
+        case 'decrease':
+          state.quantity = Math.max(state.quantity - 1, 0)
+          break;
+        case 'increase':
+          state.quantity = Math.min(state.quantity + 1, 100)
+          break;
+        default:
           state.quantity = Math.min(parseInt(action.payload), 100)
+          break;
       }
     }
   }
