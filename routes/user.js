@@ -4,17 +4,38 @@ const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
+const { verifyTokenAndAdmin } = require("../middleware/auth");
 const dotenv = require("dotenv");
 dotenv.config({ path: "../config/config.env" });
 
-// @ route GET api/users
+// @ route GET api/user
 // @ desc  Get registered user
 // @ access Private
-router.get("/", (req, res) => {
-  res.send("this is the sneakers ecommerce website user route");
+router.get("/:id", verifyTokenAndAdmin, async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id).select("-password");
+    res.status(200).json(user);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
 });
 
-// @ route POST api/users
+
+// @ route GET api/user
+// @ desc  Get registered user
+// @ access Private
+router.get("/", verifyTokenAndAdmin, async (req, res) => {
+  try {
+    const users = await User.find();
+    res.status(200).json(users);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+// @ route POST api/user
 // @ desc  Register user
 // @ access Public
 router.post(
