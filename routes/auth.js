@@ -3,6 +3,10 @@ const router = express.Router();
 const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const {
+  verifyToken,
+  verifyTokenAndAuthorization,
+} = require("../middleware/auth");
 const User = require("../models/User");
 const dotenv = require("dotenv");
 dotenv.config({ path: "../config/config.env" });
@@ -10,9 +14,48 @@ dotenv.config({ path: "../config/config.env" });
 // @ route    POST api/auth
 // @desc     Get logged in user
 // @ access   Private
-router.get("/", (req, res) => {
-  res.send("this is the sneaker ecommerce website auth route");
+router.get("/", verifyToken, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select("-password");
+    res.json(user);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
 });
+
+
+// @ route    PUT api/auth
+// @desc      Update user
+// @ access   Private
+router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
+  const { username, email, password } = req.body;
+  const user = await User.findById(req.params.id);
+  let newPassword
+  if (password) {
+    let salt = await bcrypt.genSalt(10);
+    newPassword = await bcrypt.hash(req.body.password, salt);
+  }
+  try {
+    const updatedUser = await User.findByIdAndUpdate(
+      req.user.id,
+      {
+        $set: {
+          name: req.body.name,
+          email: req.body.email,
+          password: newPassword,
+        },
+      },
+      // To ensure it returns the updated User
+      { new: true }
+    );
+    res.status(200).json(updatedUser);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
 
 // @ route    POST api/auth
 // @ desc     authenticate (Login) user & get token
