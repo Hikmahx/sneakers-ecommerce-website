@@ -111,4 +111,17 @@ router.post(
   }
 );
 
+// @ route    DELETE api/auth
+// @ desc     Delete user
+// @ access   Private
+router.delete("/:id", verifyTokenAndAuthorization, async (req, res) => {
+  try {
+    const user = await User.findByIdAndDelete(req.user.id)
+    res.status(200).json({msg: "User is successfully deleted"});
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
 module.exports = router;
