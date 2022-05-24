@@ -24,39 +24,6 @@ router.get("/", verifyToken, async (req, res) => {
   }
 });
 
-
-// @ route    PUT api/auth
-// @desc      Update user
-// @ access   Private
-router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
-  const { username, email, password } = req.body;
-  const user = await User.findById(req.params.id);
-  let newPassword
-  if (password) {
-    let salt = await bcrypt.genSalt(10);
-    newPassword = await bcrypt.hash(req.body.password, salt);
-  }
-  try {
-    const updatedUser = await User.findByIdAndUpdate(
-      req.user.id,
-      {
-        $set: {
-          username,
-          email,
-          password: newPassword,
-        },
-      },
-      // To ensure it returns the updated User
-      { new: true }
-    );
-    res.status(200).json(updatedUser);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send("Server Error");
-  }
-});
-
-
 // @ route    POST api/auth
 // @ desc     authenticate (Login) user & get token
 // @ access   Public
@@ -111,13 +78,47 @@ router.post(
   }
 );
 
+// @ route    PUT api/auth
+// @desc      Update user
+// @ access   Private
+router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
+  const { username, email, password } = req.body;
+  const user = await User.findById(req.params.id);
+  let newPassword;
+  if (!user) {
+    return res.status(400).json({ msg: "user doesn't exist" });
+  }
+  if (password) {
+    let salt = await bcrypt.genSalt(10);
+    newPassword = await bcrypt.hash(req.body.password, salt);
+  }
+  try {
+    const updatedUser = await User.findByIdAndUpdate(
+      req.user.id,
+      {
+        $set: {
+          username,
+          email,
+          password: newPassword,
+        },
+      },
+      // To ensure it returns the updated User
+      { new: true }
+    );
+    res.status(200).json(updatedUser);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
 // @ route    DELETE api/auth
 // @ desc     Delete user
 // @ access   Private
 router.delete("/:id", verifyTokenAndAuthorization, async (req, res) => {
   try {
-    const user = await User.findByIdAndDelete(req.user.id)
-    res.status(200).json({msg: "User is successfully deleted"});
+    const user = await User.findByIdAndDelete(req.user.id);
+    res.status(200).json({ msg: "User is successfully deleted" });
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
