@@ -41,8 +41,8 @@ router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
       req.user.id,
       {
         $set: {
-          name: req.body.name,
-          email: req.body.email,
+          username,
+          email,
           password: newPassword,
         },
       },
