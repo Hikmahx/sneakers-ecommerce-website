@@ -11,8 +11,8 @@ const User = require("../models/User");
 const dotenv = require("dotenv");
 dotenv.config({ path: "../config/config.env" });
 
-// @ route    POST api/auth
-// @desc     Get logged in user
+// @ route    GET api/auth
+// @desc      Get logged in user
 // @ access   Private
 router.get("/", verifyToken, async (req, res) => {
   try {
@@ -24,7 +24,7 @@ router.get("/", verifyToken, async (req, res) => {
   }
 });
 
-// @ route    POST api/auth
+// @ route    GET api/auth
 // @ desc     authenticate (Login) user & get token
 // @ access   Public
 router.post(
@@ -117,7 +117,7 @@ router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
 // @ access   Private
 router.delete("/:id", verifyTokenAndAuthorization, async (req, res) => {
   try {
-    const user = await User.findByIdAndDelete(req.user.id);
+    await User.findByIdAndDelete(req.user.id);
     res.status(200).json({ msg: "User is successfully deleted" });
   } catch (err) {
     console.error(err.message);
