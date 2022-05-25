@@ -24,6 +24,23 @@ router.get("/", verifyTokenAndAdmin, async (req, res) => {
   }
 });
 
+// @ route GET api/products
+// @ desc  Get product
+// @ access Private
+router.get("/:id", verifyTokenAndAdmin, async (req, res) => {
+  try {
+    const product = await Product.findById(req.params.id);
+    if (!product) {
+      return res.status(400).json({ msg: "product doesn't exist" });
+    }
+
+    res.status(200).json(product);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
 // @ route POST api/products
 // @ desc  Create new product
 // @ access Private
@@ -82,7 +99,11 @@ router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
 // @ access   Private
 router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
   try {
-    await Product.findByIdAndDelete(req.params.id);
+    const product = await Product.findByIdAndDelete(req.params.id);
+    if (!product) {
+      return res.status(400).json({ msg: "product doesn't exist" });
+    }
+
     res.status(200).json({ msg: "Product is successfully deleted" });
   } catch (err) {
     console.error(err.message);
