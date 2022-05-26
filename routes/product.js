@@ -12,11 +12,18 @@ dotenv.config({ path: "../config/config.env" });
 // @ desc  Get all products
 // @ access Private
 router.get("/", verifyTokenAndAdmin, async (req, res) => {
-  const query = req.query.new;
+  const queryNew = req.query.new;
+  const queryCategory = req.query.category;
   try {
-    const products = query
-      ? await Product.find().sort({ _id: -1 }).limit(5)
-      : await Product.find();
+    let products;
+    if (queryNew) {
+      products = await Product.find().sort({ _id: -1 }).limit(5);
+    }
+    if (queryCategory) {
+      products = await Product.find({ categories: { $in: [queryCategory] } });
+    } else {
+      products = await Product.find();
+    }
     res.status(200).json(products);
   } catch (err) {
     console.error(err.message);
@@ -30,12 +37,11 @@ router.get("/", verifyTokenAndAdmin, async (req, res) => {
 router.get("/:id", verifyTokenAndAdmin, async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
-    if (!product) {
-      return res.status(400).json({ msg: "product doesn't exist" });
-    }
-
     res.status(200).json(product);
   } catch (err) {
+    if (err.name === "CastError") {
+      return res.status(400).json({ msg: "product doesn't exist" });
+    }
     console.error(err.message);
     res.status(500).send("Server Error");
   }
@@ -76,11 +82,8 @@ router.post(
 // @desc      Update product
 // @ access   Private
 router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
-  const product = await Product.findById(req.params.id);
-  if (!product) {
-    return res.status(400).json({ msg: "product doesn't exist" });
-  }
   try {
+    const product = await Product.findById(req.params.id);
     const updatedProduct = await Product.findByIdAndUpdate(
       req.params.id,
       { $set: req.body },
@@ -88,11 +91,13 @@ router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
     );
     res.status(200).json(updatedProduct);
   } catch (err) {
+    if (err.name === "CastError") {
+      return res.status(400).json({ msg: "product doesn't exist" });
+    }
     console.error(err.message);
     res.status(500).send("Server Error");
   }
 });
-
 
 // @ route    DELETE api/auth
 // @ desc     Delete product
@@ -100,16 +105,15 @@ router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
 router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
   try {
     const product = await Product.findByIdAndDelete(req.params.id);
-    if (!product) {
-      return res.status(400).json({ msg: "product doesn't exist" });
-    }
-
+    if (!product) return res.status(400).json({ msg: "product doesn't exist" });
     res.status(200).json({ msg: "Product is successfully deleted" });
   } catch (err) {
+    if (err.name === "CastError") {
+      return res.status(400).json({ msg: "product doesn't exist" });
+    }
     console.error(err.message);
     res.status(500).send("Server Error");
   }
 });
-
 
 module.exports = router;

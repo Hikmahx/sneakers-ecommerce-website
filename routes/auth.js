@@ -17,6 +17,9 @@ dotenv.config({ path: "../config/config.env" });
 router.get("/", verifyToken, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select("-password");
+    if (!user) {
+      return res.status(400).json({ msg: "user doesn't exist" });
+    }
     res.json(user);
   } catch (err) {
     console.error(err.message);
@@ -24,7 +27,7 @@ router.get("/", verifyToken, async (req, res) => {
   }
 });
 
-// @ route    GET api/auth
+// @ route    POST api/auth
 // @ desc     authenticate (Login) user & get token
 // @ access   Public
 router.post(
@@ -82,17 +85,17 @@ router.post(
 // @desc      Update user
 // @ access   Private
 router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
-  const { username, email, password } = req.body;
-  const user = await User.findById(req.params.id);
-  let newPassword;
-  if (!user) {
-    return res.status(400).json({ msg: "user doesn't exist" });
-  }
-  if (password) {
-    let salt = await bcrypt.genSalt(10);
-    newPassword = await bcrypt.hash(req.body.password, salt);
-  }
   try {
+    const { username, email, password } = req.body;
+    const user = await User.findById(req.params.id);
+    let newPassword;
+    // if (!user) {
+    //   return res.status(400).json({ msg: "user doesn't exist" });
+    // }
+    if (password) {
+      let salt = await bcrypt.genSalt(10);
+      newPassword = await bcrypt.hash(req.body.password, salt);
+    }
     const updatedUser = await User.findByIdAndUpdate(
       req.user.id,
       {
@@ -107,6 +110,9 @@ router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
     );
     res.status(200).json(updatedUser);
   } catch (err) {
+    if (err.name === "CastError") {
+      return res.status(400).json({ msg: "user doesn't exist" });
+    }
     console.error(err.message);
     res.status(500).send("Server Error");
   }
@@ -117,9 +123,15 @@ router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
 // @ access   Private
 router.delete("/:id", verifyTokenAndAuthorization, async (req, res) => {
   try {
-    await User.findByIdAndDelete(req.user.id);
+    const user = await User.findByIdAndDelete(req.user.id);
+    if (!user) {
+      return res.status(400).json({ msg: "user doesn't exist" });
+    }
     res.status(200).json({ msg: "User is successfully deleted" });
   } catch (err) {
+    if (err.name === "CastError") {
+      return res.status(400).json({ msg: "user doesn't exist" });
+    }
     console.error(err.message);
     res.status(500).send("Server Error");
   }

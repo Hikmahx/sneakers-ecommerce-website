@@ -16,11 +16,13 @@ router.get("/find/:id", verifyTokenAndAdmin, async (req, res) => {
     const user = await User.findById(req.params.id).select("-password");
     res.status(200).json(user);
   } catch (err) {
+    if (err.name === "CastError") {
+      return res.status(400).json({ msg: "user doesn't exist" });
+    }
     console.error(err.message);
     res.status(500).send("Server Error");
   }
 });
-
 
 // @ route GET api/user
 // @ desc  Get registered user
@@ -37,7 +39,6 @@ router.get("/", verifyTokenAndAdmin, async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
-
 
 // @ route GET api/user/stats
 // @ desc  Get total number of users per month
@@ -57,7 +58,6 @@ router.get("/stats", verifyTokenAndAdmin, async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
-
 
 // @ route POST api/user
 // @ desc  Register user
