@@ -15,7 +15,7 @@ const Hero = () => {
           With a wide range of quality and affordable sneakers to choose from,
           browse through our collections for that sneakers you’ve always wanted.
         </p>
-        <button className="cart w-full h-14 bg-orange rounded-lg lg:rounded-xl mt-3 mb-2 shadow-orange-shadow shadow-2xl text-white flex items-center justify-center lg:w-3/5 hover:opacity-60">
+        <button className="cart w-full h-14 bg-orange rounded-lg lg:rounded-xl mt-3 mb-2 text-white flex items-center justify-center lg:w-3/5 hover:opacity-60">
           Explore Products
         </button>
       </div>
