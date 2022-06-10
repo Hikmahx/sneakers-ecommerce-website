@@ -8,7 +8,7 @@ const Hero = () => {
         id="hero-details"
         className="container order-2 lg:order-1 text-center lg:text-left mx-auto lg:px-6 pt-5 sm:pt-10 lg:pt-5 pb-20 lg:pb-5 lg:pl-0 lg:pl-7 xl:mr-1 w-full lg:w-1/2"
       >
-        <h1 className="capitalize text-very-dark-blue font-bold text-3xl sm:text-4xl lg:text-5xl sm:leading-none pb-1 sm:pb-5">
+        <h1 className="capitalize text-very-dark-blue font-bold text-3xl sm:text-4xl lg:text-6xl sm:leading-none pb-1 sm:pb-5">
           Discover your dream sneakers
         </h1>
         <p className="text-dark-grayish-blue lg:leading-6 py-6 lg:py-7">
