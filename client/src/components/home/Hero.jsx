@@ -21,11 +21,11 @@ const Hero = () => {
       </div>
       <figure className="hero-img order-1 lg:order-2 w-full lg:w-1/2 lg:ml-4 relative">
         <img src={heroImg} alt="orange sneakers" className="" />
-        <div className="absolute w-full h-full bottom-16 sm:bottom-24 lg:bottom-0 -z-10 left-28 sm:left-44 lg:left-52">
+        <div className="absolute w-full h-full bottom-16 sm:bottom-24 lg:bottom-24 -z-10 left-28 sm:left-44 lg:left-48">
 
           <div className=" h-inherit">
             <svg
-              className="w-full scale-[1.4] sm:scale-[1.2] lg:scale-[1.7]"
+              className="w-full scale-[1.4] sm:scale-[1.2] lg:scale-[1.5]"
               viewBox="0 0 200 200"
               xmlns="http://www.w3.org/2000/svg"
             >
