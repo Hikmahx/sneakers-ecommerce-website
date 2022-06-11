@@ -20,7 +20,7 @@ const Products = () => {
           <ProductItem />
         </div>
 
-        <button class="cart min-w-[4rem] w-full max-w-lg lg:max-w-none h-14 bg-pale-orange border border-orange rounded-lg mt-12 mx-auto text-orange font-bold flex items-center justify-center lg:w-52 hover:text-white hover:bg-orange transition-colors">
+        <button className="cart min-w-[4rem] w-full max-w-lg lg:max-w-none h-14 bg-pale-orange border border-orange rounded-lg mt-12 mx-auto text-orange font-bold flex items-center justify-center lg:w-52 hover:text-white hover:bg-orange transition-colors">
           Explore More
         </button>
       </div>
