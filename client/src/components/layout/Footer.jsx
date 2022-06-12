@@ -3,7 +3,7 @@ import React from "react";
 const Footer = () => {
   return (
     <footer className="text-white bg-very-dark-blue">
-      <div className="wrapper px-5 py-12 lg:py-24 lg:mx-40 md:px-0 lg:px-1 max-w-xl md:max-w-2xl mx-auto lg:max-w-7xl flex flex-col md:flex-row justify-center lg:justify-between items-center md:items-start">
+      <div className="wrapper px-5 py-12 lg:py-16 lg:mx-40 md:px-0 lg:px-1 max-w-xl md:max-w-2xl mx-auto lg:max-w-7xl flex flex-col md:flex-row justify-center lg:justify-between items-center md:items-start">
         <div className="w-[138px] my-10 md:my-0">
           <div className="logo">
             <a href="/" className="cursor-pointer">
