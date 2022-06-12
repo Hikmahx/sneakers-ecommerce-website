@@ -3,6 +3,7 @@ import logo from "../../assets/logo.svg";
 import menu from "../../assets/icon-menu.svg";
 import avatar from "../../assets/image-avatar.png";
 import Cart from "./Cart";
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
   //   const {cartItems, showCart, cartDisplay, total} = useContext(ProductContext)
@@ -44,29 +45,59 @@ const Header = () => {
               <ion-icon name="close-outline"></ion-icon>
             </div>
           </div>
-          <div className="logo mx-4 -mt-1 lg:m-auto">
+          <NavLink to="/" className="logo mx-4 -mt-1 lg:m-auto">
             <img src={logo} alt="logo" />
-          </div>
+          </NavLink>
           <nav
             ref={navMenu}
             className="menu fixed inset-0 right-1/3 bg-white pt-20 z-30 h-screen px-7 -translate-x-full transition-all ease-in-out duration-500 lg:translate-x-0 lg:relative lg:w-max lg:p-0 lg:h-inherit lg:flex lg:items-center"
           >
             <ul className="font-bold lg:font-normal lg:flex lg:items-center text-lg lg:text-base pt-2 lg:p-0 lg:mx-9 lg:text-dark-grayish-blue lg:h-inherit">
-              <li className="mb-5 lg:mb-0 lg:mx-4 lg:h-inherit lg:flex lg:items-center cursor-pointer lg:relative lg:before:content-[attr(before)] before:absolute before:-bottom-1 before:left-0 before:h-1 before:bg-orange before:w-0 hover:before:w-full before:transition-all lg:hover:text-very-dark-blue">
+              <NavLink
+                to="/collections"
+                className={({ isActive }) =>
+                  "mb-5 lg:mb-0 lg:mx-4 lg:h-inherit lg:flex lg:items-center cursor-pointer lg:relative lg:before:content-[attr(before)] before:absolute before:-bottom-1 before:left-0 before:h-1 before:bg-orange before:w-0 hover:before:w-full before:transition-all lg:hover:text-very-dark-blue " +
+                  (!isActive ? "" : "before:w-full text-very-dark-blue")
+                }
+              >
                 Collections
-              </li>
-              <li className="mb-5 lg:mb-0 lg:mx-4 lg:h-inherit lg:flex lg:items-center cursor-pointer lg:relative lg:before:content-[attr(before)] before:absolute before:-bottom-1 before:left-0 before:h-1 before:bg-orange before:w-0 hover:before:w-full before:transition-all lg:hover:text-very-dark-blue">
+              </NavLink>
+              <NavLink
+                to="/men"
+                className={({ isActive }) =>
+                  "mb-5 lg:mb-0 lg:mx-4 lg:h-inherit lg:flex lg:items-center cursor-pointer lg:relative lg:before:content-[attr(before)] before:absolute before:-bottom-1 before:left-0 before:h-1 before:bg-orange before:w-0 hover:before:w-full before:transition-all lg:hover:text-very-dark-blue " +
+                  (!isActive ? "" : "before:w-full text-very-dark-blue")
+                }
+              >
                 Men
-              </li>
-              <li className="mb-5 lg:mb-0 lg:mx-4 lg:h-inherit lg:flex lg:items-center cursor-pointer lg:relative lg:before:content-[attr(before)] before:absolute before:-bottom-1 before:left-0 before:h-1 before:bg-orange before:w-0 hover:before:w-full before:transition-all lg:hover:text-very-dark-blue">
+              </NavLink>
+              <NavLink
+                to="/women"
+                className={({ isActive }) =>
+                  "mb-5 lg:mb-0 lg:mx-4 lg:h-inherit lg:flex lg:items-center cursor-pointer lg:relative lg:before:content-[attr(before)] before:absolute before:-bottom-1 before:left-0 before:h-1 before:bg-orange before:w-0 hover:before:w-full before:transition-all lg:hover:text-very-dark-blue " +
+                  (!isActive ? "" : "before:w-full text-very-dark-blue")
+                }
+              >
                 Women
-              </li>
-              <li className="mb-5 lg:mb-0 lg:mx-4 lg:h-inherit lg:flex lg:items-center cursor-pointer lg:relative lg:before:content-[attr(before)] before:absolute before:-bottom-1 before:left-0 before:h-1 before:bg-orange before:w-0 hover:before:w-full before:transition-all lg:hover:text-very-dark-blue">
+              </NavLink>
+              <NavLink
+                to="/about"
+                className={({ isActive }) =>
+                  "mb-5 lg:mb-0 lg:mx-4 lg:h-inherit lg:flex lg:items-center cursor-pointer lg:relative lg:before:content-[attr(before)] before:absolute before:-bottom-1 before:left-0 before:h-1 before:bg-orange before:w-0 hover:before:w-full before:transition-all lg:hover:text-very-dark-blue " +
+                  (!isActive ? "" : "before:w-full text-very-dark-blue")
+                }
+              >
                 About
-              </li>
-              <li className="mb-5 lg:mb-0 lg:mx-4 lg:h-inherit lg:flex lg:items-center cursor-pointer lg:relative lg:before:content-[attr(before)] before:absolute before:-bottom-1 before:left-0 before:h-1 before:bg-orange before:w-0 hover:before:w-full before:transition-all lg:hover:text-very-dark-blue">
+              </NavLink>
+              <NavLink
+                to="/contact"
+                className={({ isActive }) =>
+                  "mb-5 lg:mb-0 lg:mx-4 lg:h-inherit lg:flex lg:items-center cursor-pointer lg:relative lg:before:content-[attr(before)] before:absolute before:-bottom-1 before:left-0 before:h-1 before:bg-orange before:w-0 hover:before:w-full before:transition-all lg:hover:text-very-dark-blue " +
+                  (!isActive ? "" : "before:w-full text-very-dark-blue")
+                }
+              >
                 Contact
-              </li>
+              </NavLink>
             </ul>
           </nav>
           <div
