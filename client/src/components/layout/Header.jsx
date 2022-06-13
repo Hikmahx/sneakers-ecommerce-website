@@ -53,53 +53,75 @@ const Header = () => {
             className="menu fixed inset-0 right-1/3 bg-white pt-20 z-30 h-screen px-7 -translate-x-full transition-all ease-in-out duration-500 lg:translate-x-0 lg:relative lg:w-max lg:p-0 lg:h-inherit lg:flex lg:items-center"
           >
             <ul className="font-bold lg:font-normal lg:flex lg:items-center text-lg lg:text-base pt-2 lg:p-0 lg:mx-9 lg:text-dark-grayish-blue lg:h-inherit">
-              <NavLink
-                to="/collections"
-                className={({ isActive }) =>
-                  "mb-5 lg:mb-0 lg:mx-4 lg:h-inherit lg:flex lg:items-center cursor-pointer lg:relative lg:before:content-[attr(before)] before:absolute before:-bottom-1 before:left-0 before:h-1 before:bg-orange before:w-0 hover:before:w-full before:transition-all lg:hover:text-very-dark-blue " +
-                  (!isActive ? "" : "before:w-full text-very-dark-blue")
-                }
-              >
-                Collections
-              </NavLink>
-              <NavLink
-                to="/men"
-                className={({ isActive }) =>
-                  "mb-5 lg:mb-0 lg:mx-4 lg:h-inherit lg:flex lg:items-center cursor-pointer lg:relative lg:before:content-[attr(before)] before:absolute before:-bottom-1 before:left-0 before:h-1 before:bg-orange before:w-0 hover:before:w-full before:transition-all lg:hover:text-very-dark-blue " +
-                  (!isActive ? "" : "before:w-full text-very-dark-blue")
-                }
-              >
-                Men
-              </NavLink>
-              <NavLink
-                to="/women"
-                className={({ isActive }) =>
-                  "mb-5 lg:mb-0 lg:mx-4 lg:h-inherit lg:flex lg:items-center cursor-pointer lg:relative lg:before:content-[attr(before)] before:absolute before:-bottom-1 before:left-0 before:h-1 before:bg-orange before:w-0 hover:before:w-full before:transition-all lg:hover:text-very-dark-blue " +
-                  (!isActive ? "" : "before:w-full text-very-dark-blue")
-                }
-              >
-                Women
-              </NavLink>
-              <NavLink
-                to="/about"
-                className={({ isActive }) =>
-                  "mb-5 lg:mb-0 lg:mx-4 lg:h-inherit lg:flex lg:items-center cursor-pointer lg:relative lg:before:content-[attr(before)] before:absolute before:-bottom-1 before:left-0 before:h-1 before:bg-orange before:w-0 hover:before:w-full before:transition-all lg:hover:text-very-dark-blue " +
-                  (!isActive ? "" : "before:w-full text-very-dark-blue")
-                }
-              >
-                About
-              </NavLink>
-              <NavLink
-                to="/contact"
-                className={({ isActive }) =>
-                  "mb-5 lg:mb-0 lg:mx-4 lg:h-inherit lg:flex lg:items-center cursor-pointer lg:relative lg:before:content-[attr(before)] before:absolute before:-bottom-1 before:left-0 before:h-1 before:bg-orange before:w-0 hover:before:w-full before:transition-all lg:hover:text-very-dark-blue " +
-                  (!isActive ? "" : "before:w-full text-very-dark-blue")
-                }
-              >
-                Contact
-              </NavLink>
+              <li className="relative h-inherit">
+                <NavLink
+                  to="/collections"
+                  className={({ isActive }) =>
+                    "absolute inset-0 mb-5 lg:mb-0 lg:mx-4 lg:h-inherit lg:flex lg:items-center cursor-pointer lg:relative lg:before:content-[attr(before)] before:absolute before:-bottom-1 before:left-0 before:h-1 before:bg-orange before:w-0 hover:before:w-full before:transition-all lg:hover:text-very-dark-blue " +
+                    (!isActive ? "" : "before:w-full text-very-dark-blue")
+                  }
+                >
+                  Collections
+                </NavLink>
+              </li>
+              <li className="relative h-inherit">
+                <NavLink
+                  to="/men"
+                  className={({ isActive }) =>
+                    "absolute inset-0 mb-5 lg:mb-0 lg:mx-4 lg:h-inherit lg:flex lg:items-center cursor-pointer lg:relative lg:before:content-[attr(before)] before:absolute before:-bottom-1 before:left-0 before:h-1 before:bg-orange before:w-0 hover:before:w-full before:transition-all lg:hover:text-very-dark-blue " +
+                    (!isActive ? "" : "before:w-full text-very-dark-blue")
+                  }
+                >
+                  Men
+                </NavLink>
+              </li>
+              <li className="relative h-inherit">
+                <NavLink
+                  to="/women"
+                  className={({ isActive }) =>
+                    "absolute inset-0 mb-5 lg:mb-0 lg:mx-4 lg:h-inherit lg:flex lg:items-center cursor-pointer lg:relative lg:before:content-[attr(before)] before:absolute before:-bottom-1 before:left-0 before:h-1 before:bg-orange before:w-0 hover:before:w-full before:transition-all lg:hover:text-very-dark-blue " +
+                    (!isActive ? "" : "before:w-full text-very-dark-blue")
+                  }
+                >
+                  Women
+                </NavLink>
+              </li>
+              <li className="relative h-inherit">
+                <NavLink
+                  to="/about"
+                  className={({ isActive }) =>
+                    "absolute inset-0 mb-5 lg:mb-0 lg:mx-4 lg:h-inherit lg:flex lg:items-center cursor-pointer lg:relative lg:before:content-[attr(before)] before:absolute before:-bottom-1 before:left-0 before:h-1 before:bg-orange before:w-0 hover:before:w-full before:transition-all lg:hover:text-very-dark-blue " +
+                    (!isActive ? "" : "before:w-full text-very-dark-blue")
+                  }
+                >
+                  About
+                </NavLink>
+              </li>
+              <li className="relative h-inherit">
+                <NavLink
+                  to="/contact"
+                  className={({ isActive }) =>
+                    "absolute inset-0 mb-5 lg:mb-0 lg:mx-4 lg:h-inherit lg:flex lg:items-center cursor-pointer lg:relative lg:before:content-[attr(before)] before:absolute before:-bottom-1 before:left-0 before:h-1 before:bg-orange before:w-0 hover:before:w-full before:transition-all lg:hover:text-very-dark-blue " +
+                    (!isActive ? "" : "before:w-full text-very-dark-blue")
+                  }
+                >
+                  Contact
+                </NavLink>
+              </li>
+            </ul>
+            <ul className="">
+              <li>
+                <NavLink to="/login">
+                  <button className="h-10 w-full block sm:hidden bg-orange px-4 rounded-lg lg:rounded-xl text-white flex items-center justify-center hover:bg-white shadow-[inset_0_0_0_0_rgba(255,125,26,0.6)] hover:shadow-[inset_0_-4rem_0_0_rgba(255,125,26,0.6)] transition-all duration-300">
+                    Login
+                  </button>
+                </NavLink>
+              </li>
             </ul>
           </nav>
+          <button className="h-10 block sm:hidden bg-orange px-4 rounded-lg ml-2 text-white flex items-center justify-center lg:w-3/5 hover:bg-white shadow-[inset_0_0_0_0_rgba(255,125,26,0.6)] hover:shadow-[inset_0_-4rem_0_0_rgba(255,125,26,0.6)] transition-all duration-300">
+            Login
+          </button>
           <div
             ref={darkScreen}
             className="screen -z-10 fixed inset-0 opacity-0 bg-black h-screen lg:hidden transition-all"
@@ -109,7 +131,7 @@ const Header = () => {
         <div className="right">
           <div className="user-bar flex items-center">
             <div className="cart-container">
-              <div className="cart-wrapper mx-3 lg:mx-8 lg:mt-2 relative">
+              <div className="cart-wrapper mx-0 sm:mx-3 lg:mx-8 lg:mt-2 relative">
                 {total > 0 && (
                   <div className="quantity-wrapper absolute px-2 rounded-full bg-orange z-10 -right-1/3 lg:-right-1/2 -top-2">
                     <div className="amount text-white text-xs">{total}</div>
@@ -126,9 +148,14 @@ const Header = () => {
                 </i>
               </div>
             </div>
-            <div className="user h-6 w-6 mx-2 sm:h-8 sm:w-8 md:w-10 md:h-10 lg:w-12 lg:h-12">
+            <div className="user h-6 w-6 mx-2 sm:h-8 sm:w-8 md:w-10 md:h-10 lg:w-12 lg:h-12 hidden">
               <img src={avatar} alt="avatar" />
             </div>
+            <NavLink to="/login">
+              <button className="h-10  hidden sm:block bg-orange px-4 rounded-lg lg:rounded-xl ml-2 text-white flex items-center justify-center hover:bg-white shadow-[inset_0_0_0_0_rgba(255,125,26,0.6)] hover:shadow-[inset_0_-4rem_0_0_rgba(255,125,26,0.6)] transition-all duration-300">
+                Login
+              </button>
+            </NavLink>
           </div>
         </div>
       </div>
