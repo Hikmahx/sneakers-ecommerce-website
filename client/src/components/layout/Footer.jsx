@@ -3,7 +3,7 @@ import React from "react";
 const Footer = () => {
   return (
     <footer className="text-white bg-very-dark-blue">
-      <div className="wrapper px-5 py-12 lg:py-16 lg:mx-40 md:px-0 lg:px-1 max-w-xl md:max-w-2xl mx-auto lg:max-w-7xl flex flex-col md:flex-row justify-center lg:justify-between items-center md:items-start">
+      <div className="wrapper px-5 py-12 lg:py-16 md:px-0 lg:mx-20 xl:mx-28 2xl:mx-40 lg:pb-2 lg:px-1 xl:px-3 2xl:px-1  max-w-xl md:max-w-2xl mx-auto lg:max-w-7xl flex flex-col md:flex-row justify-center lg:justify-between items-center md:items-start">
         <div className="w-[138px] my-10 md:my-0">
           <div className="logo">
             <a href="/" className="cursor-pointer">
@@ -71,7 +71,7 @@ const Footer = () => {
           © Copyright 2022{" "}
           <a
             href="https://hikmah-yousuph.vercel.app/"
-            className="border-bottom rounded-sm shadow-inner shadow-[inset_0_-1px_0_0_#fff] hover:shadow-[inset_0_-4rem_0_0_#ff7d1a] hover:text-very-dark-blue py-1 transition-all duration-300"
+            className="border-bottom rounded-sm shadow-[inset_0_-1px_0_0_#fff] hover:shadow-[inset_0_-4rem_0_0_#ff7d1a] hover:text-very-dark-blue py-1 transition-all duration-300"
           >
             Hikmah Yousuph.
           </a>{" "}
