@@ -1,6 +1,6 @@
 import React from 'react';
 import CollectionsCards from '../components/collections/CollectionsCards';
-import CollectionsHeader from '../assets/collections-header.jpg'
+import CollectionsHeader from '../assets/page-header/collections-header.jpg'
 
 
 const Collections = () => {
@@ -10,7 +10,7 @@ const Collections = () => {
         Collections
       </h2>
       <div className="absolute top-0 left-0 -z-20 bg-dark-grayish-blue w-full h-48 lg:rounded-md overflow-hidden">
-        <img src={CollectionsHeader} alt="" className="opacity-20 h-full w-full object-cover" />
+        <img src={CollectionsHeader} alt="sneakers on a shelf" className="opacity-10 h-full w-full object-cover" />
       </div>
       <CollectionsCards />
     </section>
