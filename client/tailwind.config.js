@@ -26,6 +26,7 @@ module.exports = {
       },
       screens: {
         "2xl": "1440px",
+        "3xl": "1500px",
       },
     },
     colors: {
@@ -38,6 +39,7 @@ module.exports = {
       white: "hsl(0, 0%, 100%)",
       black: "hsl(0, 0%, 0%)",
       "orange-shadow": "hsl(27, 100%, 80%)",
+      "transparent": "transparent"
     },
     fontFamily: {
       "kumbh-sans": ['"Kumbh Sans"', "sans-serif"],

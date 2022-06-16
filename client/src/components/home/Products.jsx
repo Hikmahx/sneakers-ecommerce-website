@@ -4,7 +4,7 @@ import ProductItem from "./ProductItem";
 const Products = () => {
   return (
     <section className="bg-light-grayish-blue py-12">
-      <div className="lg:px-0 xl:px-3 lg:mx-20 xl:mx-28 2xl:mx-36 max-w-3xl mx-auto lg:max-w-7xl lg:pb-16 lg:mt-7">
+      <div className="lg:px-0 xl:px-3 lg:mx-20 xl:mx-28 2xl:mx-36 3xl:mx-auto max-w-3xl mx-auto lg:max-w-7xl lg:pb-16 lg:mt-7">
         <h2 className="text-very-dark-blue font-bold text-2xl text-center mx-auto lg:text-left sm:text-4xl sm:leading-none py-6 sm:pb-5 mb-6 lg:mb-9">
           Products
         </h2>

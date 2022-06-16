@@ -3,7 +3,7 @@ import heroImg from '../../assets/hero-sneaker.png'
 
 const Hero = () => {
   return (
-    <section className="px-5 py-4 lg:py-24 mt-10 flex flex-col lg:flex-row items-center justify-between lg:mx-20 xl:mx-28 2xl:mx-36 lg:px-0 xl:px-3 max-w-xl md:max-w-xl mx-auto lg:max-w-7xl">
+    <section className="px-5 py-4 lg:py-24 mt-10 flex flex-col lg:flex-row items-center justify-between lg:mx-20 xl:mx-28 2xl:mx-36 3xl:mx-auto lg:px-0 xl:px-3 max-w-xl md:max-w-xl mx-auto lg:max-w-7xl">
       <div
         id="hero-details"
         className="container order-2 lg:order-1 text-center lg:text-left mx-auto pt-5 sm:pt-10 lg:pt-5 pb-20 lg:pb-5 lg:px-0 xl:mr-1 w-full lg:w-1/2"
