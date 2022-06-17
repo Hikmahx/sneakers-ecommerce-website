@@ -3,11 +3,12 @@ import ContactHeader from '../assets/page-header/contact-header.jpg';
 
 const Contact = () => {
   return (
-    <section className='max-w-xl sm:max-w-4xl lg:max-w-7xl relative px-5 pt-20 mt-2 pb-12 items-center mx-auto lg:mx-20 xl:mx-28 2xl:mx-40 3xl:mx-auto lg:pb-2 lg:px-1 xl:px-3 2xl:px-1 my-32'>
-      <h2 className='product capitalize text-white font-bold text-center lg:text-left text-3xl sm:text-4xl sm:leading-none pb-3 px-8'>
+    <section className="bg-light-grayish-blue h-auto pt-2 min-h-[80vh]">
+      <div className='max-w-xl sm:max-w-4xl lg:max-w-7xl relative px-5 pt-20 pb-12 items-center mx-auto lg:mx-20 xl:mx-28 2xl:mx-40 3xl:mx-auto lg:pb-2 lg:px-1 xl:px-3 2xl:px-1'>
+      <h2 className='product capitalize text-white font-bold text-center relative z-10 lg:text-left text-3xl sm:text-4xl sm:leading-none pb-3 px-8'>
         Contact
       </h2>
-      <div className='absolute top-0 left-0 -z-20 bg-dark-grayish-blue w-full h-48 rounded-md overflow-hidden'>
+      <div className='absolute top-0 left-0 bg-dark-grayish-blue w-full h-48 rounded-md overflow-hidden'>
         <img
           src={ContactHeader}
           alt=''
@@ -15,7 +16,7 @@ const Contact = () => {
         />
       </div>
 
-      <div className='flex mt-32 bg-pale-orange shadow-xl flex-col lg:flex-row max-w-xl lg:max-w-7xl mx-auto'>
+      <div className='flex mt-32 bg-pale-orange shadow-xl flex-col lg:flex-row max-w-xl lg:max-w-7xl mx-auto mb-32'>
         <div className='other-contact flex-1 lg:mr-6 text-very-dark-blue text-base lg:text-2xl px-3 sm:px-5 lg:px-8 py-4 lg:py-16'>
           <p className='font-bold'>Got questions or feedbacks for us?</p>
           <p className='font-bold'>Fill the form here to reach us.</p>
@@ -111,7 +112,8 @@ const Contact = () => {
           </form>
         </div>
       </div>
-    </section>
+    </div>
+    </section>    
   );
 };
 
