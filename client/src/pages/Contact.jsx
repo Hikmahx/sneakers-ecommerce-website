@@ -11,7 +11,7 @@ const Contact = () => {
       <div className='absolute top-0 left-0 bg-dark-grayish-blue w-full h-48 rounded-md overflow-hidden'>
         <img
           src={ContactHeader}
-          alt=''
+          alt='sneakers on a line'
           className='opacity-10 absolute h-full w-full object-cover'
         />
       </div>
