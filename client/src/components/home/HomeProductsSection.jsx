@@ -1,7 +1,7 @@
 import React from "react";
 import ProductItem from "./ProductItem";
 
-const Products = () => {
+const HomeProductsSection = () => {
   return (
     <section className="bg-light-grayish-blue py-12">
       <div className="lg:px-0 xl:px-3 lg:mx-20 xl:mx-28 2xl:mx-36 3xl:mx-auto max-w-3xl mx-auto lg:max-w-7xl lg:pb-16 lg:mt-7">
@@ -35,4 +35,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default HomeProductsSection;
