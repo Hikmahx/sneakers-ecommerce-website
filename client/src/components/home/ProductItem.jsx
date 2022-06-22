@@ -1,32 +1,34 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const ProductItem = () => {
+const ProductItem = ({product}) => {
+  // const percentage = pre
   return (
     <div className="group relative">
       <div className="w-full min-h-80 bg-grayish-blue aspect-w-1 aspect-h-1 rounded-md overflow-hidden  lg:h-80 lg:aspect-none relative before:absolute before:bg-[hsla(222,_4%,_48%,_0.4)] before:inset-0 text-center before:h-0 group-hover:before:h-full before:transition-all">
         <img
-          src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=725&q=80"
-          alt="product display"
+          src={product.img[0]}
+          alt={product.alt}
           className="w-full h-full object-center object-cover lg:w-full lg:h-full"
         />
       </div>
       <div className="">
-        <a href="/">
+        <Link to="#" className="cursor-pointer">
           <span aria-hidden="true" className="absolute inset-0" />
           <p className="company uppercase text-orange font-bold text-[0.625rem] tracking-wider pb-2 pt-4">
-            sneaker company
+            {product.company}
           </p>
-          <h3 className="product capitalize text-very-dark-blue text-lg font-bold sm:leading-none pb-4">
-            fall limited edition sneakers
+          <h3 className="product capitalize text-very-dark-blue text-lg font-bold sm:leading-none pb-4 h-12">
+            {product.title}
           </h3>
-        </a>
+        </Link>
         <div className="flex justify-between items-center text-sm">
-          <div className="discount-price font-bold">$125.00</div>
+          <div className="discount-price font-bold">${product.discountPrice}</div>
           <div className="original-price text-grayish-blue line-through">
-            $250.00
+          ${product.price}
           </div>
           <div className="discount text-orange bg-pale-orange font-bold w-max px-2 rounded mx-5 h-6">
-            50%
+            {Math.floor(((product.price/product.price )- (product.discountPrice/product.price)) * 100)}%
           </div>
         </div>
       </div>

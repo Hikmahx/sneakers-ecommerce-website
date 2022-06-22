@@ -2,6 +2,7 @@ import React from "react";
 import aboutHeader from "../assets/page-header/about-header.jpg";
 import Filter from "../components/Filter";
 import ProductItem from "../components/home/ProductItem";
+import {AllProducts} from '../data'
 
 const Products = () => {
   return (
@@ -20,16 +21,11 @@ const Products = () => {
         <Filter/>
         <div className="product-container max-w-2xl mx-auto lg:max-w-7xl px-4 lg:px-0 my-20 lg:my-32">
           <div className="grid grid-cols-1 gap-y-12 sm:y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-            <ProductItem />
-            <ProductItem />
-            <ProductItem />
-            <ProductItem />
-            <ProductItem />
-            <ProductItem />
-            <ProductItem />
-            <ProductItem />
-            <ProductItem />
-            <ProductItem />
+            {
+              AllProducts.map(product=>(
+                <ProductItem key={product.id} product={product}/>
+              ))
+            }
           </div>
         </div>
       </div>
