@@ -1,5 +1,6 @@
 import React from "react";
 import WomenHeader from "../assets/page-header/women-header.jpg";
+import Filter from "../components/Filter";
 import ProductItem from "../components/home/ProductItem";
 
 const Women = () => {
@@ -16,7 +17,7 @@ const Women = () => {
             className="opacity-10 absolute h-full w-full object-cover"
           />
         </div>
-
+        <Filter />
         <div className="product-container max-w-2xl mx-auto lg:max-w-7xl px-4 lg:px-0 my-32">
           <div className="grid grid-cols-1 gap-y-12 sm:y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
             <ProductItem />

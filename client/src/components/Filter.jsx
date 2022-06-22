@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
 const Filter = () => {
- const [filter, setFilter] = useState({})
- const [sort, setSort] = useState({})
+ const [filters, setFilters] = useState({})
+ const [sort, setSort] = useState('newest')
 
 
  const handleFilter = (e) =>{
-    setFilter({...filter, [e.target.name]: e.target.value})
+    setFilters({...filters, [e.target.name]: e.target.value})
  }
 
 //  console.log(filter)
@@ -22,7 +22,7 @@ const Filter = () => {
           name="color"
           onChange={handleFilter}
         >
-          <option value="color">Color</option>
+          <option value="color" selected disabled>Color</option>
           <option value="white">White</option>
           <option value="black">Black</option>
           <option value="orange">Orange</option>
@@ -36,7 +36,7 @@ const Filter = () => {
           name="brand"
           onChange={handleFilter}
         >
-          <option value="brand">brand</option>
+          <option value="brand" selected disabled>brand</option>
           <option value="nike">nike</option>
           <option value="adidas">adidas</option>
           <option value="puma">puma</option>
