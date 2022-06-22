@@ -88,13 +88,14 @@ const Header = () => {
               </li>
               <li className="relative h-12 lg:h-inherit">
                 <NavLink
-                  to="/about"
+                  to="/products"
                   className={({ isActive }) =>
                     "absolute inset-0 mb-5 pt-[2.5px] lg:pt-0 lg:mb-0 lg:mx-4 lg:h-inherit lg:flex lg:items-center cursor-pointer lg:relative lg:before:content-[attr(before)] before:absolute before:-bottom-1 before:left-0 before:h-full before:-z-10 before:lg:z-10 before:lg:h-1 before:bg-orange before:w-0 hover:before:w-full before:transition-all lg:hover:text-very-dark-blue " +
                     (!isActive ? "" : "before:w-full text-white lg:text-very-dark-blue")
                   }
+                  end
                 >
-                  About
+                  All
                 </NavLink>
               </li>
               <li className="relative h-12 lg:h-inherit">
