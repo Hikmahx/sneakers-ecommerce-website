@@ -1,7 +1,7 @@
 
 
 
-export const Products = [
+export const AllProducts = [
   {
     id: 1,
     company: 'Givenchy',
