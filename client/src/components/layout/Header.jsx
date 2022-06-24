@@ -1,9 +1,11 @@
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import logo from "../../assets/logo.svg";
 import menu from "../../assets/icon-menu.svg";
 import avatar from "../../assets/image-avatar.png";
 import Cart from "./Cart";
 import { NavLink } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux'
+import { cartDisplay } from '../../redux/reducers/cartSlice'
 
 const Header = () => {
   //   const {cartItems, showCart, cartDisplay, total} = useContext(ProductContext)
@@ -14,8 +16,11 @@ const Header = () => {
   let close = useRef(null);
   let hamburger = useRef(null);
 
-  const [showCart, setShowCart] = useState(false);
-  const [total, setTotal] = useState(0);
+  // const [showCart, setShowCart] = useState(false);
+  const showCart = useSelector((state) => state.cart.showCart)
+  // const [total, setTotal] = useState(0);
+  const total = useSelector((state) => state.cart.total)
+  const dispatch = useDispatch()
 
   const displayMenu = () => {
     navMenu.current.classList.toggle("!translate-x-0");
@@ -25,9 +30,10 @@ const Header = () => {
     hamburger.current.classList.toggle("!hidden");
   };
 
-  const cartDisplay = () => {
-    setShowCart(!showCart);
-  };
+  // const cartDisplay = () => {
+  //   // setShowCart(!showCart);
+  //   dispatch(displayCart())
+  // };
 
   return (
     <header className="sm:px-3 lg:px-0 mx-auto">
@@ -113,7 +119,7 @@ const Header = () => {
             <ul className="">
               <li>
                 <NavLink to="/login">
-                  <button className="h-10 w-full block sm:hidden bg-orange px-4 rounded-lg lg:rounded-xl text-white flex items-center justify-center hover:bg-white shadow-[inset_0_0_0_0_rgba(255,125,26,0.6)] hover:shadow-[inset_0_-4rem_0_0_rgba(255,125,26,0.6)] transition-all duration-300">
+                  <button className="h-10 w-full sm:hidden bg-orange px-4 rounded-lg lg:rounded-xl text-white flex items-center justify-center hover:bg-white shadow-[inset_0_0_0_0_rgba(255,125,26,0.6)] hover:shadow-[inset_0_-4rem_0_0_rgba(255,125,26,0.6)] transition-all duration-300">
                     Login
                   </button>
                 </NavLink>
@@ -136,7 +142,7 @@ const Header = () => {
                   </div>
                 )}
                 <i
-                  onClick={cartDisplay}
+                  onClick={()=>dispatch(cartDisplay())}
                   className={
                     "cursor-pointer text-3xl !leading-none lg:text-2xl transition-colors " +
                     (showCart ? "text-very-dark-blue" : "text-grayish-blue")
@@ -150,7 +156,7 @@ const Header = () => {
               <img src={avatar} alt="avatar" />
             </div>
             <NavLink to="/login">
-              <button className="h-10  hidden sm:block bg-orange px-4 rounded-lg lg:rounded-xl ml-2 text-white flex items-center justify-center hover:bg-white shadow-[inset_0_0_0_0_rgba(255,125,26,0.6)] hover:shadow-[inset_0_-4rem_0_0_rgba(255,125,26,0.6)] transition-all duration-300">
+              <button className="h-10 sm:block bg-orange px-4 rounded-lg lg:rounded-xl ml-2 text-white flex items-center justify-center hover:bg-white shadow-[inset_0_0_0_0_rgba(255,125,26,0.6)] hover:shadow-[inset_0_-4rem_0_0_rgba(255,125,26,0.6)] transition-all duration-300">
                 Login
               </button>
             </NavLink>
