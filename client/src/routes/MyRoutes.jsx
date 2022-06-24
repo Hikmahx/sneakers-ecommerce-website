@@ -10,6 +10,7 @@ import Login from "../pages/User/Login";
 import Register from "../pages/User/Register";
 import Layout from "../components/layout/Layout";
 import Products from "../pages/Products";
+import ProductPage from "../pages/ProductPage";
 
 const MyRoutes = () => {
   const user = false;
@@ -24,6 +25,7 @@ const MyRoutes = () => {
         <Route path="/products/" element={<Products />} />
         <Route path="/products/men" element={<Men />} />
         <Route path="/products/women" element={<Women />} />
+        <Route path="/products/:id" element={<ProductPage />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={user ? <Navigate to="/" replace={true}  /> : <Login />} />
         <Route path="/register" element={user ? <Navigate to="/" replace={true}  /> : <Register />} />
