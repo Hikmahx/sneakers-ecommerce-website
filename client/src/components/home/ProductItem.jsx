@@ -13,7 +13,7 @@ const ProductItem = ({product}) => {
         />
       </div>
       <div className="">
-        <Link to="#" className="cursor-pointer">
+        <Link to={`/products/${product.id}`} className="cursor-pointer">
           <span aria-hidden="true" className="absolute inset-0" />
           <p className="company uppercase text-orange font-bold text-[0.625rem] tracking-wider pb-2 pt-4">
             {product.company}
