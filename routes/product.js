@@ -11,7 +11,7 @@ dotenv.config({ path: "../config/config.env" });
 // @ route GET api/products
 // @ desc  Get all products
 // @ access Private
-router.get("/", verifyTokenAndAdmin, async (req, res) => {
+router.get("/",  async (req, res) => {
   const queryNew = req.query.new;
   const queryCategory = req.query.category;
   try {
