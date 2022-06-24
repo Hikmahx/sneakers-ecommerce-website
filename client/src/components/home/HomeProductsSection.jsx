@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ProductItem from "./ProductItem";
 
 const HomeProductsSection = () => {
+  const [products, setProducts] = useState([])
+
   return (
     <section className="bg-light-grayish-blue py-12">
       <div className="lg:px-0 xl:px-3 lg:mx-20 xl:mx-28 2xl:mx-36 3xl:mx-auto max-w-3xl mx-auto lg:max-w-7xl lg:pb-16 lg:mt-7">
@@ -15,10 +17,12 @@ const HomeProductsSection = () => {
         > */}
         <div className="max-w-2xl mx-auto lg:max-w-7xl px-4 lg:px-0">
           <div className="grid grid-cols-1 gap-y-12 sm:y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-            <ProductItem />
-            <ProductItem />
-            <ProductItem />
-            <ProductItem />
+          { 
+              products.map((product, index)=>(
+                
+                <ProductItem key={product.id} product={product}/>
+              ))
+            }
           </div>
         </div>
         {/* </div> */}
