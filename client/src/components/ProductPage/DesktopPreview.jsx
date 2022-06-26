@@ -8,11 +8,11 @@ const DesktopPreview = () => {
 
   return (
     <>
-      <div className="preview xl:min-w-md max-w-3xl rounded-2xl overflow-hidden cursor-pointer">
+      <div className="preview xl:min-w-md max-w-3xl w-[448px] h-[448px] cursor-pointer bg-grayish-blue rounded-2xl mx-auto">
         <img
           src={images[curIndex]}
           alt="product-preview"
-          className="transition duration-150 ease-in-out"
+          className="rounded-2xl transition duration-150 ease-in-out w-full h-full object-cover object-bottom"
           data-bs-toggle="modal"
           data-bs-target="#exampleModal"
         />
@@ -34,7 +34,7 @@ const DesktopPreview = () => {
             <img
               onClick={() => dispatch(changeImage(index))}
               className={
-                "w-full h-full hover:opacity-80 " +
+                "w-full h-full hover:opacity-80 object-cover" +
                 (curIndex === index ? " opacity-50" : "")
               }
               src={img}

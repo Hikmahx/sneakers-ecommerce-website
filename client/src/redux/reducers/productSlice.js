@@ -6,8 +6,10 @@ const productSlice = createSlice({
   name: 'product',
   initialState: {
     products: [],
-    images: AllProducts[0].img,
+    images: [],
     curIndex: 0,
+    productId: 0,
+    product: []
   },
 
   // productSlice
@@ -32,10 +34,15 @@ const productSlice = createSlice({
       } else {
         state.curIndex += 1
       }
+    },
+    getProductItem: (state, action)=>{
+      state.productId = action.payload
+      state.images = AllProducts[action.payload-1].img
+      state.product= AllProducts[action.payload-1]
     }
   }
 }
 )
 
-export const { getProducts, changeImage, prevPreview, nextPreview } = productSlice.actions;
+export const { getProducts, changeImage, prevPreview, nextPreview, getProductItem } = productSlice.actions;
 export default productSlice.reducer;

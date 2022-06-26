@@ -1,6 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { getProductItem } from "../../redux/reducers/productSlice";
 
 const ProductDetails = () => {
+  let params = useParams();
+  const dispatch = useDispatch();
+  const product = useSelector((state) => state.product.product);
+
+  useEffect(() => {
+    dispatch(getProductItem(params.id));
+    // eslint-disable-next-line
+  }, []);
+
   const quantity = (e) => {
     console.log(e.target);
   };
@@ -16,18 +28,20 @@ const ProductDetails = () => {
   return (
     <>
       <h2 className="company uppercase text-orange font-bold text-sm sm:text-md tracking-wider pb-3 sm:pb-5">
-        sneaker company
+        {product.company}
       </h2>
       <h3
         //  ref={productTitleRef}
         className="product capitalize text-very-dark-blue font-bold text-3xl sm:text-4xl sm:leading-none pb-3"
       >
-        fall limited edition <span className="block lg:mt-1">sneakers</span>
+        {product.title}
+        {/* fall limited edition <span className="block lg:mt-1">sneakers</span> */}
       </h3>
       <p className="text-dark-grayish-blue pb-6 lg:py-7 lg:leading-6">
-        These low-profile sneakers are your perfect casual wear companion.
+        {product.desc}
+        {/* These low-profile sneakers are your perfect casual wear companion.
         Featuring a durable rubber outer sole, they'll withstand everything the
-        weather can offer.
+        weather can offer. */}
       </p>
       <div className="amount font-bold flex items-center justify-between lg:flex-col lg:items-start mb-6">
         <div className="discount-price items-center flex">
@@ -35,14 +49,15 @@ const ProductDetails = () => {
             // ref={productPriceRef}
             className="price text-3xl"
           >
-            $125.00
+            ${product.discountPrice}
           </div>
           <div className="discount text-orange bg-pale-orange w-max px-2 rounded mx-5 h-6">
-            50%
+            {Math.floor(((product.price/product.price )- (product.discountPrice/product.price)) * 100)}%
+            {/* 50% */}
           </div>
         </div>
         <div className="original-price text-grayish-blue line-through lg:mt-2">
-          $250.00
+          ${product.price}
         </div>
       </div>
       <div className="sm:flex lg:mt-8 w-full">
