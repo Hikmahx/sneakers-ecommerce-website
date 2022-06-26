@@ -14,7 +14,7 @@ const DesktopLightBox = () => {
     <div
       className="screen modal fade hidden fixed w-full h-full inset-0 outline-none"
       id="exampleModal"
-      tabindex="-1"
+      tabIndex="-1"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
     >
