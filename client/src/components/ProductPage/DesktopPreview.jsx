@@ -6,14 +6,8 @@ const DesktopPreview = ({ activeThumbnail, thumbnails }) => {
   const dispatch = useDispatch();
 
   const [images, setImages] = useState([AllProducts[0].img]);
-  // console.log(images);
-  // const lightBox = (e) => {
-  //   console.log(e.target);
-  // };
 
-  const previewDisplay = (e) => {
-    console.log(e.target);
-  };
+
 
   return (
     <>
