@@ -1,14 +1,10 @@
 import React from "react";
 import DesktopPreview from "./DesktopPreview";
+import { useDispatch, useSelector } from "react-redux";
+import { prevPreview, nextPreview } from "../../redux/reducers/productSlice";
 
 const DesktopLightBox = () => {
-  const prevPreview = (e) => {
-    console.log(e.target);
-  };
-
-  const nextPreview = (e) => {
-    console.log(e.target);
-  };
+  const dispatch = useDispatch();
 
   return (
     <div
@@ -30,10 +26,9 @@ const DesktopLightBox = () => {
           <div className="modal-content">
             <DesktopPreview />
           </div>
-        </div>
-        <div className="directions absolute inset-x-1/4 inset-y-1/2 flex items-end justify-between mx-20 z-40">
+        <div className="directions absolute inset-x-0 top-[40%] w-ful flex items-end justify-between z-40 -mx-4">
           <button
-            onClick={prevPreview}
+            onClick={()=>dispatch(prevPreview())}
             className="back-arrow w-14 h-14 bg-white rounded-full"
           >
             <i className="flex items-center justify-center m-auto text-2xl hover:text-orange">
@@ -41,13 +36,14 @@ const DesktopLightBox = () => {
             </i>
           </button>
           <button
-            onClick={nextPreview}
+            onClick={()=>dispatch(nextPreview())}
             className="next-arrow w-14 h-14 bg-white rounded-full"
           >
             <i className="flex items-center justify-center m-auto text-2xl hover:text-orange">
               <ion-icon name="chevron-forward-outline"></ion-icon>
             </i>
           </button>
+        </div>
         </div>
       </section>
     </div>

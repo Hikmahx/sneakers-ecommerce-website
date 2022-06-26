@@ -18,10 +18,24 @@ const productSlice = createSlice({
     changeImage: (state, action) => {
       // CHANGE PREVIEW IMG ON CLICK
       state.curIndex = action.payload
+    },
+    prevPreview: (state, action) => {
+      if (state.curIndex < 1) {
+        state.curIndex = 0
+      } else {
+        state.curIndex -= 1
+      }
+    },
+    nextPreview: (state, action) => {
+      if (state.curIndex > (state.images.length - 2)) {
+        state.curIndex = state.images.length - 1
+      } else {
+        state.curIndex += 1
+      }
     }
   }
 }
 )
 
-export const { getProducts, changeImage } = productSlice.actions;
+export const { getProducts, changeImage, prevPreview, nextPreview } = productSlice.actions;
 export default productSlice.reducer;
