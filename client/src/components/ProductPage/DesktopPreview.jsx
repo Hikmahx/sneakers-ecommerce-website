@@ -1,12 +1,18 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { createRef, useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { AllProducts } from "../../data";
+import { getProducts, activeThumbnail, activeModalThumbnail } from '../../redux/reducers/productSlice'
 
-const DesktopPreview = ({ activeThumbnail, thumbnails }) => {
+
+const DesktopPreview = ({ thumbnails }) => {
   const dispatch = useDispatch();
 
-  const [images, setImages] = useState([AllProducts[0].img]);
+useEffect(() => {
+  dispatch(activeThumbnail(thumbnailRef))
+  // eslint-disable-next-line    
+}, [])
 
+  const thumbnailRef = useRef()
 
 
   return (
@@ -23,7 +29,7 @@ const DesktopPreview = ({ activeThumbnail, thumbnails }) => {
         />
       </div>
       <div
-        // ref={thumbnailRef}
+        ref={thumbnailRef}
         className={"thumbnails flex max-w-3xl pt-8 justify-between " + (AllProducts[10].img.length> 3? 'w-100' : "w-3/4 mx-auto")}
       >
         {AllProducts[10].img.map((img, index) => (
