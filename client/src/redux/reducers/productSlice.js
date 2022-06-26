@@ -9,7 +9,8 @@ const productSlice = createSlice({
     images: [],
     curIndex: 0,
     productId: 0,
-    product: []
+    product: [],
+    quantity: 0
   },
 
   // productSlice

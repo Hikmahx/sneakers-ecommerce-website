@@ -7,6 +7,7 @@ const ProductDetails = () => {
   let params = useParams();
   const dispatch = useDispatch();
   const product = useSelector((state) => state.product.product);
+  const quantityCount = useSelector((state) => state.product.quantity);
 
   useEffect(() => {
     dispatch(getProductItem(params.id));
@@ -17,9 +18,9 @@ const ProductDetails = () => {
     console.log(e.target);
   };
 
-  const quantityCount = (e) => {
-    console.log(e.target);
-  };
+  // const quantityCount = (e) => {
+  //   console.log(e.target);
+  // };
 
   const addCart = (e) => {
     console.log(e.target);
