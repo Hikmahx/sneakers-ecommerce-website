@@ -4,6 +4,7 @@ module.exports = {
     extend: {
       height: {
         inherit: "inherit",
+        22: "5.5rem",
       },
       minHeight: {
         xs: "16rem",
