@@ -1,12 +1,15 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { AllProducts } from "../../data";
 
-const DesktopPreview = () => {
+const DesktopPreview = ({ activeThumbnail, thumbnails }) => {
+  const dispatch = useDispatch();
+
   const [images, setImages] = useState([AllProducts[0].img]);
-  console.log(images);
-  const lightBox = (e) => {
-    console.log(e.target);
-  };
+  // console.log(images);
+  // const lightBox = (e) => {
+  //   console.log(e.target);
+  // };
 
   const previewDisplay = (e) => {
     console.log(e.target);
@@ -16,9 +19,13 @@ const DesktopPreview = () => {
     <>
       <div className="preview xl:min-w-md max-w-3xl rounded-2xl overflow-hidden cursor-pointer">
         <img
-          onClick={lightBox}
+          // onClick={lightBox}
           src={AllProducts[0].img[0]}
           alt="product-preview"
+          className="transition duration-150 ease-in-out"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+          // data-bs-toggle="modal" data-bs-target="#exampleModal"
         />
       </div>
       <div
@@ -33,7 +40,7 @@ const DesktopPreview = () => {
           >
             <img
               id={index}
-              onClick={previewDisplay}
+              // onClick={previewDisplay}
               className="w-full"
               src={img}
               alt="thumbnail"
