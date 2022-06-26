@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes, useLocation, Navigate } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import Home from "../pages/Home/Home";
 import About from "../pages/About";
 import Collections from "../pages/Collections";
@@ -14,8 +14,8 @@ import ProductPage from "../pages/ProductPage";
 
 const MyRoutes = () => {
   const user = false;
-  const location = useLocation();
-  console.log(location.pathname.split("/")[2]);
+  // const location = useLocation();
+  // console.log(location.pathname.split("/")[2]);
   return (
     <Layout>
       <Routes>
