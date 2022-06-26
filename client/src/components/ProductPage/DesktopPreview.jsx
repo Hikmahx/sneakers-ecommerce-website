@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { changeImage } from "../../redux/reducers/productSlice";
 
-const DesktopPreview = ({ thumbnails }) => {
+const DesktopPreview = () => {
   const dispatch = useDispatch();
   const curIndex = useSelector((state) => state.product.curIndex);
   const images = useSelector((state) => state.product.images);
