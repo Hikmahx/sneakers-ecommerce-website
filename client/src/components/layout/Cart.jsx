@@ -7,9 +7,7 @@ const Cart = () => {
 
   return (
     <div 
-    className="popover fade show bs-popover-end absolute top-20 lg:top-24 bottom-40 inset-x-2 lg:left-auto lg:-right-16 lg:-mr-2 p-5 max-w-xl lg:max-w-sm lg:w-full mx-auto min-h-xs flex flex-col bg-white z-20 shadow-lg lg:shadow-xl rounded-lg"
-    data-popper-placement="bottom"
-    >
+    className="absolute top-20 lg:top-24 bottom-40 inset-x-2 lg:left-auto lg:-right-16 lg:-mr-2 p-5 max-w-xl lg:max-w-sm lg:w-full mx-auto min-h-xs flex flex-col bg-white z-20 shadow-lg lg:shadow-xl rounded-lg">
       <h3 className="font-bold pb-5">Cart</h3>
       <hr className="text-grayish-blue -mx-5" />
       <div
