@@ -6,7 +6,7 @@ export const AllProducts = [
     id: 1,
     company: 'Givenchy',
     title: "Urban street leather sneakers",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed modi quaerat accusantium temporibus eaque autem minus, hic est! Exercitationem, blanditiis. Optio aliquam earum dignissimos modi quia, doloremque vel nostrum consectetur?",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed modi quaerat accusantium temporibus eaque autem minus, hic est! Exercitationem, blanditiis.",
     img: [
       'https://images.unsplash.com/photo-1581954767938-4098bcf2a342?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1035&q=80',
       'https://images.unsplash.com/photo-1620115245635-83e314d289cd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDN8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60',
@@ -28,7 +28,7 @@ export const AllProducts = [
     id: 2,
     company: 'adidas',
     title: "forum low shoe",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed modi quaerat accusantium temporibus eaque autem minus, hic est! Exercitationem, blanditiis. Optio aliquam earum dignissimos modi quia, doloremque vel nostrum consectetur?",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed modi quaerat accusantium temporibus eaque autem minus, hic est! Exercitationem, blanditiis.",
     img: [
       'https://images.unsplash.com/photo-1620794485673-cdd886ed9a8c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1024&q=80',
       'https://images.unsplash.com/photo-1620794341491-76be6eeb6946?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MTQxfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60',
@@ -51,7 +51,7 @@ export const AllProducts = [
     id: 3,
     company: 'nike',
     title: "nike air max dia sneakers se",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed modi quaerat accusantium temporibus eaque autem minus, hic est! Exercitationem, blanditiis. Optio aliquam earum dignissimos modi quia, doloremque vel nostrum consectetur?",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed modi quaerat accusantium temporibus eaque autem minus, hic est! Exercitationem, blanditiis.",
     img: [
       'https://images.unsplash.com/photo-1581327511975-831a15256808?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDJ8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60',
       'https://images.unsplash.com/photo-1581327512051-f988327733a4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDEwfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60',
@@ -73,7 +73,7 @@ export const AllProducts = [
     id: 4,
     company: 'puma',
     title: "smash leather perf sneakers",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed modi quaerat accusantium temporibus eaque autem minus, hic est! Exercitationem, blanditiis. Optio aliquam earum dignissimos modi quia, doloremque vel nostrum consectetur?",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed modi quaerat accusantium temporibus eaque autem minus, hic est! Exercitationem, blanditiis.",
     img: [
       'https://images.unsplash.com/photo-1608230164697-c791326d284c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2148&q=80',
       'https://images.unsplash.com/photo-1608230616491-5d696aa9fe52?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1035&q=80',
@@ -95,7 +95,7 @@ export const AllProducts = [
     id: 5,
     company: 'jordan',
     title: "Air Jordan 12 Retro 'Gym Red' ",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed modi quaerat accusantium temporibus eaque autem minus, hic est! Exercitationem, blanditiis. Optio aliquam earum dignissimos modi quia, doloremque vel nostrum consectetur?",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed modi quaerat accusantium temporibus eaque autem minus, hic est! Exercitationem, blanditiis.",
     img: [
       'https://images.unsplash.com/photo-1575537303236-04404c3cfd32?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80',
       'https://images.unsplash.com/photo-1575537302816-cb66a3753aa4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1035&q=80',
@@ -117,7 +117,7 @@ export const AllProducts = [
     id: 6,
     company: 'nike',
     title: "carhartt nike air force 1",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed modi quaerat accusantium temporibus eaque autem minus, hic est! Exercitationem, blanditiis. Optio aliquam earum dignissimos modi quia, doloremque vel nostrum consectetur?",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed modi quaerat accusantium temporibus eaque autem minus, hic est! Exercitationem, blanditiis.",
     img: [
       'https://images.unsplash.com/photo-1549298916-b41d501d3772?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2012&q=80',
       'https://images.unsplash.com/photo-1549298916-c6c5f85fa167?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60',
@@ -139,7 +139,7 @@ export const AllProducts = [
     id: 7,
     company: 'reebok',
     title: "Zig Kinetica Concept Type 1",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed modi quaerat accusantium temporibus eaque autem minus, hic est! Exercitationem, blanditiis. Optio aliquam earum dignissimos modi quia, doloremque vel nostrum consectetur?",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed modi quaerat accusantium temporibus eaque autem minus, hic est! Exercitationem, blanditiis.",
     img: [
       'https://images.unsplash.com/photo-1580977251946-c5f692a4db0d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MXw5NDk5NTA0fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60',
       'https://images.unsplash.com/photo-1580977251948-5baa254f27d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8Mnw5NDk5NTA0fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60',
@@ -162,7 +162,7 @@ export const AllProducts = [
     id: 8,
     company: 'adidas',
     title: "adidas Originals ZX 500 'Jordan'",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed modi quaerat accusantium temporibus eaque autem minus, hic est! Exercitationem, blanditiis. Optio aliquam earum dignissimos modi quia, doloremque vel nostrum consectetur?",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed modi quaerat accusantium temporibus eaque autem minus, hic est! Exercitationem, blanditiis.",
     img: [
       'https://images.unsplash.com/photo-1580980379270-cf860f6db3c2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2682&q=80',
       'https://images.unsplash.com/photo-1580980379292-082d6126499c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2033&q=80',
@@ -184,7 +184,7 @@ export const AllProducts = [
     id: 9,
     company: 'adidas',
     title: "Speedfactory AM4LDN running sneakers",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed modi quaerat accusantium temporibus eaque autem minus, hic est! Exercitationem, blanditiis. Optio aliquam earum dignissimos modi quia, doloremque vel nostrum consectetur?",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed modi quaerat accusantium temporibus eaque autem minus, hic est! Exercitationem, blanditiis.",
     img: [
       'https://images.unsplash.com/photo-1581078837534-2ab3849d4fbe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjA4fHxhZGlkYXMlMjBzbmVha2Vyc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60',
       'https://images.unsplash.com/photo-1581078836184-ce63e9052a1d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60',
@@ -206,7 +206,7 @@ export const AllProducts = [
     id: 10,
     company: 'saint lauren',
     title: "Andy low-top Sneakers Pink Glitter",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed modi quaerat accusantium temporibus eaque autem minus, hic est! Exercitationem, blanditiis. Optio aliquam earum dignissimos modi quia, doloremque vel nostrum consectetur?",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed modi quaerat accusantium temporibus eaque autem minus, hic est! Exercitationem, blanditiis.",
     img: [
       'https://images.unsplash.com/photo-1620114884229-65d21f8c9423?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1035&q=80',
       'https://images.unsplash.com/photo-1620114884830-c5b0ed2529f0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDV8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60',
@@ -228,7 +228,7 @@ export const AllProducts = [
     id: 11,
     company: 'nike',
     title: "Air Force 1 Premium 'Popcorn'",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed modi quaerat accusantium temporibus eaque autem minus, hic est! Exercitationem, blanditiis. Optio aliquam earum dignissimos modi quia, doloremque vel nostrum consectetur?",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed modi quaerat accusantium temporibus eaque autem minus, hic est! Exercitationem, blanditiis.",
     img: [
       'https://images.unsplash.com/photo-1617143207675-e7e6371f5f5d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1364&q=80',
       'https://images.unsplash.com/photo-1617143207837-ead247a84ccb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDN8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60',
@@ -249,7 +249,7 @@ export const AllProducts = [
     id: 12,
     company: 'nike',
     title: "Jordan 1 Retro High off white unc",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed modi quaerat accusantium temporibus eaque autem minus, hic est! Exercitationem, blanditiis. Optio aliquam earum dignissimos modi quia, doloremque vel nostrum consectetur?",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed modi quaerat accusantium temporibus eaque autem minus, hic est! Exercitationem, blanditiis.",
     img: [
       'https://images.unsplash.com/photo-1588099768512-be311242916f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDN8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60',
       'https://images.unsplash.com/photo-1588099768485-2dd109977c11?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80',
@@ -271,7 +271,7 @@ export const AllProducts = [
     id: 13,
     company: 'bershka',
     title: "bershka PR 072819 sneaker",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed modi quaerat accusantium temporibus eaque autem minus, hic est! Exercitationem, blanditiis. Optio aliquam earum dignissimos modi quia, doloremque vel nostrum consectetur?",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed modi quaerat accusantium temporibus eaque autem minus, hic est! Exercitationem, blanditiis.",
     img: [
       'https://images.unsplash.com/photo-1622760807800-66cf1466fc08?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60',
       'https://images.unsplash.com/photo-1622760806364-5ccac8096b59?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1365&q=80',
@@ -293,7 +293,7 @@ export const AllProducts = [
     id: 14,
     company: 'puma',
     title: "ralph sampson mc sneakers",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed modi quaerat accusantium temporibus eaque autem minus, hic est! Exercitationem, blanditiis. Optio aliquam earum dignissimos modi quia, doloremque vel nostrum consectetur?",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed modi quaerat accusantium temporibus eaque autem minus, hic est! Exercitationem, blanditiis.",
     img: [
       'https://images.unsplash.com/photo-1605034313761-73ea4a0cfbf3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MjJ8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60',
       'https://images.unsplash.com/photo-1605034487099-56cb1eb79612?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MjB8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60',
@@ -315,7 +315,7 @@ export const AllProducts = [
     id: 15,
     company: 'asics',
     title: " lyte classic 1192a181 watershed rose",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed modi quaerat accusantium temporibus eaque autem minus, hic est! Exercitationem, blanditiis. Optio aliquam earum dignissimos modi quia, doloremque vel nostrum consectetur?",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed modi quaerat accusantium temporibus eaque autem minus, hic est! Exercitationem, blanditiis.",
     img: [
       'https://images.unsplash.com/photo-1591731784541-242d6c6a280e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80',
       'https://images.unsplash.com/photo-1591731792338-2965b5b48e18?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8NDJ8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60',
@@ -337,7 +337,7 @@ export const AllProducts = [
     id: 16,
     company: "puma",
     title: 'Cali Remix Sneakers',
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed modi quaerat accusantium temporibus eaque autem minus, hic est! Exercitationem, blanditiis. Optio aliquam earum dignissimos modi quia, doloremque vel nostrum consectetur?",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed modi quaerat accusantium temporibus eaque autem minus, hic est! Exercitationem, blanditiis.",
     img: [
       'https://images.unsplash.com/photo-1572293211676-a1ea92e6bf99?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2148&q=80',
       'https://images.unsplash.com/photo-1572293148942-a08f047ffb7a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8ODB8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60',
@@ -359,7 +359,7 @@ export const AllProducts = [
     id: 17,
     company: 'vans',
     title: "checkerboard sk8 hi tapered",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed modi quaerat accusantium temporibus eaque autem minus, hic est! Exercitationem, blanditiis. Optio aliquam earum dignissimos modi quia, doloremque vel nostrum consectetur?",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed modi quaerat accusantium temporibus eaque autem minus, hic est! Exercitationem, blanditiis.",
     img: [
       'https://images.unsplash.com/photo-1626379530580-6a58c5cf1d5e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2574&q=80',
       'https://images.unsplash.com/photo-1626379519421-36b5188a864e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
@@ -382,7 +382,7 @@ export const AllProducts = [
     id: 18,
     company: 'vans',
     title: "Authentic Platform 2.0",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed modi quaerat accusantium temporibus eaque autem minus, hic est! Exercitationem, blanditiis. Optio aliquam earum dignissimos modi quia, doloremque vel nostrum consectetur?",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed modi quaerat accusantium temporibus eaque autem minus, hic est! Exercitationem, blanditiis.",
     img: [
       'https://images.unsplash.com/photo-1636594894598-8fc9bf5369e7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDN8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60',
       'https://images.unsplash.com/photo-1636594894193-e8bc2e1e6872?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8NHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=60',
@@ -404,7 +404,7 @@ export const AllProducts = [
     id: 19,
     company: 'asics',
     title: "gel tiger saga",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed modi quaerat accusantium temporibus eaque autem minus, hic est! Exercitationem, blanditiis. Optio aliquam earum dignissimos modi quia, doloremque vel nostrum consectetur?",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed modi quaerat accusantium temporibus eaque autem minus, hic est! Exercitationem, blanditiis.",
     img: [
       'https://images.unsplash.com/photo-1604867896102-8841deb4cb10?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MzJ8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60',
       'https://images.unsplash.com/photo-1604867895792-27ded948142d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8Mjl8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60',
@@ -426,7 +426,7 @@ export const AllProducts = [
     id: 20,
     company: 'adidas',
     title: "ultra boost 20 galaxy solar red",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed modi quaerat accusantium temporibus eaque autem minus, hic est! Exercitationem, blanditiis. Optio aliquam earum dignissimos modi quia, doloremque vel nostrum consectetur?",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed modi quaerat accusantium temporibus eaque autem minus, hic est! Exercitationem, blanditiis.",
     img: [
       'https://images.unsplash.com/photo-1580902394836-21e0d429b7f4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1362&q=80',
       'https://images.unsplash.com/photo-1580902394743-1394a7ec93d2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDN8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60',
