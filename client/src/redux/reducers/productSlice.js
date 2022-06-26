@@ -6,11 +6,8 @@ const productSlice = createSlice({
   name: 'product',
   initialState: {
     products: [],
-    modal: false,
     images: AllProducts[0].img,
-    previewImg: [],
-    currentIndex: 0,
-    currenThumbnail: false
+    curIndex: 0,
   },
 
   // productSlice
@@ -18,22 +15,13 @@ const productSlice = createSlice({
     getProducts: (state, action) => {
       console.log(state)
     },
-    activeThumbnail: (state, action) => {
-      // REMOVE STYLE FROM INACITVE THUMBNAIL            
-      action.payload.current.childNodes.forEach(img => {
-        img.classList.remove('border-2', 'border-orange')
-        img.firstElementChild.classList.remove('opacity-50')
-      })
-
-      // STYLE ACITVE THUMBNAIL
-      return (
-        action.payload.current.childNodes[state.currentIndex].classList.add('border-2', 'border-orange'),
-        action.payload.current.childNodes[state.currentIndex].firstElementChild.classList.add('opacity-50')
-      )
+    changeImage: (state, action) => {
+      // CHANGE PREVIEW IMG ON CLICK
+      state.curIndex = action.payload
     }
   }
 }
 )
 
-export const { getProducts, displayModal, activeThumbnail, activeModalThumbnail } = productSlice.actions;
+export const { getProducts, changeImage } = productSlice.actions;
 export default productSlice.reducer;
