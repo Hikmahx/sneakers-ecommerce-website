@@ -45,14 +45,14 @@ const ProductDetails = () => {
         weather can offer. */}
       </p>
       <div className="amount font-bold flex items-center justify-between lg:flex-col lg:items-start mb-6">
-        <div className="discount-price items-center flex">
+        <div className="discount-price items-center flex  lg:w-1/3 justify-between">
           <div
             // ref={productPriceRef}
             className="price text-3xl"
           >
             ${product.discountPrice}
           </div>
-          <div className="discount text-orange bg-pale-orange w-max px-2 rounded mx-5 h-6">
+          <div className="discount text-orange bg-pale-orange w-max px-2 rounded mx-5 h-6 lg:mr-0">
             {Math.floor(((product.price/product.price )- (product.discountPrice/product.price)) * 100)}%
             {/* 50% */}
           </div>
