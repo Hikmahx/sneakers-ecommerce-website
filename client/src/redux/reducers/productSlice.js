@@ -8,6 +8,7 @@ const productSlice = createSlice({
     products: [],
     images: [],
     curIndex: 0,
+    slideIndex: 0,
     productId: 0,
     product: [],
     quantity: 0
@@ -36,14 +37,31 @@ const productSlice = createSlice({
         state.curIndex += 1
       }
     },
-    getProductItem: (state, action)=>{
+    prevSlide: (state, action) => {
+      if (state.slideIndex < 1) {
+        state.slideIndex = 0
+      } else {
+        state.slideIndex -= 1
+      }
+    },
+    nextSlide: (state, action) => {
+      if (state.slideIndex > (state.images.length - 2)) {
+        state.slideIndex = state.images.length - 1
+      } else if ((state.slideIndex > (state.images.length - 3) && window.innerWidth > 640)) {
+        state.slideIndex = state.images.length - 2
+      }
+      else {
+        state.slideIndex += 1
+      }
+    },
+    getProductItem: (state, action) => {
       state.productId = action.payload
-      state.images = AllProducts[action.payload-1].img
-      state.product= AllProducts[action.payload-1]
+      state.images = AllProducts[action.payload - 1].img
+      state.product = AllProducts[action.payload - 1]
     }
   }
 }
 )
 
-export const { getProducts, changeImage, prevPreview, nextPreview, getProductItem } = productSlice.actions;
+export const { getProducts, changeImage, prevPreview, nextPreview, prevSlide, nextSlide, getProductItem } = productSlice.actions;
 export default productSlice.reducer;
