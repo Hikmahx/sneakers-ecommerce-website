@@ -18,6 +18,7 @@ const productSlice = createSlice({
   reducers: {
     getProducts: (state, action) => {
       console.log(state)
+      state.products= AllProducts
     },
     changeImage: (state, action) => {
       // CHANGE PREVIEW IMG ON CLICK
