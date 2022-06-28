@@ -1,9 +1,13 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import WomenHeader from "../assets/page-header/women-header.jpg";
 import Filter from "../components/Filter";
 import ProductItem from "../components/home/ProductItem";
 
 const Women = () => {
+  const filteredProducts = useSelector(
+    (state) => state.product.filteredProducts
+  );
   return (
     <section className="h-auto pt-2 min-h-[80vh]">
       <div className="max-w-xl sm:max-w-4xl lg:max-w-7xl relative px-5 pt-20 pb-12 items-center mx-auto lg:mx-20 xl:mx-28 2xl:mx-40 3xl:mx-auto lg:pb-2 lg:px-1 xl:px-3 2xl:px-1">
@@ -20,16 +24,9 @@ const Women = () => {
         <Filter />
         <div className="product-container max-w-2xl mx-auto lg:max-w-7xl px-4 lg:px-0 my-32">
           <div className="grid grid-cols-1 gap-y-12 sm:y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-            <ProductItem />
-            <ProductItem />
-            <ProductItem />
-            <ProductItem />
-            <ProductItem />
-            <ProductItem />
-            <ProductItem />
-            <ProductItem />
-            <ProductItem />
-            <ProductItem />
+            {filteredProducts.map((product) => (
+              <ProductItem key={product.id} product={product} />
+            ))}
           </div>
         </div>
       </div>

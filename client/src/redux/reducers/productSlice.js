@@ -6,6 +6,7 @@ const productSlice = createSlice({
   name: 'product',
   initialState: {
     products: [],
+    filteredProducts: [],
     images: [],
     curIndex: 0,
     slideIndex: 0,
@@ -17,8 +18,12 @@ const productSlice = createSlice({
   // productSlice
   reducers: {
     getProducts: (state, action) => {
-      console.log(state)
       state.products= AllProducts
+    },
+    getFilteredProducts: (state, action) => {
+      state.filteredProducts = state.products.filter((item)=>
+      item.category.at(-1).gender.includes(action.payload)
+      )
     },
     changeImage: (state, action) => {
       // CHANGE PREVIEW IMG ON CLICK
@@ -64,5 +69,5 @@ const productSlice = createSlice({
 }
 )
 
-export const { getProducts, changeImage, prevPreview, nextPreview, prevSlide, nextSlide, getProductItem } = productSlice.actions;
+export const { getProducts, getFilteredProducts, changeImage, prevPreview, nextPreview, prevSlide, nextSlide, getProductItem } = productSlice.actions;
 export default productSlice.reducer;
