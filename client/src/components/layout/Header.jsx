@@ -129,6 +129,7 @@ const Header = () => {
           <div
             ref={darkScreen}
             className="screen -z-10 fixed inset-0 opacity-0 bg-black h-screen lg:hidden transition-all"
+            onClick={displayMenu}
           ></div>
         </div>
         {showCart && <Cart />}
