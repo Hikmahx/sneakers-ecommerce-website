@@ -1,26 +1,18 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getProductItem } from "../../redux/reducers/productSlice";
+import { getProductItem, quantityCount } from "../../redux/reducers/productSlice";
 
 const ProductDetails = () => {
   let params = useParams();
   const dispatch = useDispatch();
   const product = useSelector((state) => state.product.product);
-  const quantityCount = useSelector((state) => state.product.quantity);
+  const quantity = useSelector((state) => state.product.quantity);
 
   useEffect(() => {
     dispatch(getProductItem(params.id));
     // eslint-disable-next-line
   }, []);
-
-  const quantity = (e) => {
-    console.log(e.target);
-  };
-
-  // const quantityCount = (e) => {
-  //   console.log(e.target);
-  // };
 
   const addCart = (e) => {
     console.log(e.target);
@@ -64,7 +56,7 @@ const ProductDetails = () => {
       <div className="sm:flex lg:mt-8 w-full">
         <div className="quantity-container w-full bg-light-grayish-blue rounded-lg h-14 mb-4 flex items-center justify-between px-6 lg:px-3 font-bold sm:mr-3 lg:mr-5 lg:w-1/3">
           <button
-            onClick={quantity}
+            onClick={()=>dispatch(quantityCount('decrease'))}
             className="text-orange text-2xl leading-none font-bold mb-1 lg:mb-2 lg:text-3xl hover:opacity-60"
           >
             -
@@ -73,15 +65,15 @@ const ProductDetails = () => {
             // ref={productQuantityRef}
             min={0}
             max={100}
-            onChange={quantity}
+            onChange={(e)=>dispatch(quantityCount(e.target.value))}
             className="quantity focus:outline-none text-dark-blue bg-light-grayish-blue font-bold flex text-center w-full"
             type="number"
             name="quantity"
-            value={quantityCount}
-            aria-label="quantity number"
+            value={quantity}
+            aria-label="quantity of products"
           />
           <button
-            onClick={quantity}
+            onClick={()=>dispatch(quantityCount('increase'))}
             className="text-orange text-2xl leading-none font-bold mb-1 lg:mb-2 lg:text-3xl hover:opacity-60"
           >
             +

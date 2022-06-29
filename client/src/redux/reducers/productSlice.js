@@ -64,10 +64,22 @@ const productSlice = createSlice({
       state.productId = action.payload
       state.images = AllProducts[action.payload - 1].img
       state.product = AllProducts[action.payload - 1]
+    },
+    quantityCount: (state, action) => {
+      if (action.payload === '') {
+        state.quantity = 0
+      }else if (action.payload === 'decrease') {
+        state.quantity = Math.max(state.quantity - 1, 0)
+      } else if (action.payload === 'increase') {
+        state.quantity = Math.min(state.quantity + 1, 100)
+      }
+      else {
+          state.quantity = Math.min(parseInt(action.payload), 100)
+      }
     }
   }
 }
 )
 
-export const { getProducts, getFilteredProducts, changeImage, prevPreview, nextPreview, prevSlide, nextSlide, getProductItem } = productSlice.actions;
+export const { getProducts, getFilteredProducts, changeImage, prevPreview, nextPreview, prevSlide, nextSlide, getProductItem, quantityCount } = productSlice.actions;
 export default productSlice.reducer;
