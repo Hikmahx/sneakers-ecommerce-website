@@ -11,6 +11,7 @@ import Register from "../pages/User/Register";
 import Layout from "../components/layout/Layout";
 import Products from "../pages/Products";
 import ProductPage from "../pages/ProductPage";
+import NotFound from "../pages/NotFound";
 
 const MyRoutes = () => {
   const user = false;
@@ -19,6 +20,7 @@ const MyRoutes = () => {
   return (
     <Layout>
       <Routes>
+        <Route path='*' element={<NotFound />} />
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/collections" element={<Collections />} />
