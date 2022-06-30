@@ -12,7 +12,6 @@ const productSlice = createSlice({
     slideIndex: 0,
     productId: 0,
     product: [],
-    quantity: 0
   },
 
   // productSlice
@@ -64,22 +63,6 @@ const productSlice = createSlice({
       state.productId = action.payload
       state.images = AllProducts[action.payload - 1].img
       state.product = AllProducts[action.payload - 1]
-    },
-    quantityCount: (state, action) => {
-      switch (action.payload) {
-        case '':
-          state.quantity = 0
-          break;
-        case 'decrease':
-          state.quantity = Math.max(state.quantity - 1, 0)
-          break;
-        case 'increase':
-          state.quantity = Math.min(state.quantity + 1, 100)
-          break;
-        default:
-          state.quantity = Math.min(parseInt(action.payload), 100)
-          break;
-      }
     }
   }
 }
