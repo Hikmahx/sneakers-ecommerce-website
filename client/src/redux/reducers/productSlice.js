@@ -12,12 +12,21 @@ const productSlice = createSlice({
     slideIndex: 0,
     productId: 0,
     product: [],
+    loading:true,
+    error: false,
+    errMsg: ''
   },
 
   // productSlice
   reducers: {
     getProducts: (state, action) => {
-      state.products = AllProducts
+      state.products = action.payload
+      state.loading = false
+    },
+    setError: (state, action) =>{
+      state.loading= false
+      state.error = true
+      state.errMsg = action.payload
     },
     getFilteredProducts: (state, action) => {
       state.filteredProducts = state.products.filter((item) =>
@@ -68,5 +77,5 @@ const productSlice = createSlice({
 }
 )
 
-export const { getProducts, getFilteredProducts, changeImage, prevPreview, nextPreview, prevSlide, nextSlide, getProductItem, quantityCount } = productSlice.actions;
+export const { getProducts, setError, getFilteredProducts, changeImage, prevPreview, nextPreview, prevSlide, nextSlide, getProductItem, quantityCount } = productSlice.actions;
 export default productSlice.reducer;

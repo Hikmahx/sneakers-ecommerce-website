@@ -3,9 +3,13 @@ import aboutHeader from "../assets/page-header/about-header.jpg";
 import Filter from "../components/Filter";
 import ProductItem from "../components/home/ProductItem";
 import { useSelector } from "react-redux";
+import Loading from "../components/Loading";
 
 const Products = () => {
   const products = useSelector((state) => state.product.products);
+  const loading = useSelector((state) => state.product.loading);
+  const error = useSelector((state) => state.product.error);
+  const errMsg = useSelector((state) => state.product.errMsg);
 
   return (
     <section className="h-auto pt-2 min-h-[80vh]">
@@ -21,13 +25,25 @@ const Products = () => {
           />
         </div>
         <Filter />
-        <div className="product-container max-w-2xl mx-auto lg:max-w-7xl px-4 lg:px-0 my-20 lg:my-32">
-          <div className="grid grid-cols-1 gap-y-12 sm:y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-            {products.map((product) => (
-              <ProductItem key={product.id} product={product} />
-            ))}
-          </div>
-        </div>
+        {!error ? (
+          <>
+            {loading ? (
+              <Loading />
+            ) : (
+              <div className="product-container max-w-2xl mx-auto lg:max-w-7xl px-4 lg:px-0 my-20 lg:my-32">
+                <div className="grid grid-cols-1 gap-y-12 sm:y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+                  {products.map((product) => (
+                    <ProductItem key={product.id} product={product} />
+                  ))}
+                </div>
+              </div>
+            )}
+          </>
+        ) : (
+          <>
+            <p className=" mt-20 text-center text-very-dark-blue">{errMsg}. Reload page</p>
+          </>
+        )}
       </div>
     </section>
   );
