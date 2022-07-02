@@ -1,13 +1,29 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import MenHeader from "../assets/page-header/men-header.jpg";
 import Filter from "../components/Filter";
 import ProductItem from "../components/home/ProductItem";
+import Loading from "../components/Loading";
+import { getFilteredProducts } from "../redux/reducers/productSlice";
 
 const Men = () => {
+  let location = useLocation();
+  let gender = location.pathname.split("/")[2];
+  const dispatch = useDispatch();
+  const loading = useSelector((state) => state.product.loading);
+  const errMsg = useSelector((state) => state.product.errMsg);
+  const error = useSelector((state) => state.product.error);
   const filteredProducts = useSelector(
     (state) => state.product.filteredProducts
   );
+
+  useEffect(() => {
+    if (!loading) {
+      dispatch(getFilteredProducts({ gender }));
+    }
+    // eslint-disable-next-line
+  }, [loading]);
 
   return (
     <section className="h-auto pt-2 min-h-[80vh]">
@@ -23,13 +39,27 @@ const Men = () => {
           />
         </div>
         <Filter />
-        <div className="product-container max-w-2xl mx-auto lg:max-w-7xl px-4 lg:px-0 my-32">
-          <div className="grid grid-cols-1 gap-y-12 sm:y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-            {filteredProducts.map((product) => (
-              <ProductItem key={product.id} product={product} />
-            ))}
-          </div>
-        </div>
+        {!error ? (
+          <>
+            {loading ? (
+              <Loading />
+            ) : (
+              <div className="product-container max-w-2xl mx-auto lg:max-w-7xl px-4 lg:px-0 my-32">
+                <div className="grid grid-cols-1 gap-y-12 sm:y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+                  {filteredProducts.map((product) => (
+                    <ProductItem key={product._id} product={product} />
+                  ))}
+                </div>
+              </div>
+            )}
+          </>
+        ) : (
+          <>
+            <p className=" mt-20 text-center text-very-dark-blue">
+              {errMsg}. Reload page
+            </p>
+          </>
+        )}
       </div>
     </section>
   );
