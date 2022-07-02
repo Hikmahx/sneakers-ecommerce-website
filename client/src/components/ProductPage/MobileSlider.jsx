@@ -1,19 +1,11 @@
-import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { getProductItem, nextSlide, prevSlide } from "../../redux/reducers/productSlice";
+import { nextSlide, prevSlide } from "../../redux/reducers/productSlice";
 
 const MobileSlider = () => {
-  let params = useParams();
   const dispatch = useDispatch();
   const images = useSelector((state) => state.product.images);
   const slideIndex = useSelector((state) => state.product.slideIndex);
 
-
-  useEffect(() => {
-    dispatch(getProductItem(params.id));
-    // eslint-disable-next-line
-  }, []);
 
   return (
     <div className="slider overflow-hidden relative mt-1 bg-grayish-blue">

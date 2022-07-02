@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import DesktopLightBox from "../components/ProductPage/DesktopLightBox";
 import DesktopPreview from "../components/ProductPage/DesktopPreview";
@@ -10,11 +10,14 @@ import { getProductItem } from "../redux/reducers/productSlice";
 const ProductPage = () => {
   let params = useParams();
   const dispatch = useDispatch();
+  const loading = useSelector((state) => state.product.loading);
 
   useEffect(() => {
-    dispatch(getProductItem(params.id));
+  if(!loading){
+    dispatch(getProductItem({productId: params.id}));
+  }
     // eslint-disable-next-line
-  }, []);
+  }, [loading]);
 
   return (
     <section className="product-container lg:flex lg:items-center lg:gap-x-12 xl:gap-x-24 lg:px-20 xl:px-40 lg:py-20 lg:m-auto lg:mt-2 lg:max-w-8xl">

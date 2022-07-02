@@ -1,19 +1,10 @@
-import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
 import { addToCart, quantityCount } from "../../redux/reducers/cartSlice";
-import { getProductItem } from "../../redux/reducers/productSlice";
 
 const ProductDetails = () => {
-  let params = useParams();
   const dispatch = useDispatch();
   const product = useSelector((state) => state.product.product);
   const quantity = useSelector((state) => state.cart.quantity);
-
-  useEffect(() => {
-    dispatch(getProductItem(params.id));
-    // eslint-disable-next-line
-  }, []);
 
   return (
     <>

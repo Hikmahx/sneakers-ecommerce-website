@@ -32,7 +32,7 @@ const DesktopPreview = () => {
             }
           >
             <img
-              onClick={() => dispatch(changeImage(index))}
+              onClick={() => dispatch(changeImage({index}))}
               className={
                 "w-full h-full hover:opacity-80 object-cover" +
                 (curIndex === index ? " opacity-50" : "")
