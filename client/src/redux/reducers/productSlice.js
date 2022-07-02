@@ -1,5 +1,14 @@
-import { createSlice } from '@reduxjs/toolkit'
-import { AllProducts } from '../../data'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import axios from 'axios';
+
+
+export const getAllProducts = createAsyncThunk(
+  'product/getAllProducts',
+  async (thunkAPI) => {
+        let res = await axios.get('/api/products/')
+        let products = res.data
+  return products
+})
 
 
 const productSlice = createSlice({
@@ -20,22 +29,22 @@ const productSlice = createSlice({
   // productSlice
   reducers: {
     getProducts: (state, action) => {
-      state.products = action.payload
+      state.products = action.payload.products
       state.loading = false
     },
     setError: (state, action) =>{
       state.loading= false
       state.error = true
-      state.errMsg = action.payload
+      state.errMsg = action.payload.err
     },
-    getFilteredProducts: (state, action) => {
+    getFilteredProducts: (state, action) => { 
       state.filteredProducts = state.products.filter((item) =>
-        item.category.at(-1).gender.includes(action.payload)
+        item.categories.at(-1).gender.includes(action.payload.gender)
       )
     },
     changeImage: (state, action) => {
       // CHANGE PREVIEW IMG ON CLICK
-      state.curIndex = action.payload
+      state.curIndex = action.payload.index
     },
     prevPreview: (state, action) => {
       if (state.curIndex < 1) {
@@ -69,10 +78,24 @@ const productSlice = createSlice({
       }
     },
     getProductItem: (state, action) => {
-      state.productId = action.payload
-      state.images = AllProducts[action.payload - 1].img
-      state.product = AllProducts[action.payload - 1]
+      state.productId = action.payload.productId
+      state.product = state.products.filter((item)=>item._id === state.productId)[0]
+      state.images = state.product.img
     }
+  },
+  extraReducers:{
+    [getAllProducts.pending]: (state) => {
+      state.loading = true
+    },
+    [getAllProducts.fulfilled]: (state, { payload }) => {
+      state.loading = false
+      state.products = payload
+    },
+    [getAllProducts.rejected]: (state, { payload }) => {
+      state.loading = false
+      state.error = true
+      state.errMsg = payload.errMsg
+    },
   }
 }
 )
