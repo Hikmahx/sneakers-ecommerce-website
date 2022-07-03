@@ -1,14 +1,17 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { selectFilters } from "../redux/reducers/productSlice";
 
 const Filter = () => {
-  const [filters, setFilters] = useState({});
   const [sort, setSort] = useState("newest");
+  const dispatch = useDispatch();
+  const filter = useSelector((state) => state.product.filter);
 
   const handleFilter = (e) => {
-    setFilters({ ...filters, [e.target.name]: e.target.value });
+    dispatch(
+      selectFilters({ filter: { ...filter, [e.target.name]: e.target.value } })
+    );
   };
-
-  //  console.log(filter)
 
   return (
     <div className="wrapper mt-28 lg:mt-40 flex flex-col sm:flex-row justify-between mx-auto">
@@ -23,9 +26,7 @@ const Filter = () => {
             name="color"
             onChange={handleFilter}
           >
-            <option value="color" selected disabled>
-              Color
-            </option>
+            <option value="">Color</option>
             <option value="white">White</option>
             <option value="black">Black</option>
             <option value="orange">Orange</option>
@@ -36,12 +37,10 @@ const Filter = () => {
           <select
             className=" appearance-none px-3 py-2 border border-solid transition ease-in-out m-0 focus:outline-none capitalize bg-white"
             aria-label="Default select example"
-            name="brand"
+            name="company"
             onChange={handleFilter}
           >
-            <option value="brand" selected disabled>
-              brand
-            </option>
+            <option value="">brand</option>
             <option value="nike">nike</option>
             <option value="adidas">adidas</option>
             <option value="puma">puma</option>
