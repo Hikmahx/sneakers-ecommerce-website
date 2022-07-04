@@ -5,7 +5,11 @@ import WomenHeader from "../assets/page-header/women-header.jpg";
 import Filter from "../components/Filter";
 import ProductItem from "../components/home/ProductItem";
 import Loading from "../components/Loading";
-import { getFilteredProducts, selectFilters } from "../redux/reducers/productSlice";
+import {
+  getFilteredProducts,
+  selectFilters,
+  selectSort,
+} from "../redux/reducers/productSlice";
 
 const Women = () => {
   let location = useLocation();
@@ -19,14 +23,25 @@ const Women = () => {
   const filteredProducts = useSelector(
     (state) => state.product.filteredProducts
   );
+  const sort = useSelector((state) => state.product.sort);
 
   useEffect(() => {
     if (!loading) {
       dispatch(getFilteredProducts({ gender }));
-      dispatch(selectFilters({filter: {...filter, color : '', company: ''} }));
+      dispatch(
+        selectFilters({ filter: { ...filter, color: "", company: "" } })
+      );
     }
     // eslint-disable-next-line
   }, [loading, gender]);
+
+  useEffect(() => {
+    // Refiltered after sorted
+    if (() => dispatch(selectSort({ sort }))) {
+      dispatch(selectFilters({ filter: { ...filter } }));
+    }
+    // eslint-disable-next-line
+  }, [sort]);
 
   return (
     <section className="h-auto pt-2 min-h-[80vh]">
@@ -50,7 +65,11 @@ const Women = () => {
               <div className="product-container max-w-2xl mx-auto lg:max-w-7xl px-4 lg:px-0 my-32">
                 <div className="grid grid-cols-1 gap-y-12 sm:y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
                   {filteredProducts.map((product, index) => (
-                    <ProductItem key={product._id} product={product} containFilter={containFilters[index]} />
+                    <ProductItem
+                      key={product._id}
+                      product={product}
+                      containFilter={containFilters[index]}
+                    />
                   ))}
                 </div>
               </div>

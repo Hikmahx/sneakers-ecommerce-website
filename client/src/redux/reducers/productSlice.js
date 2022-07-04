@@ -25,7 +25,8 @@ const productSlice = createSlice({
     error: false,
     errMsg: '',
     filter: { company: '', color: '' },
-    containFilters: []
+    containFilters: [],
+    sort: 'newest'
   },
 
   // productSlice
@@ -97,6 +98,17 @@ const productSlice = createSlice({
         else {
           state.containFilters = (state.filteredProducts.length < 1 ? state.products : state.filteredProducts).map(item => (Object.entries(state.filter).every(([key, value]) => (item.categories.at(-1)[key] || item[key]).includes(value))))
         }
+    },
+    selectSort: (state, action) => {
+      state.sort = action.payload.sort
+      if (action.payload.sort === 'newest') {
+        state.filteredProducts = (state.filteredProducts.length < 1 ? state.products : state.filteredProducts).sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
+      } else if (action.payload.sort === 'asc') {
+        state.filteredProducts = (state.filteredProducts.length < 1 ? state.products : state.filteredProducts).sort((a, b) => a.discountPrice - b.discountPrice)
+      } else {
+        state.filteredProducts = (state.filteredProducts.length < 1 ? state.products : state.filteredProducts).sort((a, b) => b.discountPrice - a.discountPrice)
+      }
+
     }
   },
   extraReducers: {
@@ -117,5 +129,5 @@ const productSlice = createSlice({
 }
 )
 
-export const { getProducts, setError, getFilteredProducts, changeImage, prevPreview, nextPreview, prevSlide, nextSlide, getProductItem, quantityCount, selectFilters } = productSlice.actions;
+export const { getProducts, setError, getFilteredProducts, changeImage, prevPreview, nextPreview, prevSlide, nextSlide, getProductItem, quantityCount, selectFilters, selectSort } = productSlice.actions;
 export default productSlice.reducer;

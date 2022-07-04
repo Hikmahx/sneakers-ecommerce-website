@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectFilters } from "../redux/reducers/productSlice";
+import { selectFilters, selectSort } from "../redux/reducers/productSlice";
 
 const Filter = () => {
-  const [sort, setSort] = useState("newest");
   const dispatch = useDispatch();
   const filter = useSelector((state) => state.product.filter);
 
@@ -11,6 +10,10 @@ const Filter = () => {
     dispatch(
       selectFilters({ filter: { ...filter, [e.target.name]: e.target.value } })
     );
+  };
+
+  const handleSort = (e) => {
+    dispatch(selectSort({ sort: e.target.value }));
   };
 
   return (
@@ -58,9 +61,7 @@ const Filter = () => {
           className="appearance-none px-3 py-2 border border-solid transition ease-in-out m-0 focus:outline-none bg-white"
           aria-label="Default select example"
           name="sortBy"
-          onChange={(e) => {
-            setSort(e.target.value);
-          }}
+          onChange={handleSort}
         >
           <option value="newest">Newest</option>
           <option value="asc">Price, low-high</option>
