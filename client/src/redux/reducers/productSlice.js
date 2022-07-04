@@ -5,10 +5,10 @@ import axios from 'axios';
 export const getAllProducts = createAsyncThunk(
   'product/getAllProducts',
   async (thunkAPI) => {
-        let res = await axios.get('/api/products/')
-        let products = res.data
-  return products
-})
+    let res = await axios.get('/api/products/')
+    let products = res.data
+    return products
+  })
 
 
 const productSlice = createSlice({
@@ -21,9 +21,11 @@ const productSlice = createSlice({
     slideIndex: 0,
     productId: 0,
     product: [],
-    loading:true,
+    loading: true,
     error: false,
-    errMsg: ''
+    errMsg: '',
+    filter: {},
+    containFilters: []
   },
 
   // productSlice
@@ -32,12 +34,12 @@ const productSlice = createSlice({
       state.products = action.payload.products
       state.loading = false
     },
-    setError: (state, action) =>{
-      state.loading= false
+    setError: (state, action) => {
+      state.loading = false
       state.error = true
       state.errMsg = action.payload.err
     },
-    getFilteredProducts: (state, action) => { 
+    getFilteredProducts: (state, action) => {
       state.filteredProducts = state.products.filter((item) =>
         item.categories.at(-1).gender.includes(action.payload.gender)
       )
@@ -79,26 +81,52 @@ const productSlice = createSlice({
     },
     getProductItem: (state, action) => {
       state.productId = action.payload.productId
-      state.product = state.products.filter((item)=>item._id === state.productId)[0]
+      state.product = state.products.filter((item) => item._id === state.productId)[0]
       state.images = state.product.img
+    },
+    selectFilters: (state, action) => {
+      state.filter = action.payload.filter
+      // console.log(state.filteredProducts.filter(item => Object.entries(state.filter).every(([key, value])=>item[key].includes(value))))
+
+
+      // return an array of true and false based on if the product contains a filter
+      if (state.filter.color === '' && state.filter.company === '') {
+        // state.containFilters = state.filteredProducts.map(item => true)
+        state.containFilters = (state.filteredProducts.length < 1  ? state.products : state.filteredProducts).map(item => true)
+      } else
+        if (state.filter.company !== '' && state.filter.color === '') {
+          // state.containFilters = state.filteredProducts.map(item => (Object.entries(state.filter).every(([key, value]) => item.company.includes(value))))
+          state.containFilters = (state.filteredProducts.length < 1 ? state.products : state.filteredProducts).map(item => (Object.entries(state.filter).every(([key, value]) => item.company.includes(value))))
+
+        }
+        //  else if (state.filter.company === '' && state.filter.color !== '') {
+        //   state.containFilters = state.filteredProducts.map(item => (Object.entries(state.filter).every(([key, value]) => item.categories.at(-1).color.includes(value))))
+
+        // }
+        else {
+          // state.containFilters = state.filteredProducts.map(item => (Object.entries(state.filter).every(([key, value]) => (item.categories.at(-1)[key] || item[key]).includes(value))))
+          state.containFilters = (state.filteredProducts.length < 1 ? state.products : state.filteredProducts).map(item => (Object.entries(state.filter).every(([key, value]) => (item.categories.at(-1)[key] || item[key]).includes(value))))
+        }
     }
   },
-  extraReducers:{
+  extraReducers: {
     [getAllProducts.pending]: (state) => {
       state.loading = true
     },
     [getAllProducts.fulfilled]: (state, { payload }) => {
       state.loading = false
       state.products = payload
+      state.filter = {company: '', color: ''}
+      state.containFilters = state.products.map(item => true)
     },
-    [getAllProducts.rejected]: (state, { payload }) => {
+    [getAllProducts.rejected]: (state, action) => {
       state.loading = false
       state.error = true
-      state.errMsg = payload.errMsg
+      state.errMsg = action.error.message
     },
   }
 }
 )
 
-export const { getProducts, setError, getFilteredProducts, changeImage, prevPreview, nextPreview, prevSlide, nextSlide, getProductItem, quantityCount } = productSlice.actions;
+export const { getProducts, setError, getFilteredProducts, changeImage, prevPreview, nextPreview, prevSlide, nextSlide, getProductItem, quantityCount, selectFilters } = productSlice.actions;
 export default productSlice.reducer;

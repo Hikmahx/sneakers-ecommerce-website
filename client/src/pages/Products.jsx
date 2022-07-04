@@ -1,15 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
 import aboutHeader from "../assets/page-header/about-header.jpg";
 import Filter from "../components/Filter";
 import ProductItem from "../components/home/ProductItem";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Loading from "../components/Loading";
+import { selectFilters } from "../redux/reducers/productSlice";
 
 const Products = () => {
   const products = useSelector((state) => state.product.products);
   const loading = useSelector((state) => state.product.loading);
   const error = useSelector((state) => state.product.error);
   const errMsg = useSelector((state) => state.product.errMsg);
+  const containFilters = useSelector((state) => state.product.containFilters);
+  const dispatch = useDispatch();
+  const filter = useSelector((state) => state.product.filter);
+
+
+
+  useEffect(() => {
+    if(!loading){
+      
+      dispatch(selectFilters({ filter: {...filter, color : '', company: ''}, products }));
+    }
+    // eslint-disable-next-line
+  }, [products]);
 
   return (
     <section className="h-auto pt-2 min-h-[80vh]">
@@ -32,8 +46,8 @@ const Products = () => {
             ) : (
               <div className="product-container max-w-2xl mx-auto lg:max-w-7xl px-4 lg:px-0 my-20 lg:my-32">
                 <div className="grid grid-cols-1 gap-y-12 sm:y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-                  {products.map((product) => (
-                    <ProductItem key={product._id} product={product} />
+                  {products.map((product, index) => (
+                    <ProductItem key={product._id} product={product} containFilter={containFilters[index]}/>
                   ))}
                 </div>
               </div>
