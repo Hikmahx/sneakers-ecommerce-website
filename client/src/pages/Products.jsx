@@ -4,7 +4,7 @@ import Filter from "../components/Filter";
 import ProductItem from "../components/home/ProductItem";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../components/Loading";
-import { selectFilters } from "../redux/reducers/productSlice";
+import { getFilteredProducts, selectFilters } from "../redux/reducers/productSlice";
 
 const Products = () => {
   const products = useSelector((state) => state.product.products);
@@ -19,8 +19,11 @@ const Products = () => {
 
   useEffect(() => {
     if(!loading){
+     // get filtered product choose return an empty array (bcos gender = men or women in products array)
+     // so that selectedFilers fxn can run successfully from store     
+      dispatch(getFilteredProducts({gender: 'all'}));
+      dispatch(selectFilters({ filter: {...filter, color : '', company: ''} }));
       
-      dispatch(selectFilters({ filter: {...filter, color : '', company: ''}, products }));
     }
     // eslint-disable-next-line
   }, [products]);
