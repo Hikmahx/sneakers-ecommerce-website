@@ -24,7 +24,7 @@ const productSlice = createSlice({
     loading: true,
     error: false,
     errMsg: '',
-    filter: {},
+    filter: { company: '', color: '' },
     containFilters: []
   },
 
@@ -86,25 +86,15 @@ const productSlice = createSlice({
     },
     selectFilters: (state, action) => {
       state.filter = action.payload.filter
-      // console.log(state.filteredProducts.filter(item => Object.entries(state.filter).every(([key, value])=>item[key].includes(value))))
-
 
       // return an array of true and false based on if the product contains a filter
       if (state.filter.color === '' && state.filter.company === '') {
-        // state.containFilters = state.filteredProducts.map(item => true)
-        state.containFilters = (state.filteredProducts.length < 1  ? state.products : state.filteredProducts).map(item => true)
+        state.containFilters = (state.filteredProducts.length < 1 ? state.products : state.filteredProducts).map(item => true)
       } else
         if (state.filter.company !== '' && state.filter.color === '') {
-          // state.containFilters = state.filteredProducts.map(item => (Object.entries(state.filter).every(([key, value]) => item.company.includes(value))))
           state.containFilters = (state.filteredProducts.length < 1 ? state.products : state.filteredProducts).map(item => (Object.entries(state.filter).every(([key, value]) => item.company.includes(value))))
-
         }
-        //  else if (state.filter.company === '' && state.filter.color !== '') {
-        //   state.containFilters = state.filteredProducts.map(item => (Object.entries(state.filter).every(([key, value]) => item.categories.at(-1).color.includes(value))))
-
-        // }
         else {
-          // state.containFilters = state.filteredProducts.map(item => (Object.entries(state.filter).every(([key, value]) => (item.categories.at(-1)[key] || item[key]).includes(value))))
           state.containFilters = (state.filteredProducts.length < 1 ? state.products : state.filteredProducts).map(item => (Object.entries(state.filter).every(([key, value]) => (item.categories.at(-1)[key] || item[key]).includes(value))))
         }
     }
@@ -116,7 +106,6 @@ const productSlice = createSlice({
     [getAllProducts.fulfilled]: (state, { payload }) => {
       state.loading = false
       state.products = payload
-      state.filter = {company: '', color: ''}
       state.containFilters = state.products.map(item => true)
     },
     [getAllProducts.rejected]: (state, action) => {
