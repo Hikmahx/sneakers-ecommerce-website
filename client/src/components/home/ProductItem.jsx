@@ -9,7 +9,7 @@ const ProductItem = ({product, containFilter}) => {
         <img
           src={product.img[0]}
           alt={product.alt}
-          className="w-full h-full object-center object-cover lg:w-full lg:h-full"
+          className="w-full h-full object-center object-cover sm:h-80 lg:w-full lg:h-full"
         />
       </div>
       <div className="">
