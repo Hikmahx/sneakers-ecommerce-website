@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import ProductItem from "./ProductItem";
 const HomeProductsSection = () => {
   const products = useSelector((state) => state.product.products);
+  const containFilters = useSelector((state) => state.product.containFilters);
 
   return (
     <section className="bg-light-grayish-blue py-12">
@@ -16,14 +17,18 @@ const HomeProductsSection = () => {
           className="flex flex-wrap justify-center items-center mx-auto px-4 xl:-mx-2"
         > */}
         <div className="max-w-2xl mx-auto lg:max-w-7xl px-4 lg:px-0">
-          <div className="grid grid-cols-1 gap-y-12 sm:y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+          <div className="grid grid-cols-1 gap-y-12 sm:y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
             {products.slice(0, 4).map((product, index) => (
-              <ProductItem key={product.id} product={product} />
+              <ProductItem
+                key={product.id}
+                product={product}
+                containFilter={containFilters[index]}
+              />
             ))}
           </div>
         </div>
         {/* </div> */}
-        <div className="mx-8">
+        <div className="mx-8 mt-28 sm:mt-20 lg:mt-14">
           <Link to="products">
             <button className="cart min-w-[4rem] w-full max-w-xs md:max-w-lg lg:max-w-none h-14 bg-pale-orange border border-orange rounded-lg mt-12 mx-auto text-orange font-bold flex items-center justify-center lg:w-52 shadow-[inset_0_0_0_0_#ff7d1a] hover:shadow-[inset_0_-4rem_0_0_#ff7d1a] hover:text-white transition-all duration-300">
               Explore More
