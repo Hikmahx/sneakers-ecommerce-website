@@ -1,10 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectFilters, selectSort } from "../redux/reducers/productSlice";
+import {
+  getFilters,
+  selectFilters,
+  selectSort,
+} from "../redux/reducers/productSlice";
 
 const Filter = () => {
   const dispatch = useDispatch();
   const filter = useSelector((state) => state.product.filter);
+  const loading = useSelector((state) => state.product.loading);
+  const colors = useSelector((state) => state.product.colors);
+  const brands = useSelector((state) => state.product.brands);
+
+  useEffect(() => {
+    if (!loading) {
+      dispatch(getFilters());
+    }
+    // eslint-disable-next-line
+  }, [loading]);
 
   const handleFilter = (e) => {
     dispatch(
@@ -16,7 +30,7 @@ const Filter = () => {
     dispatch(selectSort({ sort: e.target.value }));
 
     // REFILTER AFTER SORTED
-    dispatch(selectFilters({ filter: { ...filter} }))
+    dispatch(selectFilters({ filter: { ...filter } }));
   };
 
   return (
@@ -33,12 +47,9 @@ const Filter = () => {
             onChange={handleFilter}
           >
             <option value="">Color</option>
-            <option value="white">White</option>
-            <option value="black">Black</option>
-            <option value="orange">Orange</option>
-            <option value="red">Red</option>
-            <option value="green">Green</option>
-            <option value="yellow">Yellow</option>
+            {colors.map((color, index) => (
+              <option key={index} value={color}>{color}</option>
+            ))}
           </select>
           <select
             className=" appearance-none px-3 py-2 border border-solid transition ease-in-out m-0 focus:outline-none capitalize bg-white"
@@ -47,12 +58,9 @@ const Filter = () => {
             onChange={handleFilter}
           >
             <option value="">brand</option>
-            <option value="nike">nike</option>
-            <option value="adidas">adidas</option>
-            <option value="puma">puma</option>
-            <option value="reebok">reebok</option>
-            <option value="jordan">jordan</option>
-            <option value="vans">vans</option>
+            {brands.map((brand, index) => (
+              <option key={index} value={brand}>{brand}</option>
+            ))}
           </select>
         </div>
       </div>

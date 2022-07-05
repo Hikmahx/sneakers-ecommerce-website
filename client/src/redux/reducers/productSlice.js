@@ -26,7 +26,9 @@ const productSlice = createSlice({
     errMsg: '',
     filter: { company: '', color: '' },
     containFilters: [],
-    sort: 'newest'
+    sort: 'newest',
+    colors: [],
+    brands: [],
   },
 
   // productSlice
@@ -85,6 +87,15 @@ const productSlice = createSlice({
       state.product = state.products.filter((item) => item._id === state.productId)[0]
       state.images = state.product.img
     },
+    getFilters: (state, action) => {
+      // state.colors = Array.prototype.concat.apply([], state.products.map(item=>item.categories.at(-1).color))
+
+      // GET LIST OF ALL COLORS FROM PRODUCTS
+      state.colors = Array.from(new Set(state.colors.concat(...(state.filteredProducts.length < 1 ? state.products : state.filteredProducts).map(item => item.categories.at(-1).color)))).sort()
+      // GET LIST OF ALL BRANDS/COMPANIES FROM PRODUCTS 
+      state.brands = Array.from(new Set(state.brands.concat(...(state.filteredProducts.length < 1 ? state.products : state.filteredProducts).map(item => item.company)))).sort()
+
+    },
     selectFilters: (state, action) => {
       state.filter = action.payload.filter
 
@@ -114,6 +125,7 @@ const productSlice = createSlice({
           items = (state.filteredProducts.length < 1 ? state.products : state.filteredProducts).sort((a, b) => b.discountPrice - a.discountPrice)
           break;
         default:
+          // eslint-disable-next-line
           items = (state.filteredProducts.length < 1 ? state.products : state.filteredProducts).sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
           break;
       }
@@ -137,5 +149,5 @@ const productSlice = createSlice({
 }
 )
 
-export const { getProducts, setError, getFilteredProducts, changeImage, prevPreview, nextPreview, prevSlide, nextSlide, getProductItem, quantityCount, selectFilters, selectSort } = productSlice.actions;
+export const { getProducts, setError, getFilteredProducts, changeImage, prevPreview, nextPreview, prevSlide, nextSlide, getProductItem, quantityCount, selectFilters, selectSort, getFilters } = productSlice.actions;
 export default productSlice.reducer;
