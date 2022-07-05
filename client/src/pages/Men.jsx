@@ -8,7 +8,6 @@ import Loading from "../components/Loading";
 import {
   getFilteredProducts,
   selectFilters,
-  selectSort,
 } from "../redux/reducers/productSlice";
 
 const Men = () => {
@@ -23,7 +22,6 @@ const Men = () => {
   const filteredProducts = useSelector(
     (state) => state.product.filteredProducts
   );
-  const sort = useSelector((state) => state.product.sort);
 
   useEffect(() => {
     if (!loading) {
@@ -34,14 +32,6 @@ const Men = () => {
     }
     // eslint-disable-next-line
   }, [loading, gender]);
-
-  useEffect(() => {
-    // Refiltered after sorted
-    if (() => dispatch(selectSort({ sort }))) {
-      dispatch(selectFilters({ filter: { ...filter } }));
-    }
-    // eslint-disable-next-line
-  }, [sort]);
 
   return (
     <section className="h-auto pt-2 min-h-[80vh]">

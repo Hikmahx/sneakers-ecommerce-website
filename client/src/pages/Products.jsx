@@ -7,7 +7,6 @@ import Loading from "../components/Loading";
 import {
   getFilteredProducts,
   selectFilters,
-  selectSort,
 } from "../redux/reducers/productSlice";
 
 const Products = () => {
@@ -18,27 +17,19 @@ const Products = () => {
   const containFilters = useSelector((state) => state.product.containFilters);
   const dispatch = useDispatch();
   const filter = useSelector((state) => state.product.filter);
-  const sort = useSelector((state) => state.product.sort);
 
   useEffect(() => {
     if (!loading) {
       // get filtered product choose return an empty array (bcos gender = men or women in products array)
       // so that selectedFilers fxn can run successfully from store
       dispatch(getFilteredProducts({ gender: "all" }));
+      // dispatch(getProducts({ products }));
       dispatch(
         selectFilters({ filter: { ...filter, color: "", company: "" } })
       );
     }
     // eslint-disable-next-line
-  }, [products]);
-
-  useEffect(() => {
-    // Refilter after sorted
-    if (() => dispatch(selectSort({ sort }))) {
-      dispatch(selectFilters({ filter: { ...filter } }));
-    }
-    // eslint-disable-next-line
-  }, [sort]);
+  }, [!loading]);
 
   return (
     <section className="h-auto pt-2 min-h-[80vh]">

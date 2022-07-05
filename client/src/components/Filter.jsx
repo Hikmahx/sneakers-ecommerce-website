@@ -14,6 +14,9 @@ const Filter = () => {
 
   const handleSort = (e) => {
     dispatch(selectSort({ sort: e.target.value }));
+
+    // REFILTER AFTER SORTED
+    dispatch(selectFilters({ filter: { ...filter} }))
   };
 
   return (
