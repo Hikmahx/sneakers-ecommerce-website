@@ -101,14 +101,22 @@ const productSlice = createSlice({
     },
     selectSort: (state, action) => {
       state.sort = action.payload.sort
-      if (action.payload.sort === 'newest') {
-        state.filteredProducts = (state.filteredProducts.length < 1 ? state.products : state.filteredProducts).sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
-      } else if (action.payload.sort === 'asc') {
-        state.filteredProducts = (state.filteredProducts.length < 1 ? state.products : state.filteredProducts).sort((a, b) => a.discountPrice - b.discountPrice)
-      } else {
-        state.filteredProducts = (state.filteredProducts.length < 1 ? state.products : state.filteredProducts).sort((a, b) => b.discountPrice - a.discountPrice)
-      }
+      let items = state.filteredProducts.length < 1 ? state.products : state.filteredProducts
 
+      switch (action.payload.sort) {
+        case 'newest':
+          items = (state.filteredProducts.length < 1 ? state.products : state.filteredProducts).sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
+          break;
+        case 'asc':
+          items = (state.filteredProducts.length < 1 ? state.products : state.filteredProducts).sort((a, b) => a.discountPrice - b.discountPrice)
+          break;
+        case 'desc':
+          items = (state.filteredProducts.length < 1 ? state.products : state.filteredProducts).sort((a, b) => b.discountPrice - a.discountPrice)
+          break;
+        default:
+          items = (state.filteredProducts.length < 1 ? state.products : state.filteredProducts).sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
+          break;
+      }
     }
   },
   extraReducers: {
