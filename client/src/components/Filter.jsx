@@ -12,13 +12,16 @@ const Filter = () => {
   const loading = useSelector((state) => state.product.loading);
   const colors = useSelector((state) => state.product.colors);
   const brands = useSelector((state) => state.product.brands);
+  const filteredProducts = useSelector(
+    (state) => state.product.filteredProducts
+  );
 
   useEffect(() => {
     if (!loading) {
       dispatch(getFilters());
     }
     // eslint-disable-next-line
-  }, [loading]);
+  }, [filteredProducts]);
 
   const handleFilter = (e) => {
     dispatch(
@@ -48,7 +51,9 @@ const Filter = () => {
           >
             <option value="">Color</option>
             {colors.map((color, index) => (
-              <option key={index} value={color}>{color}</option>
+              <option key={index} value={color}>
+                {color}
+              </option>
             ))}
           </select>
           <select
@@ -59,7 +64,9 @@ const Filter = () => {
           >
             <option value="">brand</option>
             {brands.map((brand, index) => (
-              <option key={index} value={brand}>{brand}</option>
+              <option key={index} value={brand}>
+                {brand}
+              </option>
             ))}
           </select>
         </div>
