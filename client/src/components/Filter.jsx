@@ -34,15 +34,15 @@ const Filter = () => {
   };
 
   return (
-    <div className="wrapper mt-28 lg:mt-40 flex flex-col sm:flex-row justify-between mx-auto">
-      <div className="filter-container mb-4 sm:mb-0 flex items-center justify-between">
-        <span className="font-bold sm:text-xl mr-2 sm:mr-10">
+    <div className="wrapper mt-28 lg:mt-40 flex flex-col sm:flex-row justify-between mx-auto sm">
+      <div className="filter-container mb-4 sm:mb-0 flex items-center justify-between sm:mr-8">
+        <span className="font-bold text-base md:text-xl mr-2 sm:mr-10">
           Filter Products:
         </span>
         <div className="flex">
           <select
             className=" appearance-none px-3 py-2 border border-solid transition ease-in-out m-0 focus:outline-none mr-4 bg-white"
-            aria-label="Default select example"
+            aria-label="Default color select"
             name="color"
             onChange={handleFilter}
           >
@@ -53,7 +53,7 @@ const Filter = () => {
           </select>
           <select
             className=" appearance-none px-3 py-2 border border-solid transition ease-in-out m-0 focus:outline-none capitalize bg-white"
-            aria-label="Default select example"
+            aria-label="Default company/ brand select"
             name="company"
             onChange={handleFilter}
           >
@@ -65,12 +65,12 @@ const Filter = () => {
         </div>
       </div>
       <div className="sort-container flex items-center justify-between">
-        <span className="font-bold sm:text-xl mr-2 sm:mr-10">
+        <span className="font-bold md:text-xl mr-2 sm:mr-10">
           Sort Products:
         </span>
         <select
           className="appearance-none px-3 py-2 border border-solid transition ease-in-out m-0 focus:outline-none bg-white"
-          aria-label="Default select example"
+          aria-label="Default sorting select"
           name="sortBy"
           onChange={handleSort}
         >
