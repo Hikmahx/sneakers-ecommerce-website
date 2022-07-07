@@ -10,6 +10,14 @@ export const getAllProducts = createAsyncThunk(
     return products
   })
 
+export const getProductsByCollection = createAsyncThunk(
+  'product/getProductsByCollection',
+  async (collection, thunkAPI) => {
+    let res = await axios.get(`/api/products/?collection=${collection}`)
+    let productsCollection = res.data
+    return productsCollection
+  })
+
 
 const productSlice = createSlice({
   name: 'product',
@@ -29,6 +37,7 @@ const productSlice = createSlice({
     sort: 'newest',
     colors: [],
     brands: [],
+    collection: ''
   },
 
   // productSlice
@@ -141,6 +150,18 @@ const productSlice = createSlice({
       state.containFilters = state.products.map(item => true)
     },
     [getAllProducts.rejected]: (state, action) => {
+      state.loading = false
+      state.error = true
+      state.errMsg = action.error.message
+    },
+    [getProductsByCollection.pending]: (state) => {
+      state.loading = true
+    },
+    [getProductsByCollection.fulfilled]: (state, { payload, meta, collection }) => {
+      state.loading = false
+      state.collection = payload.collection
+    },
+    [getProductsByCollection.rejected]: (state, action) => {
       state.loading = false
       state.error = true
       state.errMsg = action.error.message

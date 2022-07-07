@@ -24,6 +24,7 @@ const MyRoutes = () => {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/collections" element={<Collections />} />
+        <Route path="/collections/:collection" element={<Collections />} />
         <Route path="/products/" element={<Products />} />
         <Route path="/products/men" element={<Men />} />
         <Route path="/products/women" element={<Women />} />
