@@ -16,7 +16,7 @@ const CollectionsCards = () => {
       <Link to={`/collections/?collection=${'nike'}`} onClick={()=>dispatch(getProductsByCollection('nike'))}>
       <div
         before='Nike'
-        className='w-[15rem] bg-white xl:w-[20rem] text-pale-orange text-xl md:text-2xl uppercase cursor-pointer h-48 xl:h-60 border border-grayish-blue rounded-md mx-4 mb-10 flex items-center jusitfy-center relative after:content-[attr(before)] after:absolute after:flex after:w-full after:justify-center after:opacity-0 hover:after:opacity-100 before:absolute before:bg-[rgba(255,_125,_27,_0.9)] before:inset-0 text-center before:h-0 hover:before:h-full before:transition-all'
+        className='w-[15rem] bg-pale-orange xl:w-[19.5rem] text-pale-orange text-xl md:text-2xl uppercase cursor-pointer h-48 xl:h-60 border border-grayish-blue rounded-md mx-4 mb-10 flex items-center jusitfy-center relative after:content-[attr(before)] after:absolute after:flex after:w-full after:justify-center after:opacity-0 hover:after:opacity-100 before:absolute before:bg-[rgba(255,_125,_27,_0.9)] before:inset-0 text-center before:h-0 hover:before:h-full before:transition-all'
       >
         <picture className='mx-auto'>
           <img src={Nike} alt='nike logo' className='p-4 xl:p-0' />
@@ -28,7 +28,7 @@ const CollectionsCards = () => {
 
       <div
         before='Adidas'
-        className='w-[15rem] bg-white xl:w-[20rem] text-pale-orange text-xl md:text-2xl uppercase cursor-pointer h-48 xl:h-60 border border-grayish-blue rounded-md mx-4 mb-10 flex items-center jusitfy-center relative after:content-[attr(before)] after:absolute after:flex after:w-full after:justify-center after:opacity-0 hover:after:opacity-100 before:absolute before:bg-[rgba(255,_125,_27,_0.9)] before:inset-0 text-center before:h-0 hover:before:h-full before:transition-all'
+        className='w-[15rem] bg-pale-orange xl:w-[19.5rem] text-pale-orange text-xl md:text-2xl uppercase cursor-pointer h-48 xl:h-60 border border-grayish-blue rounded-md mx-4 mb-10 flex items-center jusitfy-center relative after:content-[attr(before)] after:absolute after:flex after:w-full after:justify-center after:opacity-0 hover:after:opacity-100 before:absolute before:bg-[rgba(255,_125,_27,_0.9)] before:inset-0 text-center before:h-0 hover:before:h-full before:transition-all'
       >
         <picture className='mx-auto'>
           <img src={Adidas} alt='adidas logo' className='p-4 xl:p-0' />
@@ -40,7 +40,7 @@ const CollectionsCards = () => {
 
       <div
         before='Puma'
-        className='w-[15rem] bg-white xl:w-[20rem] text-pale-orange text-xl md:text-2xl uppercase cursor-pointer h-48 xl:h-60 border border-grayish-blue rounded-md mx-4 mb-10 flex items-center jusitfy-center relative after:content-[attr(before)] after:absolute after:flex after:w-full after:justify-center after:opacity-0 hover:after:opacity-100 before:absolute before:bg-[rgba(255,_125,_27,_0.9)] before:inset-0 text-center before:h-0 hover:before:h-full before:transition-all'
+        className='w-[15rem] bg-pale-orange xl:w-[19.5rem] text-pale-orange text-xl md:text-2xl uppercase cursor-pointer h-48 xl:h-60 border border-grayish-blue rounded-md mx-4 mb-10 flex items-center jusitfy-center relative after:content-[attr(before)] after:absolute after:flex after:w-full after:justify-center after:opacity-0 hover:after:opacity-100 before:absolute before:bg-[rgba(255,_125,_27,_0.9)] before:inset-0 text-center before:h-0 hover:before:h-full before:transition-all'
       >
         <picture className='mx-auto'>
           <img src={Puma} alt='puma logo' className='p-4 xl:p-0' />
@@ -52,7 +52,7 @@ const CollectionsCards = () => {
 
       <div
         before='Reebok'
-        className='w-[15rem] bg-white xl:w-[20rem] text-pale-orange text-xl md:text-2xl uppercase cursor-pointer h-48 xl:h-60 border border-grayish-blue rounded-md mx-4 mb-10 flex items-center jusitfy-center relative after:content-[attr(before)] after:absolute after:flex after:w-full after:justify-center after:opacity-0 hover:after:opacity-100 before:absolute before:bg-[rgba(255,_125,_27,_0.9)] before:inset-0 text-center before:h-0 hover:before:h-full before:transition-all'
+        className='w-[15rem] bg-pale-orange xl:w-[19.5rem] text-pale-orange text-xl md:text-2xl uppercase cursor-pointer h-48 xl:h-60 border border-grayish-blue rounded-md mx-4 mb-10 flex items-center jusitfy-center relative after:content-[attr(before)] after:absolute after:flex after:w-full after:justify-center after:opacity-0 hover:after:opacity-100 before:absolute before:bg-[rgba(255,_125,_27,_0.9)] before:inset-0 text-center before:h-0 hover:before:h-full before:transition-all'
       >
         <picture className='mx-auto'>
           <img src={Reebok} alt='reebok logo' className='p-4 xl:p-0' />
@@ -63,7 +63,7 @@ const CollectionsCards = () => {
       <Link to={`/collections/?collection=${'vans'}`} onClick={()=>dispatch(getProductsByCollection('vans'))}>
       <div
         before='Vans'
-        className='w-[15rem] bg-white xl:w-[20rem] text-pale-orange text-xl md:text-2xl uppercase cursor-pointer h-48 xl:h-60 border border-grayish-blue rounded-md mx-4 mb-10 flex items-center jusitfy-center relative after:content-[attr(before)] after:absolute after:flex after:w-full after:justify-center after:opacity-0 hover:after:opacity-100 before:absolute before:bg-[rgba(255,_125,_27,_0.9)] before:inset-0 text-center before:h-0 hover:before:h-full before:transition-all'
+        className='w-[15rem] bg-pale-orange xl:w-[19.5rem] text-pale-orange text-xl md:text-2xl uppercase cursor-pointer h-48 xl:h-60 border border-grayish-blue rounded-md mx-4 mb-10 flex items-center jusitfy-center relative after:content-[attr(before)] after:absolute after:flex after:w-full after:justify-center after:opacity-0 hover:after:opacity-100 before:absolute before:bg-[rgba(255,_125,_27,_0.9)] before:inset-0 text-center before:h-0 hover:before:h-full before:transition-all'
       >
         <picture className='mx-auto'>
           <img src={Vans} alt='vans logo' className='p-4 xl:p-0' />
@@ -74,7 +74,7 @@ const CollectionsCards = () => {
       <Link to={`/collections/?collection=${'jordan'}`} onClick={()=>dispatch(getProductsByCollection('jordan'))}>
       <div
         before='Jordan'
-        className='w-[15rem] bg-white xl:w-[20rem] text-pale-orange text-xl md:text-2xl uppercase cursor-pointer h-48 xl:h-60 border border-grayish-blue rounded-md mx-4 mb-10 flex items-center jusitfy-center relative after:content-[attr(before)] after:absolute after:flex after:w-full after:justify-center after:opacity-0 hover:after:opacity-100 before:absolute before:bg-[rgba(255,_125,_27,_0.9)] before:inset-0 text-center before:h-0 hover:before:h-full before:transition-all'
+        className='w-[15rem] bg-pale-orange xl:w-[19.5rem] text-pale-orange text-xl md:text-2xl uppercase cursor-pointer h-48 xl:h-60 border border-grayish-blue rounded-md mx-4 mb-10 flex items-center jusitfy-center relative after:content-[attr(before)] after:absolute after:flex after:w-full after:justify-center after:opacity-0 hover:after:opacity-100 before:absolute before:bg-[rgba(255,_125,_27,_0.9)] before:inset-0 text-center before:h-0 hover:before:h-full before:transition-all'
       >
         <picture className='mx-auto'>
           <img src={Jordan} alt='jordan logo' className='p-4 xl:p-0' />

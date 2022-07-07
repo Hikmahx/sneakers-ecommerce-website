@@ -37,7 +37,7 @@ const productSlice = createSlice({
     sort: 'newest',
     colors: [],
     brands: [],
-    collection: ''
+    collection: []
   },
 
   // productSlice
@@ -159,7 +159,7 @@ const productSlice = createSlice({
     },
     [getProductsByCollection.fulfilled]: (state, { payload, meta, collection }) => {
       state.loading = false
-      state.collection = payload.collection
+      state.collection = payload
     },
     [getProductsByCollection.rejected]: (state, action) => {
       state.loading = false
