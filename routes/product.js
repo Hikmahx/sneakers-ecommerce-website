@@ -13,14 +13,14 @@ dotenv.config({ path: "../config/config.env" });
 // @ access Private
 router.get("/",  async (req, res) => {
   const queryNew = req.query.new;
-  const queryCategory = req.query.category;
+  const queryCollections = req.query.collection;
   try {
     let products;
     if (queryNew) {
       products = await Product.find().sort({ _id: -1 }).limit(5);
     }
-    if (queryCategory) {
-      products = await Product.find({ categories: { $in: [queryCategory] } });
+    if (queryCollections) {
+      products = await Product.find({ company: { $in: [queryCollections] } });
     } else {
       products = await Product.find();
     }
