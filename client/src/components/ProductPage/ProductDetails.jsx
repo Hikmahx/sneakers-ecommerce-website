@@ -6,11 +6,12 @@ const ProductDetails = () => {
   const dispatch = useDispatch();
   const product = useSelector((state) => state.product.product);
   const quantity = useSelector((state) => state.cart.quantity);
+  const cartItems = useSelector((state) => state.cart.cartItems);
  
     useEffect(() => {
-      dispatch(quantityCount(0))
+      dispatch(quantityCount(1))
     // eslint-disable-next-line
-    }, [])
+    }, [cartItems])
     
 
   return (
