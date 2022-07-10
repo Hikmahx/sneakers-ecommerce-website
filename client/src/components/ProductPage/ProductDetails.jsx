@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, quantityCount } from "../../redux/reducers/cartSlice";
 
@@ -5,6 +6,12 @@ const ProductDetails = () => {
   const dispatch = useDispatch();
   const product = useSelector((state) => state.product.product);
   const quantity = useSelector((state) => state.cart.quantity);
+ 
+    useEffect(() => {
+      dispatch(quantityCount(0))
+    // eslint-disable-next-line
+    }, [])
+    
 
   return (
     <>
@@ -73,7 +80,7 @@ const ProductDetails = () => {
         </div>
 
         <button
-          onClick={() => dispatch(addToCart(product))}
+          onClick={() => dispatch(addToCart({product}))}
           className="cart w-full h-14 bg-orange rounded-lg lg:rounded-xl mb-2 shadow-orange-shadow shadow-2xl text-white flex items-center justify-center lg:w-3/5 hover:opacity-60"
         >
           <i className="cursor-pointer text-white text-xl leading-0 pr-3">
