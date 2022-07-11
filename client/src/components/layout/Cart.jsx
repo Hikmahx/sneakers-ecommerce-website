@@ -7,7 +7,7 @@ const Cart = () => {
 
   return (
     <div 
-    className="absolute top-20 lg:top-24 bottom-40 inset-x-2 lg:left-auto lg:-right-16 lg:-mr-2 p-5 max-w-xl lg:max-w-sm lg:w-full mx-auto min-h-xs flex flex-col bg-white z-20 shadow-lg lg:shadow-xl rounded-lg">
+    className="absolute top-20 lg:top-24 bottom-40 inset-x-2 lg:left-auto xl:-right-16 lg:-mr-2 p-5 max-w-xl lg:max-w-sm lg:w-full mx-auto min-h-xs h-fit flex flex-col bg-white z-20 shadow-lg lg:shadow-xl rounded-lg">
       <h3 className="font-bold pb-5">Cart</h3>
       <hr className="text-grayish-blue -mx-5" />
       <div
@@ -20,11 +20,11 @@ const Cart = () => {
           <>
             {cartItems.map((item) => (
               <div
-                // key={item.title}
+                key={item.id}
                 className="item w-full flex items-center justify-between text-grayish-blue pb-5"
               >
                 <img
-                //   src={item.img}
+                  src={item.product.img[0]}
                   alt="product-img"
                   className="w-14 h-14 rounded-lg "
                 />
@@ -33,15 +33,15 @@ const Cart = () => {
                     // ref={productTitleRef}
                     className="product capitalize font-bold text-md"
                   >
-                    {/* {item.title} */}
+                    {item.product.title}
                   </p>
                   <div className="price">
                     <span>
-                      {/* {item.price} x {total} */}
+                      {item.product.discountPrice} x {item.quantity}
                     </span>
                     <span className="font-bold text-very-dark-blue">
                       {" "}
-                      {/* ${(item.price.slice(1) * total).toFixed(2)} */}
+                      ${(item.itemTotal).toFixed(2)}
                     </span>
                   </div>
                 </div>
