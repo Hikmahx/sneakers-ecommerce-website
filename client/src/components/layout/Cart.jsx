@@ -28,15 +28,15 @@ const Cart = () => {
                   alt="product-img"
                   className="w-14 h-14 rounded-lg "
                 />
-                <div className="px-3">
+                <div className="px-3 flex-1">
                   <p
                     // ref={productTitleRef}
                     className="product capitalize font-bold text-md"
                   >
                     {item.product.title}
                   </p>
-                  <div className="price">
-                    <span>
+                  <div className="price flex">
+                    <span className="w-16">
                       {item.product.discountPrice} x {item.quantity}
                     </span>
                     <span className="font-bold text-very-dark-blue">
@@ -48,7 +48,7 @@ const Cart = () => {
                 <div className="delete">
                   <i 
                 //   onClick={deleteItem} 
-                  className="cursor-pointer">
+                  className="cursor-pointer hover:text-very-dark-blue transition-all">
                     <ion-icon name="trash-outline"></ion-icon>
                   </i>
                 </div>
