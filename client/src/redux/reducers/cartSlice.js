@@ -54,10 +54,19 @@ const cartSlice = createSlice({
           'itemTotal': action.payload.product.discountPrice * state.quantity
         }])
       }
+    },
+    deleteItem: (state, action)=>{
+      for (let i = 0; i < state.cartItems.length; i++) {
+        // GET THE INDEX OF THE ITEM
+        if (state.cartItems[i].product.title.toLowerCase() === action.payload.toLowerCase()) {
+          // DELETE THE ITEM
+          state.cartItems = state.cartItems.filter(item=> item.product.title.toLowerCase() !== action.payload.toLowerCase()) 
+        }
+      }
     }
   }
 }
 )
 
-export const { cartDisplay, addToCart, quantityCount } = cartSlice.actions;
+export const { cartDisplay, addToCart, quantityCount, deleteItem } = cartSlice.actions;
 export default cartSlice.reducer;

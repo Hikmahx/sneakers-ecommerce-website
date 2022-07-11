@@ -1,7 +1,9 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteItem } from "../../redux/reducers/cartSlice";
 
 const Cart = () => {
+  const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
     
 
@@ -47,7 +49,7 @@ const Cart = () => {
                 </div>
                 <div className="delete">
                   <i 
-                //   onClick={deleteItem} 
+                  onClick={(e)=>dispatch(deleteItem(e.target.parentElement.parentElement.previousElementSibling.firstChild.innerText))} 
                   className="cursor-pointer hover:text-very-dark-blue transition-all">
                     <ion-icon name="trash-outline"></ion-icon>
                   </i>
