@@ -1,26 +1,30 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import logo from "../../assets/logo.svg";
 import menu from "../../assets/icon-menu.svg";
 import avatar from "../../assets/image-avatar.png";
 import Cart from "./Cart";
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux'
-import { cartDisplay } from '../../redux/reducers/cartSlice'
+import { cartDisplay, setTotals } from '../../redux/reducers/cartSlice'
 
 const Header = () => {
-  //   const {cartItems, showCart, cartDisplay, total} = useContext(ProductContext)
-
+  
+  const dispatch = useDispatch()
+  const showCart = useSelector((state) => state.cart.showCart)
+  const total = useSelector((state) => state.cart.total)
+  const cartItems = useSelector((state) => state.cart.cartItems);
+  
+  
+  useEffect(() => {
+    dispatch(setTotals())
+    // eslint-disable-next-line
+  }, [cartItems])
+  
   //HAMBURGER MENU
   let navMenu = useRef(null);
   let darkScreen = useRef(null);
   let close = useRef(null);
   let hamburger = useRef(null);
-
-  // const [showCart, setShowCart] = useState(false);
-  const showCart = useSelector((state) => state.cart.showCart)
-  // const [total, setTotal] = useState(0);
-  const total = useSelector((state) => state.cart.total)
-  const dispatch = useDispatch()
 
   const displayMenu = () => {
     navMenu.current.classList.toggle("!translate-x-0");
@@ -30,10 +34,6 @@ const Header = () => {
     hamburger.current.classList.toggle("!hidden");
   };
 
-  // const cartDisplay = () => {
-  //   // setShowCart(!showCart);
-  //   dispatch(displayCart())
-  // };
 
   return (
     <header className="sm:px-3 lg:px-0 mx-auto">

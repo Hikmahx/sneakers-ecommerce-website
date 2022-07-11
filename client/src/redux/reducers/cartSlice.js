@@ -8,7 +8,8 @@ const cartSlice = createSlice({
     quantity: 0,
     total: 0,
     itemTotal: 0,
-    cartItems: []
+    cartItems: [],
+    amountTotal: 0
   },
   reducers: {
     cartDisplay: (state, action) => {
@@ -63,10 +64,14 @@ const cartSlice = createSlice({
           state.cartItems = state.cartItems.filter(item=> item.product.title.toLowerCase() !== action.payload.toLowerCase()) 
         }
       }
+    },
+    setTotals: (state, action)=>{
+      state.total = state.cartItems.map(item => item.quantity).reduce((a, b) => a + b, 0)
+      state.amountTotal = state.cartItems.map(item => item.itemTotal).reduce((a, b) => a + b, 0)
     }
   }
 }
 )
 
-export const { cartDisplay, addToCart, quantityCount, deleteItem } = cartSlice.actions;
+export const { cartDisplay, addToCart, quantityCount, deleteItem, setTotals } = cartSlice.actions;
 export default cartSlice.reducer;
