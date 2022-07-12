@@ -67,7 +67,7 @@ const Cart = () => {
             <hr className="text-grayish-blue -mx-5 mt-8" />
             <div className="font-bold flex h-8 my-5 justify-between pr-9">
               <h4 className="text-very-dark-blue text-lg">Total</h4>
-              <p className="text-very-dark-blue">${amountTotal.toFixed(2)}</p>
+              <p className="text-very-dark-blue text-lg">${amountTotal.toFixed(2)}</p>
             </div>
             </div>
             <div className="checkout w-full">
