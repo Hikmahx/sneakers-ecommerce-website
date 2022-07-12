@@ -1,8 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const { body, validationResult } = require("express-validator");
-// const bcrypt = require("bcryptjs");
-// const jwt = require("jsonwebtoken");
 const Order = require("../models/Order");
 const {
   verifyTokenAndAdmin,
@@ -28,7 +26,7 @@ router.get("/", verifyTokenAndAdmin, async (req, res) => {
 // @ route GET api/order
 // @ desc  Get user orders
 // @ access Private
-router.get("/find/:id", verifyTokenAndAuthorization, async (req, res) => {
+router.get("/find/:userId", verifyTokenAndAuthorization, async (req, res) => {
   try {
     const order = await Order.find({ userId: req.params.id });
     res.status(200).json(order);
