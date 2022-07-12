@@ -94,7 +94,7 @@ const productSlice = createSlice({
     getProductItem: (state, action) => {
       state.productId = action.payload.productId
       state.product = state.products.filter((item) => item._id === state.productId)[0]
-      state.images = state.product.img
+      state.images = state.error? null : state.product.img
     },
     getFilters: (state, action) => {
       // state.colors = Array.prototype.concat.apply([], state.products.map(item=>item.categories.at(-1).color))
