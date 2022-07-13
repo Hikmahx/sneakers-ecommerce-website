@@ -12,9 +12,12 @@ import Layout from "../components/layout/Layout";
 import Products from "../pages/Products";
 import ProductPage from "../pages/ProductPage";
 import NotFound from "../pages/NotFound";
+import Checkout from "../pages/Checkout";
+import { useSelector } from "react-redux";
 
 const MyRoutes = () => {
   const user = false;
+  const cartItems = useSelector((state) => state.cart.cartItems);
   // const location = useLocation();
   // console.log(location.pathname.split("/")[2]);
   return (
@@ -32,6 +35,7 @@ const MyRoutes = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={user ? <Navigate to="/" replace={true}  /> : <Login />} />
         <Route path="/register" element={user ? <Navigate to="/" replace={true}  /> : <Register />} />
+        <Route path="/checkout" element={ cartItems.length <1 ? <Navigate to="/products" replace={true}  /> : <Checkout />} />
       </Routes>
     </Layout>
   );
