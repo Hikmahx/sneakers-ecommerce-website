@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { deleteItem } from "../../redux/reducers/cartSlice";
 
 const Cart = () => {
@@ -30,13 +31,31 @@ const Cart = () => {
                   className="w-14 h-14 rounded-lg "
                 />
                 <div className="px-3 flex-1">
-                  <p
-                    // ref={productTitleRef}
-                    className="product capitalize font-bold text-md text-dark-grayish-blue"
-                  >
-                    {item.product.title}
-                  </p>
-                  <div className="price flex justify-between pr-2">
+                <div className="flex justify-between">
+                            <p
+                              // ref={productTitleRef}
+                              className="product capitalize font-bold text-md text-dark-grayish-blue"
+                            >
+                              {item.product.title}
+                            </p>
+                            <div className="delete">
+                            <i
+                              onClick={(e) =>
+                                dispatch(
+                                  deleteItem(
+                                    e.target.parentElement.parentElement
+                                      .previousElementSibling
+                                      .innerText
+                                  )
+                                )
+                              }
+                              className="cursor-pointer hover:text-very-dark-blue transition-all"
+                            >
+                              <ion-icon name="trash-outline"></ion-icon>
+                            </i>
+                          </div>
+                            </div>
+                  <div className="price flex justify-between">
                     <span className="">
                       {item.product.discountPrice} x {item.quantity}
                     </span>
@@ -46,34 +65,23 @@ const Cart = () => {
                     </span>
                   </div>
                 </div>
-                <div className="delete">
-                  <i
-                    onClick={(e) =>
-                      dispatch(
-                        deleteItem(
-                          e.target.parentElement.parentElement
-                            .previousElementSibling.firstChild.innerText
-                        )
-                      )
-                    }
-                    className="cursor-pointer hover:text-very-dark-blue transition-all"
-                  >
-                    <ion-icon name="trash-outline"></ion-icon>
-                  </i>
-                </div>
               </div>
             ))}
             <div className="overall-total w-full">
-            <hr className="text-grayish-blue -mx-5 mt-8" />
-            <div className="font-bold flex h-8 my-5 justify-between pr-9">
-              <h4 className="text-very-dark-blue text-lg">Total</h4>
-              <p className="text-very-dark-blue text-lg">${amountTotal.toFixed(2)}</p>
-            </div>
+              <hr className="text-grayish-blue -mx-5 mt-8" />
+              <div className="font-bold flex h-8 my-5 justify-between px-3">
+                <h4 className="text-very-dark-blue text-lg">Total</h4>
+                <p className="text-very-dark-blue text-lg">
+                  ${amountTotal.toFixed(2)}
+                </p>
+              </div>
             </div>
             <div className="checkout w-full">
-              <button className="w-full h-14 bg-orange rounded-lg lg:rounded-xl mb-2 text-white flex items-center justify-center hover:opacity-60">
-                Checkout
-              </button>
+              <Link to="/checkout">
+                <button className="w-full h-14 bg-orange rounded-lg lg:rounded-xl mb-2 text-white flex items-center justify-center hover:opacity-60">
+                  Checkout
+                </button>
+              </Link>
             </div>
           </>
         ) : (
