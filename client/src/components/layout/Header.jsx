@@ -143,7 +143,7 @@ const Header = () => {
                   </div>
                 )}
                 <i
-                  onClick={()=>dispatch(cartDisplay())}
+                  onClick={()=>dispatch(cartDisplay(!showCart))}
                   className={
                     "cursor-pointer text-3xl !leading-none lg:text-2xl transition-colors " +
                     (showCart ? "text-very-dark-blue" : "text-grayish-blue")

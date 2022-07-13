@@ -13,7 +13,7 @@ const cartSlice = createSlice({
   },
   reducers: {
     cartDisplay: (state, action) => {
-      state.showCart = !state.showCart
+      state.showCart = action.payload 
     },
     quantityCount: (state, action) => {
       switch (action.payload) {
