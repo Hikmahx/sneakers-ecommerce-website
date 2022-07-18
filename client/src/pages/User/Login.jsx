@@ -30,12 +30,12 @@ const Login = () => {
         />
       </div>
       <div className='wrapper w-full min-h-screen py-12 sm:py-8 flex items-center justify-center'>
-        <div className='wrapper w-5/6 sm:w-3/4 md:w-3/5 xl:w-2/5 container py-16 px-8 sm:px-12 bg-white'>
-          <h1 className='title text-xl sm:text-2xl lg:text-3xl mb-5 font-bold  text-very-dark-blue mb-6'>
+        <div className='wrapper w-5/6 sm:w-3/4 md:w-3/5 xl:w-2/5 container py-16 px-8 sm:px-12 bg-white relative'>
+          <h1 className='title text-xl sm:text-2xl lg:text-3xl font-bold text-very-dark-blue mb-12'>
             SIGN IN
           </h1>
           <form className='flex flex-wrap justify-between' onSubmit={handleSubmit(submitForm)} onChange={removeErrMsg}>
-          {error && <p className=" absolute text-[#f96464] text-sm">{errMsg}</p> }
+          {error && <p className=" absolute text-[#f96464] text-sm top-28">{errMsg}</p> }
             <div className='relative w-full  mb-2 py-3'>
               <input
                 id='email'
@@ -70,8 +70,28 @@ const Login = () => {
                 Password
               </label>
             </div>
-            <button type="submit" className='w-full h-12 max-w-lg lg:max-w-none bg-orange rounded-md mt-3 mb-2 text-white flex items-center justify-center lg:w-2/5 hover:bg-white shadow-[inset_0_0_0_0_rgba(255,125,26,0.6)] hover:shadow-[inset_0_-4rem_0_0_rgba(255,125,26,0.6)] transition-all duration-300' disabled={loading}>
-              LOGIN
+            <button type="submit" className={'w-full h-12 max-w-lg lg:max-w-none bg-orange rounded-md mt-3 mb-2 text-white flex items-center justify-center lg:w-2/5 hover:bg-white shadow-[inset_0_0_0_0_rgba(255,125,26,0.6)] hover:shadow-[inset_0_-4rem_0_0_rgba(255,125,26,0.6)] transition-all duration-300 ' + (loading ? 'cursor-not-allowed': 'cursor-auto')} disabled={loading}>
+              {
+                loading?
+                <div
+                className="
+            spinner-border
+            animate-spin
+            inline-block
+            w-4
+            h-4
+            border
+            rounded-full
+            text-white
+          "
+                role="status"
+              >
+                <span className="visually-hidden">Loading...</span>
+              </div>
+              :
+              <>LOGIN</>
+              }
+              
             </button>
             <br />
             <br />
