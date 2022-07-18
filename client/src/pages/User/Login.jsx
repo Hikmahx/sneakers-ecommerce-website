@@ -1,15 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import AuthBg from '../../assets/user/auth-bg.jpg';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from 'react-hook-form'
 import { loginUser, removeError } from '../../redux/reducers/authSlice';
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
-  const { loading, error, errMsg } = useSelector((state) => state.auth)
+  const { loading, userInfo, error, errMsg } = useSelector((state) => state.auth)
   const dispatch = useDispatch()
   const { register, handleSubmit } = useForm()
-
+  const navigate = useNavigate()
+  // let location = useLocation();
+  // let from = location.state?.from?.pathname || "/";
+    // redirect authenticated user to profile screen
+    useEffect(() => {
+      if (userInfo) {
+        navigate('/user-profile')
+        // navigate(from, { replace: true });
+        // eslint-disable-next-line
+      }
+    }, [navigate, userInfo])
 
   
   const submitForm = (data) => {
