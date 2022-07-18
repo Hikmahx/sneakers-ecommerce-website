@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export const loginUser = createAsyncThunk(
   "auth/loginUser",
-  async ({ email, password }, {rejectWithValue}) => {
+  async ({ email, password }, { rejectWithValue }) => {
     try {
       // configure header's Content-Type as JSON
       const config = {
@@ -21,7 +21,7 @@ export const loginUser = createAsyncThunk(
 
     } catch (err) {
       console.log(err)
-        return rejectWithValue(err.response.data)
+      return rejectWithValue(err.response.data)
 
       // return custom err message from API if any
       // if (err.response && err.response.data.message) {
@@ -47,11 +47,12 @@ const authSlice = createSlice({
     userInfo: null,
     userToken,
     success: false,
+    errMsg: ''
   },
   //authSlice
   reducers: {
-    removeError: (state, {payload})=>{
-      state.error =false
+    removeError: (state, { payload }) => {
+      state.error = false
     }
   },
   extraReducers: {
@@ -61,15 +62,16 @@ const authSlice = createSlice({
     },
     [loginUser.fulfilled]: (state, { payload }) => {
       state.loading = false
-      state.user = payload
-      state.userToken = payload.userToken  
+      state.userInfo = payload.user
+      state.userToken = payload.token
+      state.errMsg = ''
     },
-    [loginUser.rejected]: (state, action) => {
+    [loginUser.rejected]: (state, { payload }) => {
       state.loading = false
       state.error = true
-      state.errMsg = action.payload.msg? action.payload.msg : action.payload
+      state.errMsg = payload.msg ? payload.msg : payload
     },
   }
 })
-export const {removeError } = authSlice.actions
+export const { removeError } = authSlice.actions
 export default authSlice.reducer
