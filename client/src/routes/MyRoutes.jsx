@@ -14,6 +14,7 @@ import ProductPage from "../pages/ProductPage";
 import NotFound from "../pages/NotFound";
 import Checkout from "../pages/Checkout";
 import { useSelector } from "react-redux";
+import UserProfile from "../pages/User/UserProfile";
 
 const MyRoutes = () => {
   const user = false;
@@ -35,6 +36,7 @@ const MyRoutes = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={user ? <Navigate to="/" replace={true}  /> : <Login />} />
         <Route path="/register" element={user ? <Navigate to="/" replace={true}  /> : <Register />} />
+        <Route path="/user-profile" element={ <UserProfile/>}/>
         <Route path="/checkout" element={ cartItems.length <1 ? <Navigate to="/products" replace={true}  /> : <Checkout />} />
       </Routes>
     </Layout>
