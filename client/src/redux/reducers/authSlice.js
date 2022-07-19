@@ -33,6 +33,35 @@ export const loginUser = createAsyncThunk(
   }
 )
 
+export const getUserDetails = createAsyncThunk(
+  'user/getUserDetails',
+  async (arg, { getState, rejectWithValue }) => {
+    try {
+
+      // get user data from store
+      const { auth } = getState()
+
+      // configure authorization header with user's token
+      const config = {
+        headers: {
+          'x-auth-token': auth.userToken,
+        },
+      }
+      const { data } = await axios.get(`/api/auth`, config)
+
+      return data
+    } catch (err) {
+      console.log(err)
+      return rejectWithValue(err.response.data)
+      // if (error.response && error.response.data.message) {
+      //   return rejectWithValue(error.response.data.message)
+      // } else {
+      //   return rejectWithValue(error.message)
+      // }
+    }
+  }
+)
+
 // initialize userToken from local storage
 const userToken = localStorage.getItem('userToken')
   ? localStorage.getItem('userToken')
@@ -47,7 +76,8 @@ const authSlice = createSlice({
     userInfo: null,
     userToken,
     success: false,
-    errMsg: ''
+    errMsg: '',
+    userErrorMsg: ''
   },
   //authSlice
   reducers: {
@@ -70,6 +100,21 @@ const authSlice = createSlice({
       state.loading = false
       state.error = true
       state.errMsg = payload.msg ? payload.msg : payload
+    },
+
+    [getUserDetails.pending]: (state) => {
+      state.loading = true
+      state.error = false
+    },
+    [getUserDetails.fulfilled]: (state, { payload }) => {
+      state.loading = false
+      state.userInfo = payload
+      state.userErrorMsg = ''
+    },
+    [getUserDetails.rejected]: (state, { payload }) => {
+      state.loading = false
+      state.error = true
+      state.userErrorMsg = payload.msg ? payload.msg : payload
     },
   }
 })
