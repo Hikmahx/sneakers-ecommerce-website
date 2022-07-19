@@ -1,8 +1,25 @@
 import React from 'react';
 import AuthBg from '../../assets/user/auth-bg.jpg';
 import { NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux'
+import { useForm } from 'react-hook-form'
+import { loginUser, removeError } from '../../redux/reducers/authSlice';
 
 const Login = () => {
+  const { loading, error, errMsg } = useSelector((state) => state.auth)
+  const dispatch = useDispatch()
+  const { register, handleSubmit } = useForm()
+
+
+  
+  const submitForm = (data) => {
+    dispatch(loginUser(data))
+  }
+
+  const removeErrMsg = () => {
+    dispatch(removeError())
+  }
+
   return (
     <div className='relative h-screen'>
       <div className='bg-pale-orange absolute inset-0 h-full w-full -z-20'>
@@ -14,10 +31,11 @@ const Login = () => {
       </div>
       <div className='wrapper w-full min-h-screen py-12 sm:py-8 flex items-center justify-center'>
         <div className='wrapper w-5/6 sm:w-3/4 md:w-3/5 xl:w-2/5 container py-16 px-8 sm:px-12 bg-white'>
-          <h1 className='title text-xl sm:text-2xl lg:text-3xl mb-5 font-bold  text-very-dark-blue'>
+          <h1 className='title text-xl sm:text-2xl lg:text-3xl mb-5 font-bold  text-very-dark-blue mb-6'>
             SIGN IN
           </h1>
-          <form className='flex flex-wrap justify-between'>
+          <form className='flex flex-wrap justify-between' onSubmit={handleSubmit(submitForm)} onChange={removeErrMsg}>
+          {error && <p className=" absolute text-[#f96464] text-sm">{errMsg}</p> }
             <div className='relative w-full  mb-2 py-3'>
               <input
                 id='email'
@@ -25,6 +43,8 @@ const Login = () => {
                 type='text'
                 className='peer h-10 w-full border-b-2 border-grayish-blue text-very-dark-blue placeholder-transparent focus:outline-none focus:border-orange'
                 placeholder='username or email'
+                {...register('email')}
+                required
               />
               <label
                 htmlFor='email'
@@ -40,6 +60,8 @@ const Login = () => {
                 type='password'
                 className='peer h-10 w-full border-b-2 border-grayish-blue text-very-dark-blue placeholder-transparent focus:outline-none focus:border-orange'
                 placeholder='Password'
+                {...register('password')}
+                required
               />
               <label
                 htmlFor='password'
@@ -48,7 +70,7 @@ const Login = () => {
                 Password
               </label>
             </div>
-            <button className='w-full h-12 max-w-lg lg:max-w-none bg-orange rounded-md mt-3 mb-2 text-white flex items-center justify-center lg:w-2/5 hover:bg-white shadow-[inset_0_0_0_0_rgba(255,125,26,0.6)] hover:shadow-[inset_0_-4rem_0_0_rgba(255,125,26,0.6)] transition-all duration-300'>
+            <button type="submit" className='w-full h-12 max-w-lg lg:max-w-none bg-orange rounded-md mt-3 mb-2 text-white flex items-center justify-center lg:w-2/5 hover:bg-white shadow-[inset_0_0_0_0_rgba(255,125,26,0.6)] hover:shadow-[inset_0_-4rem_0_0_rgba(255,125,26,0.6)] transition-all duration-300' disabled={loading}>
               LOGIN
             </button>
             <br />
