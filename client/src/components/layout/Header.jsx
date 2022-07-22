@@ -157,7 +157,7 @@ const Header = () => {
               <img src={avatar} alt="avatar" />
             </div>
             <NavLink to="/login">
-              <button className="h-10 sm:block bg-orange px-4 rounded-lg lg:rounded-xl ml-2 text-white flex items-center justify-center hover:bg-white shadow-[inset_0_0_0_0_rgba(255,125,26,0.6)] hover:shadow-[inset_0_-4rem_0_0_rgba(255,125,26,0.6)] transition-all duration-300">
+              <button className="h-10 sm:block bg-orange px-4 rounded-lg lg:rounded-xl ml-2 text-white flex items-center justify-center border shadow-[inset_0_-1px_0_0_#ffede1] hover:shadow-[inset_0_-4rem_0_0_#ffede1] hover:text-orange overflow-hidden transition-all duration-300">
                 Login
               </button>
             </NavLink>
