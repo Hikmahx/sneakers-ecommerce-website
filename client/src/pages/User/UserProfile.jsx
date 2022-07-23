@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserDetails } from "../../redux/reducers/authSlice";
 import Loading from "../../components/Loading";
-import { Link, Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 
 const UserProfile = () => {
   const { userInfo, loading, error, userErrorMsg } = useSelector(
@@ -48,11 +48,15 @@ const UserProfile = () => {
                         </h3>
 
                         <nav className="space-y-1 bg-white">
-                          <Link
+                          <NavLink
                             to=""
-                            className=" bg-pale-orange border-orange text-dark-grayish-blue hover:bg-pale-orange hover:text-dark-grayish-blue group border-l-4 px-3 py-2 flex items-center text-sm font-medium"
+                            className={({ isActive }) =>
+                            "text-dark-grayish-blue group  px-3 py-2 flex items-center text-sm font-medium" +
+                            (!isActive ? " hover:bg-light-grayish-blue" : " border-l-4 bg-pale-orange border-orange hover:bg-pale-orange" )
+                          }
+                          end
                             aria-current="page"
-                            x-state-description='Current: "bg-pale-orange border-orange text-dark-grayish-blue hover:bg-pale-orange hover:text-dark-grayish-blue", Default: "border-transparent text-gray-900 hover:bg-gray-50 hover:text-gray-900"'
+                            x-state-description='Current: "bg-pale-orange border-orange text-dark-grayish-blue", Default: "border-transparent text-gray-900 hover:bg-gray-50 hover:text-gray-900"'
                           >
                             {/* <ion-icon class="p-2 text-base" name="contact"></ion-icon> */}
                             <ion-icon
@@ -62,48 +66,60 @@ const UserProfile = () => {
                             {/* <i clasName="fa-light fa-circle-user text-lg"></i> */}
 
                             <span className="truncate">My Account</span>
-                          </Link>
+                          </NavLink>
 
-                          <Link
+                          <NavLink
                             to="orders"
-                            className=" text-dark-grayish-blue border-transparent text-gray-900 hover:bg-gray-50 hover:text-gray-900 group border-l-4 px-3 py-2 flex items-center text-sm font-medium"
-                            x-state-description='undefined: "bg-pale-orange border-orange text-dark-grayish-blue hover:bg-pale-orange hover:text-dark-grayish-blue", undefined: "border-transparent text-gray-900 hover:bg-gray-50 hover:text-gray-900"'
+                            className={({ isActive }) =>
+                            "text-dark-grayish-blue group  px-3 py-2 flex items-center text-sm font-medium" +
+                            (!isActive ? " hover:bg-light-grayish-blue" : " border-l-4 bg-pale-orange border-orange hover:bg-pale-orange" )
+                            }
+                            x-state-description='undefined: "bg-pale-orange border-orange text-dark-grayish-blue", undefined: "border-transparent text-gray-900 hover:bg-gray-50 hover:text-gray-900"'
                           >
                             <ion-icon
                               class="p-2 text-base"
                               name="basket"
                             ></ion-icon>
                             <span className="truncate">My Orders</span>
-                          </Link>
+                          </NavLink>
 
-                          <Link
+                          <NavLink
                             to="addresses"
-                            className=" text-dark-grayish-blue border-transparent text-gray-900 hover:bg-gray-50 hover:text-gray-900 group border-l-4 px-3 py-2 flex items-center text-sm font-medium"
-                            x-state-description='undefined: "bg-pale-orange border-orange text-dark-grayish-blue hover:bg-pale-orange hover:text-dark-grayish-blue", undefined: "border-transparent text-gray-900 hover:bg-gray-50 hover:text-gray-900"'
+                            className={({ isActive }) =>
+                            "text-dark-grayish-blue group  px-3 py-2 flex items-center text-sm font-medium" +
+                            (!isActive ? " hover:bg-light-grayish-blue" : " border-l-4 bg-pale-orange border-orange hover:bg-pale-orange" )
+                          }
+                          x-state-description='undefined: "bg-pale-orange border-orange text-dark-grayish-blue", undefined: "border-transparent text-gray-900 hover:bg-gray-50 hover:text-gray-900"'
                           >
                             <ion-icon
                               class="p-2 text-base"
                               name="location"
                             ></ion-icon>
                             <span className="truncate">My Address</span>
-                          </Link>
+                          </NavLink>
 
-                          <Link
+                          <NavLink
                             to="notifications"
-                            className=" text-dark-grayish-blue border-transparent text-gray-900 hover:bg-gray-50 hover:text-gray-900 group border-l-4 px-3 py-2 flex items-center text-sm font-medium"
-                            x-state-description='undefined: "bg-pale-orange border-orange text-dark-grayish-blue hover:bg-pale-orange hover:text-dark-grayish-blue", undefined: "border-transparent text-gray-900 hover:bg-gray-50 hover:text-gray-900"'
+                            className={({ isActive }) =>
+                            "text-dark-grayish-blue group  px-3 py-2 flex items-center text-sm font-medium" +
+                            (!isActive ? " hover:bg-light-grayish-blue" : " border-l-4 bg-pale-orange border-orange hover:bg-pale-orange" )
+                          }
+                            x-state-description='undefined: "bg-pale-orange border-orange text-dark-grayish-blue", undefined: "border-transparent text-gray-900 hover:bg-gray-50 hover:text-gray-900"'
                           >
                             <ion-icon
                               class="p-2 text-base"
                               name="notifications"
                             ></ion-icon>
                             <span className="truncate">Notifications</span>
-                          </Link>
+                          </NavLink>
 
-                          <Link
+                          <NavLink
                             to="password"
-                            className=" text-dark-grayish-blue border-transparent text-gray-900 hover:bg-gray-50 hover:text-gray-900 group border-l-4 px-3 py-2 flex items-center text-sm font-medium"
-                            x-state-description='undefined: "bg-pale-orange border-orange text-dark-grayish-blue hover:bg-pale-orange hover:text-dark-grayish-blue", undefined: "border-transparent text-gray-900 hover:bg-gray-50 hover:text-gray-900"'
+                            className={({ isActive }) =>
+                            "text-dark-grayish-blue group  px-3 py-2 flex items-center text-sm font-medium" +
+                            (!isActive ? " hover:bg-light-grayish-blue" : " border-l-4 bg-pale-orange border-orange hover:bg-pale-orange" )
+                          }
+                            x-state-description='undefined: "bg-pale-orange border-orange text-dark-grayish-blue", undefined: "border-transparent text-gray-900 hover:bg-gray-50 hover:text-gray-900"'
                           >
                             {/* <ion-icon class="p-2 text-base" name="unlock"></ion-icon> */}
                             <ion-icon
@@ -111,19 +127,22 @@ const UserProfile = () => {
                               name="key"
                             ></ion-icon>
                             <span className="truncate">Password</span>
-                          </Link>
+                          </NavLink>
 
-                          <Link
+                          <NavLink
                             to="settings"
-                            className=" text-dark-grayish-blue border-transparent text-gray-900 hover:bg-gray-50 hover:text-gray-900 group border-l-4 px-3 py-2 flex items-center text-sm font-medium"
-                            x-state-description='undefined: "bg-pale-orange border-orange text-dark-grayish-blue hover:bg-pale-orange hover:text-dark-grayish-blue", undefined: "border-transparent text-gray-900 hover:bg-gray-50 hover:text-gray-900"'
+                            className={({ isActive }) =>
+                            "text-dark-grayish-blue group  px-3 py-2 flex items-center text-sm font-medium" +
+                            (!isActive ? " hover:bg-light-grayish-blue" : " border-l-4 bg-pale-orange border-orange hover:bg-pale-orange" )
+                          }
+                            x-state-description='undefined: "bg-pale-orange border-orange text-dark-grayish-blue", undefined: "border-transparent text-gray-900 hover:bg-gray-50 hover:text-gray-900"'
                           >
                             <ion-icon
                               class="p-2 text-base"
                               name="settings"
                             ></ion-icon>
                             <span className="truncate">Account setting</span>
-                          </Link>
+                          </NavLink>
                           <hr className="text-grayish-blue" />
                           <button className="text-orange flex items-center px-3 py-2">
                             <ion-icon
@@ -142,12 +161,12 @@ const UserProfile = () => {
                 ) : (
                   <>
                     Please{" "}
-                    <Link
+                    <NavLink
                       to="/login"
                       className="text-sm border-b-2 border-b-orange font-bold"
                     >
                       Login
-                    </Link>{" "}
+                    </NavLink>{" "}
                     to view this page
                   </>
                 )}
