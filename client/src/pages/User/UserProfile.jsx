@@ -153,7 +153,7 @@ const UserProfile = () => {
                           </button>
                         </nav>
                       </div>
-                      <div className="bg-white flex-1 rounded-lg shadow-md p-8">
+                      <div className="bg-white flex-1 rounded-lg shadow-md p-8 h-fit">
                         <Outlet />
                       </div>
                     </div>
