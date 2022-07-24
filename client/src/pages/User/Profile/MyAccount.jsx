@@ -17,27 +17,8 @@ const MyAccount = () => {
             Full Name
           </dt>
           <dd className="mt-1 flex text-sm text-very-dark-blue sm:mt-0 sm:col-span-2">
-            <span className="sm:flex flex-grow">
-              <input
-                className="focus:outline-pale-orange px-2 md:p-2 bg-white w-full sm:text-right pr-0"
-                type="text"
-                value={userInfo.firstname}
-                disabled
-              />
-              <input
-                className="focus:outline-pale-orange px-2 md:p-2 bg-white w-full"
-                type="text"
-                value={userInfo.lastname}
-                disabled
-              />
-            </span>
-            <span className="ml-4 flex-shrink-0">
-              <button
-                type="button"
-                className="bg-pale-orange rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none text-orange px-3 py-1"
-              >
-                Edit
-              </button>
+            <span className="sm:flex flex-grow px-2">
+              {userInfo.firstname} {userInfo.lastname}
             </span>
           </dd>
         </div>
@@ -45,68 +26,36 @@ const MyAccount = () => {
           <dt className="text-sm font-medium text-dark-grayish-blue px-2">
             Email
           </dt>
-          <dd className="mt-1 flex text-sm text-very-dark-blue sm:mt-0 sm:col-span-2">
-            <input
-              className="focus:outline-pale-orange p-2 bg-white w-full sm:text-center"
-              type="text"
-              value={userInfo.email}
-              disabled
-            />
-
-            <span className="ml-4 flex-shrink-0">
-              <button
-                type="button"
-                className="bg-pale-orange rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none text-orange px-3 py-1"
-              >
-                Edit
-              </button>
-            </span>
+          <dd className="mt-1 flex text-sm text-very-dark-blue sm:mt-0 sm:col-span-2 px-2">
+            {userInfo.email}
           </dd>
         </div>
+        {
+          userInfo.phone ?
+        
         <div className="sm:grid sm:grid-cols-3 sm:gap-4 py-4">
           <dt className="text-sm font-medium text-dark-grayish-blue px-2">
             Phone Number
           </dt>
-          <dd className="mt-1 flex text-sm text-very-dark-blue sm:mt-0 sm:col-span-2">
-            <input
-              className="focus:outline-pale-orange p-2 bg-white w-full sm:text-center"
-              type="text"
-              value="08066634234"
-              disabled
-            />
-
-            <span className="ml-4 flex-shrink-0">
-              <button
-                type="button"
-                className="bg-pale-orange rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none text-orange px-3 py-1"
-              >
-                Edit
-              </button>
-            </span>
+          <dd className="mt-1 flex text-sm text-very-dark-blue sm:mt-0 sm:col-span-2 px-2">
+            {userInfo.phone}
           </dd>
         </div>
+        :
+        ''
+        }
+        {userInfo.gender?
         <div className="sm:grid sm:grid-cols-3 sm:gap-4 py-4">
           <dt className="text-sm font-medium text-dark-grayish-blue px-2">
             Gender
           </dt>
-          <dd className="mt-1 flex text-sm text-very-dark-blue sm:mt-0 sm:col-span-2">
-            <input
-              className="focus:outline-pale-orange p-2 bg-white w-full sm:text-center"
-              type="text"
-              value="Female"
-              disabled
-            />
-
-            <span className="ml-4 flex-shrink-0">
-              <button
-                type="button"
-                className="bg-pale-orange rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none text-orange px-3 py-1"
-              >
-                Edit
-              </button>
-            </span>
+          <dd className="mt-1 flex text-sm text-very-dark-blue sm:mt-0 sm:col-span-2 px-2">
+            Female
           </dd>
         </div>
+        :
+        ''
+        }
         {/* </div> */}
       </dl>
     </>
