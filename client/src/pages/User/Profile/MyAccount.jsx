@@ -50,7 +50,7 @@ const MyAccount = () => {
             Gender
           </dt>
           <dd className="mt-1 flex text-sm text-very-dark-blue sm:mt-0 sm:col-span-2 px-2">
-            Female
+            {userInfo.gender}
           </dd>
         </div>
         :
