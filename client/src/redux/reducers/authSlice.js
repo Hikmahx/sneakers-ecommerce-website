@@ -62,6 +62,32 @@ export const getUserDetails = createAsyncThunk(
   }
 )
 
+
+export const updateUser = createAsyncThunk(
+  "auth/updateUser",
+  async (userData, {getState, rejectWithValue }) => {
+    try {
+      // get user data from store
+      const { auth } = getState()
+
+
+      // configure header's Content-Type as JSON
+      const config = {
+        headers: {
+          'x-auth-token': auth.userToken,
+        },
+      }
+      let res = await axios.put(`/api/auth/${auth.userInfo._id}`, userData, config)
+      let data = res.data
+      console.log(data)
+      return data
+    } catch (err) {
+      console.log(err)
+      return rejectWithValue(err.response.data)
+    }
+  }
+)
+
 // initialize userToken from local storage
 const userToken = localStorage.getItem('userToken')
   ? localStorage.getItem('userToken')
@@ -77,13 +103,22 @@ const authSlice = createSlice({
     userToken,
     success: false,
     errMsg: '',
-    userErrorMsg: ''
+    userErrorMsg: '',
+    userUpdateErrorMsg: '',
+    editable: false,
+    updating: false
   },
   //authSlice
   reducers: {
     removeError: (state, { payload }) => {
       state.error = false
-    }
+    },
+    enableUpdate: (state, action) => {
+      state.editable = !state.editable
+    },
+    cancelUpdate: (state, action) => {
+      state.editable = false
+    },
   },
   extraReducers: {
     [loginUser.pending]: (state) => {
@@ -116,7 +151,24 @@ const authSlice = createSlice({
       state.error = true
       state.userErrorMsg = payload.msg ? payload.msg : payload
     },
+
+    [updateUser.pending]: (state) => {
+      state.updating = true
+      state.error = false
+    },
+    [updateUser.fulfilled]: (state, { payload }) => {
+      state.updating = false
+      state.userInfo = payload
+      state.userUpdateErrorMsg = ''
+      state.editable = false
+    },
+    [updateUser.rejected]: (state, { payload }) => {
+      state.updating = false
+      state.error = true
+      state.userUpdateErrorMsg = payload.msg ? payload.msg : payload
+      state.editable = false
+    },
   }
 })
-export const { removeError } = authSlice.actions
+export const { removeError, enableUpdate, cancelUpdate } = authSlice.actions
 export default authSlice.reducer
