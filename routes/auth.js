@@ -89,7 +89,7 @@ router.post(
 // @ access   Private
 router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
   try {
-    const { username, email, password } = req.body;
+    const { password, ...others } = req.body;
     const user = await User.findById(req.params.id);
     let newPassword;
     // if (!user) {
@@ -103,8 +103,7 @@ router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
       req.user.id,
       {
         $set: {
-          username,
-          email,
+          ...others,
           password: newPassword,
         },
       },
