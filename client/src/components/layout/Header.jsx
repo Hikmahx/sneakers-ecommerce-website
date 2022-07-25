@@ -4,22 +4,21 @@ import menu from "../../assets/icon-menu.svg";
 import avatar from "../../assets/image-avatar.png";
 import Cart from "./Cart";
 import { NavLink } from "react-router-dom";
-import { useSelector, useDispatch } from 'react-redux'
-import { cartDisplay, setTotals } from '../../redux/reducers/cartSlice'
+import { useSelector, useDispatch } from "react-redux";
+import { cartDisplay, setTotals } from "../../redux/reducers/cartSlice";
 
 const Header = () => {
-  
-  const dispatch = useDispatch()
-  const showCart = useSelector((state) => state.cart.showCart)
-  const total = useSelector((state) => state.cart.total)
+  const dispatch = useDispatch();
+  const showCart = useSelector((state) => state.cart.showCart);
+  const total = useSelector((state) => state.cart.total);
   const cartItems = useSelector((state) => state.cart.cartItems);
-  
-  
+  const { userInfo } = useSelector((state) => state.auth);
+
   useEffect(() => {
-    dispatch(setTotals())
+    dispatch(setTotals());
     // eslint-disable-next-line
-  }, [cartItems])
-  
+  }, [cartItems]);
+
   //HAMBURGER MENU
   let navMenu = useRef(null);
   let darkScreen = useRef(null);
@@ -33,7 +32,6 @@ const Header = () => {
     close.current.classList.toggle("!block");
     hamburger.current.classList.toggle("!hidden");
   };
-
 
   return (
     <header className="sm:px-3 lg:px-0 mx-auto">
@@ -51,7 +49,10 @@ const Header = () => {
               <ion-icon name="close-outline"></ion-icon>
             </div>
           </div>
-          <NavLink to="/" className="logo mx-4 -mt-1 lg:m-auto lg:w-[138px] z-50">
+          <NavLink
+            to="/"
+            className="logo mx-4 -mt-1 lg:m-auto lg:w-[138px] z-50"
+          >
             <img src={logo} alt="logo" />
           </NavLink>
           <nav
@@ -64,7 +65,9 @@ const Header = () => {
                   to="/collections"
                   className={({ isActive }) =>
                     "absolute inset-0 mb-5 pt-[2.5px] lg:pt-0 lg:mb-0 lg:mx-4 lg:h-inherit lg:flex lg:items-center cursor-pointer lg:relative lg:before:content-[attr(before)] before:absolute before:-bottom-1 before:left-0 before:h-full before:-z-10 before:lg:z-10 before:lg:h-1 before:bg-orange before:w-0 hover:before:w-full before:transition-all lg:hover:text-very-dark-blue " +
-                    (!isActive ? "" : "before:w-full text-white lg:text-very-dark-blue")
+                    (!isActive
+                      ? ""
+                      : "before:w-full text-white lg:text-very-dark-blue")
                   }
                 >
                   Collections
@@ -75,7 +78,9 @@ const Header = () => {
                   to="/products/men"
                   className={({ isActive }) =>
                     "absolute inset-0 mb-5 pt-[2.5px] lg:pt-0 lg:mb-0 lg:mx-4 lg:h-inherit lg:flex lg:items-center cursor-pointer lg:relative lg:before:content-[attr(before)] before:absolute before:-bottom-1 before:left-0 before:h-full before:-z-10 before:lg:z-10 before:lg:h-1 before:bg-orange before:w-0 hover:before:w-full before:transition-all lg:hover:text-very-dark-blue " +
-                    (!isActive ? "" : "before:w-full text-white lg:text-very-dark-blue")
+                    (!isActive
+                      ? ""
+                      : "before:w-full text-white lg:text-very-dark-blue")
                   }
                 >
                   Men
@@ -86,7 +91,9 @@ const Header = () => {
                   to="/products/women"
                   className={({ isActive }) =>
                     "absolute inset-0 mb-5 pt-[2.5px] lg:pt-0 lg:mb-0 lg:mx-4 lg:h-inherit lg:flex lg:items-center cursor-pointer lg:relative lg:before:content-[attr(before)] before:absolute before:-bottom-1 before:left-0 before:h-full before:-z-10 before:lg:z-10 before:lg:h-1 before:bg-orange before:w-0 hover:before:w-full before:transition-all lg:hover:text-very-dark-blue " +
-                    (!isActive ? "" : "before:w-full text-white lg:text-very-dark-blue")
+                    (!isActive
+                      ? ""
+                      : "before:w-full text-white lg:text-very-dark-blue")
                   }
                 >
                   Women
@@ -97,7 +104,9 @@ const Header = () => {
                   to="/products"
                   className={({ isActive }) =>
                     "absolute inset-0 mb-5 pt-[2.5px] lg:pt-0 lg:mb-0 lg:mx-4 lg:h-inherit lg:flex lg:items-center cursor-pointer lg:relative lg:before:content-[attr(before)] before:absolute before:-bottom-1 before:left-0 before:h-full before:-z-10 before:lg:z-10 before:lg:h-1 before:bg-orange before:w-0 hover:before:w-full before:transition-all lg:hover:text-very-dark-blue " +
-                    (!isActive ? "" : "before:w-full text-white lg:text-very-dark-blue")
+                    (!isActive
+                      ? ""
+                      : "before:w-full text-white lg:text-very-dark-blue")
                   }
                   end
                 >
@@ -109,7 +118,9 @@ const Header = () => {
                   to="/contact"
                   className={({ isActive }) =>
                     "absolute inset-0 mb-5 pt-[2.5px] lg:pt-0 lg:mb-0 lg:mx-4 lg:h-inherit lg:flex lg:items-center cursor-pointer lg:relative lg:before:content-[attr(before)] before:absolute before:-bottom-1 before:left-0 before:h-full before:-z-10 before:lg:z-10 before:lg:h-1 before:bg-orange before:w-0 hover:before:w-full before:transition-all lg:hover:text-very-dark-blue " +
-                    (!isActive ? "" : "before:w-full text-white lg:text-very-dark-blue")
+                    (!isActive
+                      ? ""
+                      : "before:w-full text-white lg:text-very-dark-blue")
                   }
                 >
                   Contact
@@ -143,7 +154,7 @@ const Header = () => {
                   </div>
                 )}
                 <i
-                  onClick={()=>dispatch(cartDisplay(!showCart))}
+                  onClick={() => dispatch(cartDisplay(!showCart))}
                   className={
                     "cursor-pointer text-3xl !leading-none lg:text-2xl transition-colors " +
                     (showCart ? "text-very-dark-blue" : "text-grayish-blue")
@@ -156,11 +167,21 @@ const Header = () => {
             <div className="user h-6 w-6 mx-2 sm:h-8 sm:w-8 md:w-10 md:h-10 lg:w-12 lg:h-12 hidden">
               <img src={avatar} alt="avatar" />
             </div>
-            <NavLink to="/login">
-              <button className="h-10 sm:block bg-orange px-4 rounded-lg lg:rounded-xl ml-2 text-white flex items-center justify-center border shadow-[inset_0_-1px_0_0_#ffede1] hover:shadow-[inset_0_-4rem_0_0_#ffede1] hover:text-orange overflow-hidden transition-all duration-300">
-                Login
-              </button>
-            </NavLink>
+            {!userInfo ? (
+              <NavLink to="/login">
+                <button className="h-10 sm:block bg-orange px-4 rounded-lg lg:rounded-xl ml-2 text-white flex items-center justify-center border shadow-[inset_0_-1px_0_0_#ffede1] hover:shadow-[inset_0_-4rem_0_0_#ffede1] hover:text-orange overflow-hidden transition-all duration-300">
+                  Login
+                </button>
+              </NavLink>
+            ) : (
+              <NavLink to="/user-profile" className="ml-2 lg:ml-0 lg:mt-2">
+                <i className="cursor-pointer text-3xl !leading-none lg:text-xl transition-colors mt-2 text-grayish-blue hover:text-very-dark-blue">
+                  <ion-icon name="person">
+                    <title>Username</title>
+                  </ion-icon>
+                </i>
+              </NavLink>
+            )}
           </div>
         </div>
       </div>
