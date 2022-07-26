@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import AuthBg from "../../assets/user/auth-bg.jpg";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { removeError } from "../../redux/reducers/authSlice";
+import { registerUser, removeError } from "../../redux/reducers/authSlice";
 
 const Register = () => {
-  const { loading, userInfo, error, errMsg } = useSelector(
+  const { loading, userInfo, error, errMsg, success } = useSelector(
     (state) => state.auth
   );
   const dispatch = useDispatch();
@@ -19,7 +19,17 @@ const Register = () => {
     mode: "onChange",
   });
 
+  const navigate = useNavigate();
+  useEffect(() => {
+    // redirect user to login page if registration was successful
+    if (success){ navigate("/login")};
+    // redirect authenticated user to profile screen
+    if (userInfo){ navigate("/user-profile")};
+    // eslint-disable-next-line
+  }, [navigate, userInfo, success]);
+
   const submitForm = (data) => {
+    dispatch(registerUser(data))
     console.log(data);
   };
 
@@ -37,8 +47,8 @@ const Register = () => {
         />
       </div>
       <div className="wrapper w-full min-h-screen py-12 sm:py-8 flex items-center justify-center">
-        <div className="wrapper w-5/6 sm:w-3/4 md:w-3/5 xl:w-2/5 container py-16 px-8 sm:px-12 bg-white">
-          <h1 className="title text-xl sm:text-2xl lg:text-3xl mb-5 font-bold">
+        <div className="wrapper w-5/6 sm:w-3/4 md:w-3/5 xl:w-2/5 container py-16 px-8 sm:px-12 bg-white relative">
+          <h1 className="title text-xl sm:text-2xl lg:text-3xl mb-12 font-bold">
             CREATE AN ACCOUNT
           </h1>
           <form
@@ -205,8 +215,23 @@ const Register = () => {
               By creating an account, I consent to the processing of my personal
               data in accordance with the <b>PRIVACY POLICY</b>
             </div>
-            <button className="w-full h-12 max-w-lg lg:max-w-none bg-orange rounded-md mt-3 lg:mt-5 mb-2 text-white flex items-center justify-center lg:w-2/5 shadow-[inset_0_-1px_0_0_#ffede1] hover:shadow-[inset_0_-4rem_0_0_#ffede1] hover:text-orange border transition-all duration-300">
-              CREATE
+            <button
+              className={
+                "w-full h-12 max-w-lg lg:max-w-none bg-orange rounded-md mt-3 lg:mt-5 mb-2 text-white flex items-center justify-center lg:w-2/5 shadow-[inset_0_-1px_0_0_#ffede1] hover:shadow-[inset_0_-4rem_0_0_#ffede1] hover:text-orange border transition-all duration-300 " +
+                (loading ? "cursor-not-allowed" : "cursor-auto")
+              }
+              disabled={loading}
+            >
+              {loading ? (
+                <div
+                  className="spinner-border animate-spin inline-block w-4 h-4 border rounded-full text-white hover:text-orange"
+                  role="status"
+                >
+                  <span className="visually-hidden">Loading...</span>
+                </div>
+              ) : (
+                <>CREATE</>
+              )}
             </button>
             <div className="links mt-12 flex flex-wrap w-full">
               <span className="text-dark-grayish-blue lg:mr-4">
