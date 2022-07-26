@@ -76,7 +76,7 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { username, email, password } = req.body;
+    const { firstname, lastname, username, email, password } = req.body;
 
     try {
       let user = await User.findOne({ email });
@@ -87,6 +87,8 @@ router.post(
 
       // CREATE A NEW USER
       user = new User({
+        firstname,
+        lastname,
         username,
         email,
         password,
