@@ -104,6 +104,7 @@ const authSlice = createSlice({
     success: false,
     errMsg: '',
     userErrorMsg: '',
+    userUpdateError: false,
     userUpdateErrorMsg: '',
     editable: false,
     updating: false
@@ -154,7 +155,7 @@ const authSlice = createSlice({
 
     [updateUser.pending]: (state) => {
       state.updating = true
-      state.error = false
+      state.userUpdateError = false
     },
     [updateUser.fulfilled]: (state, { payload }) => {
       state.updating = false
@@ -164,7 +165,7 @@ const authSlice = createSlice({
     },
     [updateUser.rejected]: (state, { payload }) => {
       state.updating = false
-      state.error = true
+      state.userUpdateError = true
       state.userUpdateErrorMsg = payload.msg ? payload.msg : payload
       state.editable = false
     },
