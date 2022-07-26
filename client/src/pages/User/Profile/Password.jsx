@@ -17,13 +17,9 @@ const Password = () => {
   });
 
   const dispatch = useDispatch();
-  // const currentPassword = register("currentPassword");
-  // const newPassword = register("newPassword");
-  // const password = register("password");
 
   const submitForm = (data) => {
     dispatch(updateUser(data));
-    // console.log(data);
   };
 
   return (
@@ -57,7 +53,6 @@ const Password = () => {
               className="border-b-2 border-grayish-blue flex-1 text-very-dark-blue placeholder-grayish-blue focus:outline-none focus:border-orange px-2 md:p-2 bg-white w-full pr-0"
               {...register("currentPassword")}
             />
-            {/* {errors.currentPassword && <p>{errors.currentPassword.message}</p>} */}
           </div>
         </div>
 
@@ -74,18 +69,8 @@ const Password = () => {
               id="new-password"
               name="newPassword"
               className="border-b-2 border-grayish-blue flex-1 text-very-dark-blue placeholder-grayish-blue focus:outline-none focus:border-orange px-2 md:p-2 bg-white w-full pr-0"
-              {...register(
-                "newPassword"
-                // , {
-                //   required: true,
-                //     validate: (value) => {
-                //     const { currentPassword } = getValues();
-                //     return currentPassword === value || "Passwords should match!";
-                //   }
-                //   }
-              )}
+              {...register("newPassword")}
             />
-            {/* {errors.newPassword && <p className="text-sm text-[red]">{errors.newPassword.message}</p>} */}
           </div>
         </div>
 
