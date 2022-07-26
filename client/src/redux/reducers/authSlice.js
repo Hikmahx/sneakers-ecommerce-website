@@ -1,6 +1,28 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios';
 
+// userAction.js
+export const registerUser = createAsyncThunk(
+  // action type string
+  'auth/registerUser',
+  // callback function
+  async ({ firstname, lastname, email, password, username }, { rejectWithValue }) => {
+    try {
+      // configure header's Content-Type as JSON
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+      // make request to backend
+      await axios.post('/api/users', { firstname, lastname, email, password, username }, config)
+    } catch (err) {
+      console.log(err)
+      return rejectWithValue(err.response.data)
+    }
+  }
+)
+
 export const loginUser = createAsyncThunk(
   "auth/loginUser",
   async ({ email, password }, { rejectWithValue }) => {
@@ -65,7 +87,7 @@ export const getUserDetails = createAsyncThunk(
 
 export const updateUser = createAsyncThunk(
   "auth/updateUser",
-  async (userData, {getState, rejectWithValue }) => {
+  async (userData, { getState, rejectWithValue }) => {
     try {
       // get user data from store
       const { auth } = getState()
@@ -122,6 +144,19 @@ const authSlice = createSlice({
     },
   },
   extraReducers: {
+    [registerUser.pending]: (state) => {
+      state.loading = true
+      state.error = false
+    },
+    [registerUser.fulfilled]: (state, { payload }) => {
+      state.loading = false
+      state.success = true
+    },
+    [registerUser.rejected]: (state, { payload }) => {
+      state.loading = false
+      state.error = true
+      state.errMsg = payload.msg ? payload.msg : payload
+    },
     [loginUser.pending]: (state) => {
       state.loading = true
       state.error = false
