@@ -89,7 +89,7 @@ router.post(
 // @ access   Private
 router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
   try {
-    const { password, ...others } = req.body;
+    const { password, currentPassword, ...others } = req.body;
     const user = await User.findById(req.params.id);
     let newPassword;
     // if (!user) {
@@ -98,6 +98,10 @@ router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
     if (password) {
       let salt = await bcrypt.genSalt(10);
       newPassword = await bcrypt.hash(req.body.password, salt);
+      const isMatch = await bcrypt.compare(currentPassword, user.password);
+      if (!isMatch) {
+        return res.status(400).json({ msg: "Old password isn't correct" });
+      }
     }
     const updatedUser = await User.findByIdAndUpdate(
       req.user.id,
