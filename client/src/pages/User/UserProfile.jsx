@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserDetails } from "../../redux/reducers/authSlice";
+import { getUserDetails, logout } from "../../redux/reducers/authSlice";
 import Loading from "../../components/Loading";
 import { NavLink, Outlet } from "react-router-dom";
 
 const UserProfile = () => {
-  const { userInfo, loading, error, userErrorMsg } = useSelector(
+  const { userInfo, loading, error, userErrorMsg, userToken } = useSelector(
     (state) => state.auth
   );
   const dispatch = useDispatch();
@@ -132,42 +132,60 @@ const UserProfile = () => {
                 <span className="truncate">Account setting</span>
               </NavLink>
               <hr className="text-grayish-blue" />
-              <button className="text-orange flex items-center px-3 py-2">
+              <button
+                onClick={() => dispatch(logout())}
+                className="text-orange flex items-center px-3 py-2"
+              >
                 <ion-icon class="p-2 text-base" name="log-out"></ion-icon>
                 <span className="truncate">Log out</span>
               </button>
             </nav>
           </div>
           <div className="bg-white flex-1 rounded-lg shadow-md p-8">
-            {!error ? (
+            {userToken ? (
               <>
-                {loading ? (
-                  <div className=" w-full h-full flex items-center justify-center">
-                    <Loading />
-                  </div>
-                ) : (
+                {!error ? (
                   <>
-                    {userInfo ? (
-                      <Outlet />
+                    {loading ? (
+                      <div className=" w-full h-full flex items-center justify-center">
+                        <Loading />
+                      </div>
                     ) : (
                       <>
-                        Please{" "}
-                        <NavLink
-                          to="/login"
-                          className="text-sm border-b-2 border-b-orange font-bold"
-                        >
-                          Login
-                        </NavLink>{" "}
-                        to view this page
+                        {userInfo ? (
+                          <Outlet />
+                        ) : (
+                          <>
+                            Please{" "}
+                            <NavLink
+                              to="/login"
+                              className="text-sm border-b-2 border-b-orange font-bold"
+                            >
+                              Login
+                            </NavLink>{" "}
+                            to view this page
+                          </>
+                        )}
                       </>
                     )}
                   </>
+                ) : (
+                  <p className=" mt-20 text-center text-very-dark-blue">
+                    {userErrorMsg}
+                  </p>
                 )}
               </>
             ) : (
-              <p className=" mt-20 text-center text-very-dark-blue">
-                {userErrorMsg}
-              </p>
+              <>
+                Please{" "}
+                <NavLink
+                  to="/login"
+                  className="text-sm border-b-2 border-b-orange font-bold"
+                >
+                  Login
+                </NavLink>{" "}
+                to view this page
+              </>
             )}{" "}
           </div>
         </div>

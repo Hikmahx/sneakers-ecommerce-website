@@ -142,6 +142,13 @@ const authSlice = createSlice({
     cancelUpdate: (state, action) => {
       state.editable = false
     },
+    logout: (state) => {
+      localStorage.removeItem('userToken') // deletes token from storage
+      state.loading = false
+      state.userInfo = null
+      state.userToken = null
+      state.error = null
+    },
   },
   extraReducers: {
     [registerUser.pending]: (state) => {
@@ -206,5 +213,5 @@ const authSlice = createSlice({
     },
   }
 })
-export const { removeError, enableUpdate, cancelUpdate } = authSlice.actions
+export const { removeError, enableUpdate, cancelUpdate, logout } = authSlice.actions
 export default authSlice.reducer
