@@ -200,7 +200,7 @@ const Settings = () => {
               >
                 {updating ? (
                   <div
-                    className="spinner-border animate-spin inline-block w-4 h-4 border rounded-full text-white"
+                    className="spinner-border animate-spin inline-block w-4 h-4 border rounded-full"
                     role="status"
                   >
                     <span className="visually-hidden">Loading...</span>

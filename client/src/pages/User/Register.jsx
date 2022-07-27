@@ -224,7 +224,7 @@ const Register = () => {
             >
               {loading ? (
                 <div
-                  className="spinner-border animate-spin inline-block w-4 h-4 border rounded-full text-white hover:text-orange"
+                  className="spinner-border animate-spin inline-block w-4 h-4 border rounded-full"
                   role="status"
                 >
                   <span className="visually-hidden">Loading...</span>
