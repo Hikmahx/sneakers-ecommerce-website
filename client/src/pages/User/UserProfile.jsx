@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserDetails, logout } from "../../redux/reducers/authSlice";
+import { logout } from "../../redux/reducers/authSlice";
 import Loading from "../../components/Loading";
 import { NavLink, Outlet } from "react-router-dom";
 
@@ -9,13 +9,6 @@ const UserProfile = () => {
     (state) => state.auth
   );
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (!userInfo) {
-      dispatch(getUserDetails());
-    }
-    // eslint-disable-next-line
-  }, []);
 
   return (
     <section className="h-auto pt-2 min-h-[80vh] bg-[#f9f9f9]">

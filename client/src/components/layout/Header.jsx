@@ -6,6 +6,7 @@ import Cart from "./Cart";
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { cartDisplay, setTotals } from "../../redux/reducers/cartSlice";
+import { getUserDetails } from "../../redux/reducers/authSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -18,6 +19,13 @@ const Header = () => {
     dispatch(setTotals());
     // eslint-disable-next-line
   }, [cartItems]);
+
+  useEffect(() => {
+    if (!userInfo) {
+      dispatch(getUserDetails());
+    }
+    // eslint-disable-next-line
+  }, []);
 
   //HAMBURGER MENU
   let navMenu = useRef(null);
