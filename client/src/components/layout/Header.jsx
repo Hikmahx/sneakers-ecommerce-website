@@ -5,7 +5,7 @@ import avatar from "../../assets/image-avatar.png";
 import Cart from "./Cart";
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { cartDisplay, setTotals } from "../../redux/reducers/cartSlice";
+import { createUserCart, cartDisplay, setTotals, updateUserCart } from "../../redux/reducers/cartSlice";
 import { getUserDetails } from "../../redux/reducers/authSlice";
 
 const Header = () => {
@@ -26,6 +26,20 @@ const Header = () => {
     }
     // eslint-disable-next-line
   }, []);
+
+  useEffect(() => {
+    if(userInfo){
+      dispatch(createUserCart({products:cartItems, _id: userInfo._id})) 
+    }
+    // eslint-disable-next-line
+  }, [userInfo]); 
+  
+  useEffect(() => {
+    if(userInfo){
+      dispatch(updateUserCart({products:[...cartItems], _id:userInfo._id})) 
+    }
+    // eslint-disable-next-line
+  }, [userInfo, cartItems]); 
 
   //HAMBURGER MENU
   let navMenu = useRef(null);
