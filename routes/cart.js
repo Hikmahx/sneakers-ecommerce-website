@@ -27,9 +27,10 @@ router.get("/", verifyTokenAndAdmin, async (req, res) => {
 // @ route GET api/cart
 // @ desc  Get user cart
 // @ access Private
-router.get("/find/:userId", verifyTokenAndAuthorization, async (req, res) => {
+router.get("/:id", verifyTokenAndAuthorization, async (req, res) => {
   try {
-    const cart = await Cart.findOne({userId: req.params.id})
+    // const cart = await Cart.findOne({userId: req.params.id})
+    const cart = await Cart.findById(req.params.id);
     res.status(200).json(cart);
   } catch (err) {
     if (err.name === "CastError") {
@@ -47,7 +48,7 @@ router.get("/find/:userId", verifyTokenAndAuthorization, async (req, res) => {
 router.post(
   "/",
   verifyToken,
-  body("userId", "Please enter a user id").not().isEmpty(),
+  // body("userId", "Please enter a user id").not().isEmpty(),
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
