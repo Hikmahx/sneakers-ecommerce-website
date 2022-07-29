@@ -24,7 +24,8 @@ import Password from "../pages/User/Profile/Password";
 
 const MyRoutes = () => {
   const user = false;
-  const cartItems = useSelector((state) => state.cart.cartItems);
+  const { cartItems, userCartItems } = useSelector((state) => state.cart);
+  const { userInfo } = useSelector((state) => state.auth);
   // const location = useLocation();
   // console.log(location.pathname.split("/")[2]);
   return (
@@ -50,7 +51,7 @@ const MyRoutes = () => {
           <Route path="password" element={<Password />} />
           <Route path="settings" element={<Settings />} />
         </Route>
-        <Route path="/checkout" element={ cartItems.length <1 ? <Navigate to="/products" replace={true}  /> : <Checkout />} />
+        <Route path="/checkout" element={ userInfo? userCartItems.length <1 : cartItems.length <1 ? <Navigate to="/products" replace={true}  /> : <Checkout />} />
       </Routes>
     </Layout>
   );

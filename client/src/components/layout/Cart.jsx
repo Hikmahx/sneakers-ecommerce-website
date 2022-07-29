@@ -5,8 +5,8 @@ import { deleteItem } from "../../redux/reducers/cartSlice";
 
 const Cart = () => {
   const dispatch = useDispatch();
-  const cartItems = useSelector((state) => state.cart.cartItems);
-  const amountTotal = useSelector((state) => state.cart.amountTotal);
+  const { userCartItems, cartItems, amountTotal } = useSelector((state) => state.cart);
+  const { userInfo } = useSelector((state) => state.auth);
 
   return (
     <div className="absolute top-20 lg:top-24 bottom-40 inset-x-2 lg:left-auto xl:-right-16 lg:-mr-2 p-5 max-w-xl lg:max-w-sm lg:w-full mx-auto min-h-xs h-fit flex flex-col bg-white z-20 shadow-lg lg:shadow-xl rounded-lg">
@@ -15,12 +15,12 @@ const Cart = () => {
       <div
         className={
           "cart-content flex flex-col flex-1 items-center pt-5 " +
-          (cartItems.length < 1 ? "justify-center" : "justify-start pt-6")
+          ((userInfo? userCartItems: cartItems).length < 1 ? "justify-center" : "justify-start pt-6")
         }
       >
-        {cartItems.length > 0 ? (
+        {(userInfo? userCartItems: cartItems).length > 0 ? (
           <>
-            {cartItems.map((item) => (
+            {(userInfo? userCartItems: cartItems).map((item) => (
               <div
                 key={item.id}
                 className="item w-full flex items-center justify-between text-grayish-blue pb-5"

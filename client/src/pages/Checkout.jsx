@@ -5,8 +5,8 @@ import { deleteItem, cartDisplay } from "../redux/reducers/cartSlice";
 
 const Checkout = () => {
   const dispatch = useDispatch();
-  const cartItems = useSelector((state) => state.cart.cartItems);
-  const amountTotal = useSelector((state) => state.cart.amountTotal);
+  const { userCartItems, cartItems, amountTotal } = useSelector((state) => state.cart);
+  const { userInfo } = useSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(cartDisplay(false));
@@ -252,7 +252,7 @@ const Checkout = () => {
               <div className="mt-4 bg-white border border-gray-200 rounded-lg shadow-sm p-6">
                 <h4 className="sr-only">Items in your cart</h4>
                 <ul className="divide-y divide-gray-200">
-                  {cartItems.map((item) => (
+                  {(userInfo? userCartItems: cartItems).map((item) => (
                     <li
                       key={item.id}
                       className="item w-full flex items-center justify-between text-grayish-blue pb-5"
