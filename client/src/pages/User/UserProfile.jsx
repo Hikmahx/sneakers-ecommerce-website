@@ -3,12 +3,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/reducers/authSlice";
 import Loading from "../../components/Loading";
 import { NavLink, Outlet } from "react-router-dom";
+import { emptyCartOnLogoout } from "../../redux/reducers/cartSlice";
 
 const UserProfile = () => {
   const { userInfo, loading, error, userErrorMsg, userToken } = useSelector(
     (state) => state.auth
   );
   const dispatch = useDispatch();
+  const onLogOut = ()=>{
+    dispatch(logout())
+    dispatch(emptyCartOnLogoout())
+  }
 
   return (
     <section className="h-auto pt-2 min-h-[80vh] bg-[#f9f9f9]">
@@ -126,7 +131,7 @@ const UserProfile = () => {
               </NavLink>
               <hr className="text-grayish-blue" />
               <button
-                onClick={() => dispatch(logout())}
+                onClick={() =>onLogOut()}
                 className="text-orange flex items-center px-3 py-2"
               >
                 <ion-icon class="p-2 text-base" name="log-out"></ion-icon>

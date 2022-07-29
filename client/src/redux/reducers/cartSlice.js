@@ -120,7 +120,8 @@ const cartSlice = createSlice({
         state.cartItems = ([...state.cartItems, {
           'id': action.payload.product._id,
           'product': action.payload.product,
-          'quantity': state.quantity,
+          // IF THERE IS A USER OR IF THE USER CART ITEM IS GREATER THAN ONE, CHANGE TO THAT QUANTITY
+          'quantity': action.payload.quantity? action.payload.quantity: state.quantity,
           'itemTotal': action.payload.product.discountPrice * state.quantity
         }])
       }
@@ -137,6 +138,9 @@ const cartSlice = createSlice({
     setTotals: (state, action) => {
       state.total = state.cartItems.map(item => item.quantity).reduce((a, b) => a + b, 0)
       state.amountTotal = state.cartItems.map(item => item.itemTotal).reduce((a, b) => a + b, 0)
+    },
+    emptyCartOnLogoout: (state, action)=>{
+      state.cartItems =[]
     }
   },
   extraReducers: {
@@ -173,5 +177,5 @@ const cartSlice = createSlice({
 }
 )
 
-export const { cartDisplay, addToCart, quantityCount, deleteItem, setTotals } = cartSlice.actions;
+export const { cartDisplay, addToCart, quantityCount, deleteItem, setTotals, emptyCartOnLogoout } = cartSlice.actions;
 export default cartSlice.reducer;
