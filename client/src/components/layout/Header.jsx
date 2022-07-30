@@ -5,14 +5,20 @@ import avatar from "../../assets/image-avatar.png";
 import Cart from "./Cart";
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { createUserCart, cartDisplay, setTotals, updateUserCart, addToCart } from "../../redux/reducers/cartSlice";
+import {
+  createUserCart,
+  cartDisplay,
+  setTotals,
+  updateUserCart,
+  addToCart,
+} from "../../redux/reducers/cartSlice";
 import { getUserDetails } from "../../redux/reducers/authSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
   const showCart = useSelector((state) => state.cart.showCart);
   const total = useSelector((state) => state.cart.total);
-  const {cartItems, userCartItems} = useSelector((state) => state.cart);
+  const { cartItems, userCartItems } = useSelector((state) => state.cart);
   const { userInfo } = useSelector((state) => state.auth);
 
   useEffect(() => {
@@ -28,28 +34,31 @@ const Header = () => {
   }, []);
 
   useEffect(() => {
-    if(userInfo){
-      dispatch(createUserCart({products:cartItems, _id: userInfo._id})) 
+    if (userInfo) {
+      dispatch(createUserCart({ products: cartItems, _id: userInfo._id }));
       // CHECK IF THE USER ITEM IS ALREADY IN THE GENERAL CART
-      userCartItems.length>0 && userCartItems.forEach(item=> {
-        if(cartItems.map(citem => citem.id).includes(item.id)){
-          console.log("the item is already in the cart")
-        }else{
-          // IF  USER ITEM IS NOT IN THE GENERAL CART, ADD IT
-          dispatch(addToCart({...item,quantity: item.quantity}))
-          console.log('the item isnt in the cart')
-        }
-      })
+      if (userCartItems.length > 0) {
+        userCartItems.length > 0 &&
+          userCartItems.forEach((item) => {
+            if (cartItems.map((citem) => citem.id).includes(item.id)) {
+              console.log("the item is already in the cart");
+            } else {
+              // IF  USER ITEM IS NOT IN THE GENERAL CART, ADD IT
+              dispatch(addToCart({ ...item, quantity: item.quantity }));
+              console.log("the item isnt in the cart");
+            }
+          });
+      }
     }
     // eslint-disable-next-line
-  }, [userInfo]); 
-  
+  }, [userInfo, userCartItems.length > 0]);
+
   useEffect(() => {
-    if(userInfo){
-      dispatch(updateUserCart({products:[...cartItems], _id:userInfo._id})) 
+    if (userInfo) {
+      dispatch(updateUserCart({ products: [...cartItems], _id: userInfo._id }));
     }
     // eslint-disable-next-line
-  }, [userInfo, cartItems]); 
+  }, [userInfo, cartItems]);
 
   //HAMBURGER MENU
   let navMenu = useRef(null);
