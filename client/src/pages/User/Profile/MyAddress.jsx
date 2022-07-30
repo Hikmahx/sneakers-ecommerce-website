@@ -7,8 +7,114 @@ const MyAddress = () => {
       <p className="mt-1 max-w-2xl text-sm text-gray-500">Address details.</p>
       <hr className="border-b border-grayish-blue mt-3 mb-8" />
       <div className="">
-        <form className="w-full flex flex-wrap justify-between px-6 sm:px-12 py-14">
-          <div className="relative w-full lg:w-[45%] mb-2 py-3">
+        {/* USER ADDRESS DISPLAY SECTION */}
+        <fieldset>
+          <legend className="text-lg font-medium text-gray-900">
+            Delivery method
+          </legend>
+
+          <div className="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4 justify-items-start">
+            <label
+              htmlFor="address"
+              className="relative bg-pale-orange border rounded-md shadow-sm p-4 flex cursor-pointer focus:outline-none border-transparent"
+            >
+              <input
+                type="radio"
+                name="address"
+                value="Standard"
+                className="sr-only"
+                aria-labelledby="address-label"
+                aria-describedby="address-description-0 address-description-1"
+              />
+              <i className="absolute right-4">
+                <ion-icon
+                  name="checkmark-circle"
+                  class="text-orange"
+                ></ion-icon>
+              </i>
+              <address className="not-italic text-very-dark blue">
+                <p className="fullname mb-4">Jane Doe</p>
+                <p className="location mb-4 text-dark-grayish-blue">
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                </p>
+                <p className="telephone text-dark-grayish-blue mb-7">
+                  08043408320
+                </p>
+                <div className="flex justify-end">
+                  <button
+                    type="button"
+                    className="bg-orange rounded-md font-medium focus:outline-none text-white px-3 py-1 transition-all text-sm"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    type="button"
+                    className="ml-3 bg-light-grayish-blue rounded-md font-medium text-grayish-blue hover:text-indigo-500 focus:outline-none p-2 flex justify-center items-center"
+                  >
+                    <ion-icon name="close" class="text-lg"></ion-icon>
+                  </button>
+                </div>
+              </address>
+              <div
+                className="absolute -inset-px rounded-md border-2 pointer-events-none border-orange"
+                aria-hidden="true"
+              ></div>
+            </label>
+            <label
+              htmlFor="address"
+              className="relative bg-white border rounded-md shadow-sm p-4 flex cursor-pointer focus:outline-none border-transparent"
+            >
+              <input
+                type="radio"
+                name="address"
+                value="Standard"
+                className="sr-only"
+                aria-labelledby="address-label"
+                aria-describedby="address-description-0 address-description-1"
+              />
+              <i className="absolute right-4 hidden">
+                <ion-icon
+                  name="checkmark-circle"
+                  class="text-orange"
+                ></ion-icon>
+              </i>
+              <address className="not-italic text-very-dark blue">
+                <p className="fullname mb-4">Timmy Doe</p>
+                <p className="location mb-4 text-dark-grayish-blue">
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                </p>
+                <p className="telephone text-dark-grayish-blue mb-7">
+                  08043408320
+                </p>
+                <div className="flex justify-end">
+                  <button
+                    type="button"
+                    className="bg-pale-orange rounded-md font-medium focus:outline-none text-orange px-3 py-1 transition-all text-sm"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    type="button"
+                    className="ml-3 bg-light-grayish-blue rounded-md font-medium text-grayish-blue hover:text-indigo-500 focus:outline-none p-2 flex justify-center items-center"
+                  >
+                    <ion-icon name="close" class="text-lg"></ion-icon>
+                  </button>
+                </div>
+              </address>
+              <div
+                className="absolute -inset-px rounded-md border pointer-events-none border-grayish-blue"
+                aria-hidden="true"
+              ></div>
+            </label>
+          <button className="">
+          <ion-icon name="add" class="text-white bg-orange text-3xl font-bold rounded-sm"></ion-icon>
+          </button>
+          </div>
+        </fieldset>
+
+        {/* USER ADDRESS FORM */}
+        <form className="w-full flex flex-wrap justify-between px-6 sm:px-12 py-12 mt-4 border border-grayish-blue hidden">
+          <div className="relative w-full lg:w-[45%]">
             <input
               id="firstname"
               name="firstname"
@@ -23,7 +129,7 @@ const MyAddress = () => {
               First Name
             </label>
           </div>
-          <div className="relative w-full lg:w-[45%] mb-2 py-3">
+          <div className="relative w-full lg:w-[45%]">
             <input
               id="lastname"
               name="lastname"
@@ -38,7 +144,7 @@ const MyAddress = () => {
               Last Name
             </label>
           </div>
-          <div className="relative mt-10 w-full">
+          <div className="relative mt-4 w-full">
             <input
               id="number"
               name="number"
@@ -53,7 +159,7 @@ const MyAddress = () => {
               Phone Number
             </label>
           </div>
-          <div className="relative mt-10 w-full">
+          <div className="relative mt-4 w-full">
             <input
               id="address"
               name="address"
@@ -68,7 +174,7 @@ const MyAddress = () => {
               Street Address
             </label>
           </div>
-          <div className="relative mt-10 w-full lg:w-[45%]">
+          <div className="relative mt-4 w-full lg:w-[45%]">
             <input
               id="state"
               name="state"
@@ -83,7 +189,7 @@ const MyAddress = () => {
               State
             </label>
           </div>
-          <div className="relative mt-10 w-full lg:w-[45%]">
+          <div className="relative mt-4 w-full lg:w-[45%]">
             <input
               id="city"
               name="city"
@@ -98,7 +204,7 @@ const MyAddress = () => {
               City
             </label>
           </div>
-          <div className="relative mt-10 w-full lg:w-[45%]">
+          <div className="relative mt-4 w-full lg:w-[45%]">
             <input
               id="zip-code"
               name="zip-code"
@@ -113,7 +219,7 @@ const MyAddress = () => {
               Zip code
             </label>
           </div>
-          <div className="relative mt-10 w-full lg:w-[45%]">
+          <div className="relative mt-4 w-full lg:w-[45%]">
             <input
               id="country"
               name="country"
