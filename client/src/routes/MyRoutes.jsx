@@ -51,7 +51,7 @@ const MyRoutes = () => {
           <Route path="password" element={<Password />} />
           <Route path="settings" element={<Settings />} />
         </Route>
-        <Route path="/checkout" element={ userInfo? userCartItems.length <1 : cartItems.length <1 ? <Navigate to="/products" replace={true}  /> : <Checkout />} />
+        <Route path="/checkout" element={ (userInfo? userCartItems.length <1 : cartItems.length<1)  ? <Navigate to="/products" replace={true}  /> : <Checkout />} />
       </Routes>
     </Layout>
   );
