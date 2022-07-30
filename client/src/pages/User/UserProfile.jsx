@@ -19,7 +19,7 @@ const UserProfile = () => {
     <section className="h-auto pt-2 min-h-[80vh] bg-[#f9f9f9]">
       <div className=" max-w-xl lg:max-w-7xl relative px-5 py-20 items-center mx-auto lg:mx-20 xl:mx-28 2xl:mx-40 3xl:mx-auto lg:px-1 xl:px-3 2xl:px-1">
         <div className="flex gap-x-4 flex-col lg:flex-row">
-          <div className="lg:bg-white lg:w-1/4 rounded-lg lg:shadow-md py-4">
+          <div className="lg:bg-white lg:w-1/4 rounded-lg lg:shadow-md py-4 h-fit">
             <div className="profile-img-wrapper w-32 h-32 bg-grayish-blue rounded-full mx-auto relative">
               <button className="w-5 h-5 absolute right-3">
                 <ion-icon
