@@ -26,15 +26,17 @@ const Checkout = () => {
                   <h3 className="text-lg font-bold text-very-dark-blue">
                     Customer Details
                   </h3>
-                  <Link to="/login">
-                    <p className="text-sm border-b border-b-orange">
-                      <span aria-hidden="true">Already have an account?</span>
-                      <span className="visually-hidden">
-                        Already have an account?
-                      </span>
-                      {""} Log in
-                    </p>
-                  </Link>
+                  {!userInfo && (
+                    <Link to="/login">
+                      <p className="text-sm border-b border-b-orange">
+                        <span aria-hidden="true">Already have an account?</span>
+                        <span className="visually-hidden">
+                          Already have an account?
+                        </span>
+                        {""} Log in
+                      </p>
+                    </Link>
+                  )}
                 </div>
                 <div className="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
                   <div>
@@ -252,7 +254,7 @@ const Checkout = () => {
               <div className="mt-4 bg-white border border-gray-200 rounded-lg shadow-sm p-6">
                 <h4 className="sr-only">Items in your cart</h4>
                 <ul className="divide-y divide-gray-200">
-                  {(userInfo? userCartItems: cartItems).map((item) => (
+                  {(userInfo ? userCartItems : cartItems).map((item) => (
                     <li
                       key={item.id}
                       className="item w-full flex items-center justify-between text-grayish-blue pb-5"
