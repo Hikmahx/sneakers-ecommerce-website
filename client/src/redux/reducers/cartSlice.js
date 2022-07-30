@@ -27,6 +27,7 @@ export const createUserCart = createAsyncThunk('cart/createUserCart', async ({ p
       // IF CART EXIST, RETURN CART
       console.log(res.data.products)
     }
+    return res.data.products
   } catch (err) {
     console.log(err)
     return rejectWithValue(err.response.data)
@@ -45,12 +46,13 @@ export const updateUserCart = createAsyncThunk('cart/updateUserCart', async ({ p
         'x-auth-token': userToken,
       },
     }
+    await axios.get(`/api/cart/${_id}`, config)
     // const { cart } = getState()
     //  UPDATE USER'S CART
     let res = await axios.put(`/api/cart/${_id}`, { products, _id }, config)
     let data = res.data
     console.log(data)
-
+    return data.products
   } catch (err) {
     console.log(err)
     return rejectWithValue(err.response.data)
@@ -141,6 +143,7 @@ const cartSlice = createSlice({
     },
     emptyCartOnLogoout: (state, action)=>{
       state.cartItems =[]
+      state.userCartItems =[]
     }
   },
   extraReducers: {
@@ -152,6 +155,7 @@ const cartSlice = createSlice({
       state.loading = false
       state.success = true
       state.errMsg = ''
+      state.userCartItems = payload
     },
     [createUserCart.rejected]: (state, {payload}) => {
       state.loading = false
@@ -162,10 +166,9 @@ const cartSlice = createSlice({
       state.loading = true
       state.error = false
     },
-    [updateUserCart.fulfilled]: (state, action) => {
+    [updateUserCart.fulfilled]: (state, {payload}) => {
       state.loading = false
-      state.success = true
-      state.userCartItems = action.meta.arg.products
+      state.userCartItems = payload
       state.errMsg = ''
     },
     [updateUserCart.rejected]: (state, { payload }) => {
