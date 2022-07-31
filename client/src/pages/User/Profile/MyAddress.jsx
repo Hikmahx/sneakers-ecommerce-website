@@ -5,18 +5,17 @@ import {
   addressFormDisplay,
   hideAddressForm,
 } from "../../../redux/reducers/addressSlice";
-import { updateUser } from "../../../redux/reducers/authSlice";
 
 const MyAddress = () => {
-  const { userInfo } = useSelector((state) => state.auth);
+  // const { userInfo } = useSelector((state) => state.auth);
   const { showAddressForm } = useSelector((state) => state.address);
   const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
-    reset,
+    // reset,
     formState: { errors },
-    getValues,
+    // getValues,
     clearErrors
   } = useForm();
 
@@ -184,7 +183,7 @@ const MyAddress = () => {
                 First Name
               </label>
             </div>
-            <div className="relative w-full lg:w-[45%]">
+            <div className="relative mt-5 w-full lg:w-[45%]">
               <input
                 id="lastname"
                 name="lastname"
@@ -207,7 +206,7 @@ const MyAddress = () => {
                 Last Name
               </label>
             </div>
-            <div className="relative mt-4 w-full">
+            <div className="relative mt-5 w-full">
               <input
                 id="number"
                 name="number"
@@ -230,7 +229,7 @@ const MyAddress = () => {
                 Phone Number
               </label>
             </div>
-            <div className="relative mt-4 w-full">
+            <div className="relative mt-5 w-full">
               <input
                 id="address"
                 name="address"
@@ -253,7 +252,7 @@ const MyAddress = () => {
                 Street Address
               </label>
             </div>
-            <div className="relative mt-4 w-full lg:w-[45%]">
+            <div className="relative mt-5 w-full lg:w-[45%]">
               <input
                 id="state"
                 name="state"
@@ -276,7 +275,7 @@ const MyAddress = () => {
                 State
               </label>
             </div>
-            <div className="relative mt-4 w-full lg:w-[45%]">
+            <div className="relative mt-5 w-full lg:w-[45%]">
               <input
                 id="city"
                 name="city"
@@ -299,13 +298,14 @@ const MyAddress = () => {
                 City
               </label>
             </div>
-            <div className="relative mt-4 w-full lg:w-[45%]">
+            <div className="relative mt-5 w-full lg:w-[45%]">
               <input
                 id="zipcode"
                 name="zipcode"
                 type="text"
                 className="peer h-10 w-full border-b-2 border-grayish-blue text-very-dark-blue placeholder-transparent focus:outline-none focus:border-orange"
                 placeholder="zip-code"
+                {...register("zipcode")}
               />
               <label
                 htmlFor="zipcode"
@@ -314,13 +314,14 @@ const MyAddress = () => {
                 Zip code
               </label>
             </div>
-            <div className="relative mt-4 w-full lg:w-[45%]">
+            <div className="relative mt-5 w-full lg:w-[45%]">
               <input
                 id="country"
                 name="country"
                 type="text"
                 className="peer h-10 w-full border-b-2 border-grayish-blue text-very-dark-blue placeholder-transparent focus:outline-none focus:border-orange"
                 placeholder="country"
+                {...register("country")}
               />
               <label
                 htmlFor="email"
