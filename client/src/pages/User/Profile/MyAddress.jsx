@@ -21,11 +21,11 @@ const MyAddress = () => {
       <div className="">
         {/* USER ADDRESS DISPLAY SECTION */}
         <fieldset>
-          <legend className="text-lg font-medium text-gray-900">
+          {/* <legend className="text-lg font-medium text-gray-900">
             Delivery method
-          </legend>
+          </legend> */}
 
-          <div className="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4 justify-items-start">
+          <div className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4 justify-items-start items-start">
             <label
               htmlFor="address"
               className="relative bg-pale-orange border rounded-md shadow-sm p-4 flex cursor-pointer focus:outline-none border-transparent"
@@ -135,9 +135,9 @@ const MyAddress = () => {
         {/* USER ADDRESS FORM */}
 
         {showAddressForm && (
-          <form className="w-full flex flex-wrap justify-between px-6 sm:px-12 py-12 mt-4 border border-grayish-blue relative">
+          <form className="w-full flex flex-wrap justify-between px-6 sm:px-12 py-12 border border-grayish-blue relative rounded-md">
             <button
-              className="absolute top-4 right-4 sm:top-6 sm:right-6"
+              className="absolute top-4 right-4 sm:top-6 sm:right-6 text-dark-blue hover:text-dark-grayish-blue"
               onClick={() => dispatch(hideAddressForm())}
             >
               <ion-icon name="close" class="text-lg"></ion-icon>
@@ -263,7 +263,7 @@ const MyAddress = () => {
                 Country
               </label>
             </div>
-            <button className=" w-full h-14 max-w-lg lg:max-w-none bg-orange rounded-lg lg:rounded-xl mt-10 lg:ml-auto mb-2 text-white flex items-center justify-center lg:w-3/5 shadow-[inset_0_-1px_0_0_#ffede1] hover:shadow-[inset_0_-4rem_0_0_#ffede1] hover:text-orange border transition-all duration-300">
+            <button className=" w-full h-14 max-w-lg lg:max-w-none bg-orange rounded-lg lg:rounded-xl mt-10 lg:ml-auto mb-2 text-white flex items-center justify-center lg:w-2/5 shadow-[inset_0_-1px_0_0_#ffede1] hover:shadow-[inset_0_-4rem_0_0_#ffede1] hover:text-orange border transition-all duration-300">
               Submit
             </button>
           </form>
