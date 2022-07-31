@@ -11,7 +11,20 @@ const MyAddress = () => {
   const { userInfo } = useSelector((state) => state.auth);
   const { showAddressForm } = useSelector((state) => state.address);
   const dispatch = useDispatch();
-  const { register, handleSubmit, reset } = useForm();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+    getValues,
+    clearErrors
+  } = useForm();
+
+
+  const submitForm = (data) => {
+    // dispatch(registerUser(data))
+    console.log(data);
+  };
 
   return (
     <>
@@ -135,10 +148,15 @@ const MyAddress = () => {
         {/* USER ADDRESS FORM */}
 
         {showAddressForm && (
-          <form className="w-full flex flex-wrap justify-between px-6 sm:px-12 py-12 border border-grayish-blue relative rounded-md">
+          <form 
+            onSubmit={handleSubmit(submitForm)}
+          className="mt-6 w-full flex flex-wrap justify-between px-6 sm:px-12 py-12 border border-grayish-blue relative rounded-md">
             <button
               className="absolute top-4 right-4 sm:top-6 sm:right-6 text-dark-blue hover:text-dark-grayish-blue"
-              onClick={() => dispatch(hideAddressForm())}
+              onClick={() => {
+                dispatch(hideAddressForm())
+                clearErrors()
+              }}
             >
               <ion-icon name="close" class="text-lg"></ion-icon>
             </button>
@@ -150,7 +168,15 @@ const MyAddress = () => {
                 type="text"
                 className="peer h-10 w-full border-b-2 border-grayish-blue text-very-dark-blue placeholder-transparent focus:outline-none focus:border-orange"
                 placeholder="First Name"
+                {...register("firstname", {
+                  required: "Please enter your first name",
+                })}
               />
+              {errors.firstname && (
+                <p className="text-sm text-[red] italic">
+                  {errors.firstname.message}
+                </p>
+              )}
               <label
                 htmlFor="firstname"
                 className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
@@ -165,7 +191,15 @@ const MyAddress = () => {
                 type="text"
                 className="peer h-10 w-full border-b-2 border-grayish-blue text-very-dark-blue placeholder-transparent focus:outline-none focus:border-orange"
                 placeholder="Last Name"
+                {...register("lastname", {
+                  required: "Please enter your last name",
+                })}
               />
+              {errors.lastname && (
+                <p className="text-sm text-[red] italic">
+                  {errors.lastname.message}
+                </p>
+              )}
               <label
                 htmlFor="lastname"
                 className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
@@ -180,7 +214,15 @@ const MyAddress = () => {
                 type="text"
                 className="peer h-10 w-full border-b-2 border-grayish-blue text-very-dark-blue placeholder-transparent focus:outline-none focus:border-orange"
                 placeholder="number"
+                {...register("phone", {
+                  required: "Please enter your phone number",
+                })}
               />
+              {errors.phone && (
+                <p className="text-sm text-[red] italic">
+                  {errors.phone.message}
+                </p>
+              )}
               <label
                 htmlFor="number"
                 className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
@@ -195,7 +237,15 @@ const MyAddress = () => {
                 type="text"
                 className="peer h-10 w-full border-b-2 border-grayish-blue text-very-dark-blue placeholder-transparent focus:outline-none focus:border-orange"
                 placeholder="Address"
+                {...register("address", {
+                  required: "Please enter your address",
+                })}
               />
+              {errors.address && (
+                <p className="text-sm text-[red] italic">
+                  {errors.address.message}
+                </p>
+              )}
               <label
                 htmlFor="address"
                 className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
@@ -210,9 +260,17 @@ const MyAddress = () => {
                 type="text"
                 className="peer h-10 w-full border-b-2 border-grayish-blue text-very-dark-blue placeholder-transparent focus:outline-none focus:border-orange"
                 placeholder="state"
+                {...register("state", {
+                  required: "Please enter your state",
+                })}
               />
+              {errors.state && (
+                <p className="text-sm text-[red] italic">
+                  {errors.state.message}
+                </p>
+              )}              
               <label
-                htmlFor="email"
+                htmlFor="state"
                 className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
               >
                 State
@@ -225,9 +283,17 @@ const MyAddress = () => {
                 type="text"
                 className="peer h-10 w-full border-b-2 border-grayish-blue text-very-dark-blue placeholder-transparent focus:outline-none focus:border-orange"
                 placeholder="city"
+                {...register("city", {
+                  required: "Please enter your city",
+                })}
               />
+              {errors.city && (
+                <p className="text-sm text-[red] italic">
+                  {errors.city.message}
+                </p>
+              )}              
               <label
-                htmlFor="email"
+                htmlFor="city"
                 className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
               >
                 City
@@ -235,14 +301,14 @@ const MyAddress = () => {
             </div>
             <div className="relative mt-4 w-full lg:w-[45%]">
               <input
-                id="zip-code"
-                name="zip-code"
+                id="zipcode"
+                name="zipcode"
                 type="text"
                 className="peer h-10 w-full border-b-2 border-grayish-blue text-very-dark-blue placeholder-transparent focus:outline-none focus:border-orange"
                 placeholder="zip-code"
               />
               <label
-                htmlFor="email"
+                htmlFor="zipcode"
                 className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
               >
                 Zip code
