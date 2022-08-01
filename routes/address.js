@@ -97,7 +97,7 @@ router.put("/:id", verifyTokenAndAuthorization , async (req, res) => {
 // @ route    DELETE api/address
 // @ desc     Delete address
 // @ access   Private
-router.delete("/:id", verifyTokenAndAuthorization, async (req, res) => {
+router.delete("/:id", verifyToken, async (req, res) => {
   try {
     await Address.findByIdAndDelete(req.params.id);
     res.status(200).json({ msg: "address is successfully deleted" });
