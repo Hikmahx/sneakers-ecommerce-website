@@ -13,6 +13,7 @@ import {
   addToCart,
 } from "../../redux/reducers/cartSlice";
 import { getUserDetails } from "../../redux/reducers/authSlice";
+import { getUserAddress } from "../../redux/reducers/addressSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -59,6 +60,14 @@ const Header = () => {
     }
     // eslint-disable-next-line
   }, [userInfo, cartItems]);
+
+
+  useEffect(() => {
+    if (userInfo) {
+      dispatch(getUserAddress({user: userInfo._id}));
+    }
+    // eslint-disable-next-line
+  }, [userInfo]);
 
   //HAMBURGER MENU
   let navMenu = useRef(null);
