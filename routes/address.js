@@ -28,7 +28,9 @@ router.get("/", verifyTokenAndAdmin, async (req, res) => {
 // @ access Private
 router.get("/:id", verifyTokenAndAuthorization, async (req, res) => {
   try {
-    const address = await Address.findById(req.params.id);
+    const userId = req.params.id;
+    const address = await Address.find({user:userId});
+    
     res.status(200).json(address);
   } catch (err) {
     if (err.name === "CastError") {
