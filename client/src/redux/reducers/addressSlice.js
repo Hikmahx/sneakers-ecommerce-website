@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const getAddress = createAsyncThunk('address/getAddress', async ({ user }, { rejectWithValue }) => {
+export const getUserAddress = createAsyncThunk('address/getUserAddress', async ({ user }, { rejectWithValue }) => {
   try {
     const userToken = localStorage.getItem('userToken')
       ? localStorage.getItem('userToken')
@@ -97,16 +97,32 @@ const addressSlice = createSlice({
    } 
   },
   extraReducers:{
-    [getAddress.pending]: (state) => {
+    [getUserAddress.pending]: (state) => {
       state.loading = true
       state.error = false
     },
-    [getAddress.fulfilled]: (state, { payload }) => {
+    [getUserAddress.fulfilled]: (state, { payload }) => {
       state.loading = false
       state.addresses = payload
       state.errorMsg = ''
+      state.showAddressForm = false
     },
-    [getAddress.rejected]: (state, { payload }) => {
+    [getUserAddress.rejected]: (state, { payload }) => {
+      state.loading = false
+      state.error = true
+      state.errorMsg =  payload
+    },
+    [createAddress.pending]: (state) => {
+      state.loading = true
+      state.error = false
+    },
+    [createAddress.fulfilled]: (state, { payload }) => {
+      state.loading = false
+      state.addresses = payload
+      state.errorMsg = ''
+      state.showAddressForm = false
+    },
+    [createAddress.rejected]: (state, { payload }) => {
       state.loading = false
       state.error = true
       state.errorMsg = payload.msg ? payload.msg : payload
