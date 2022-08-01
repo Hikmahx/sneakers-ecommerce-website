@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const getAddress = createAsyncThunk('address/getAddress', async ({ _id }, { rejectWithValue }) => {
+export const getAddress = createAsyncThunk('address/getAddress', async ({ user }, { rejectWithValue }) => {
   try {
     const userToken = localStorage.getItem('userToken')
       ? localStorage.getItem('userToken')
@@ -13,8 +13,10 @@ export const getAddress = createAsyncThunk('address/getAddress', async ({ _id },
       },
     }
 
-    let { data } = await axios.get(`/api/address/${_id}`, config)
+    let { data } = await axios.get(`/api/address/${user}`, config)
+    console.log(data)
     return data
+
   } catch (err) {
     console.log(err)
     return rejectWithValue(err.response.data)
@@ -22,7 +24,10 @@ export const getAddress = createAsyncThunk('address/getAddress', async ({ _id },
 }
 )
 
-export const createAddress = createAsyncThunk('address/createAddress', async ({ addressInfo, _id }, { getState, rejectWithValue }) => {
+export const createAddress = createAsyncThunk('address/createAddress', async (
+  // { firstname, lastname, phone, zipcode, streetAddress, user }
+  addressData
+  , { getState, rejectWithValue }) => {
   try {
     const userToken = localStorage.getItem('userToken')
       ? localStorage.getItem('userToken')
@@ -34,7 +39,15 @@ export const createAddress = createAsyncThunk('address/createAddress', async ({ 
       },
     }
 
-    let { data } = await axios.post(`/api/address/${_id}`, { addressInfo, _id }, config)
+    // const { firstname, lastname, phone, zipcode, streetAddress, user } = addressData
+    await axios.post(`/api/address/`, 
+    // { firstname, lastname, phone, zipcode, streetAddress, user }
+    (addressData)
+    , config)
+    let { data } = await axios.get(`/api/address/${addressData.user}`, config)
+
+
+    console.log(data)
     return data
   } catch (err) {
     console.log(err)
