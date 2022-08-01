@@ -7,20 +7,21 @@ const AddressSchema = new mongoose.Schema(
       ref: 'User',
       required: true
     },
-    addresses: [
-      {
-        firstname: { type: String, required: true },
-        lastname: { type: String, required: true },
-        phone: { type: String, required: true },
-        secondPhone: String,
-        streetAddress: { type: String, required: true },
-        moreInfo: String,
-        city: { type: String, required: true },
-        state: { type: String, required: true },
-        country: String,
-        zipcode: String,
-      }
-    ]
+    // addresses: [
+    //   {
+    //     type: Array,
+    firstname: { type: String, required: true },
+    lastname: { type: String, required: true },
+    phone: { type: String, required: true },
+    secondPhone: String,
+    streetAddress: { type: String, required: true },
+    moreInfo: String,
+    city: { type: String, required: true },
+    state: { type: String, required: true },
+    country: String,
+    zipcode: String,
+    //   }
+    // ]
   },
   { timestamps: true }
 );
