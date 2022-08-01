@@ -132,7 +132,7 @@ const UserProfile = () => {
               <hr className="text-grayish-blue" />
               <button
                 onClick={() =>onLogOut()}
-                className="text-orange flex items-center px-3 py-2"
+                className="text-grayish-blue flex items-center px-3 py-2"
               >
                 <ion-icon class="p-2 text-base" name="log-out"></ion-icon>
                 <span className="truncate">Log out</span>
