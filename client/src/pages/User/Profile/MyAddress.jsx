@@ -4,13 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addressFormDisplay,
   createAddress,
-  getAddress,
   hideAddressForm,
 } from "../../../redux/reducers/addressSlice";
 
 const MyAddress = () => {
   const { userInfo } = useSelector((state) => state.auth);
-  const { showAddressForm, errMsg, error } = useSelector(
+  const { showAddressForm, errMsg, error, addresses } = useSelector(
     (state) => state.address
   );
   const dispatch = useDispatch();
@@ -24,9 +23,29 @@ const MyAddress = () => {
   } = useForm();
 
   const submitForm = (data) => {
-    const {firstname, lastname, phone, city, state, country, zipcode, streetAddress} = data
-    dispatch(createAddress({firstname, lastname, phone, city, state, country, zipcode, streetAddress, user: userInfo._id }));
-    // dispatch(getAddress({user:userInfo._id}))
+    const {
+      firstname,
+      lastname,
+      phone,
+      city,
+      state,
+      country,
+      zipcode,
+      streetAddress,
+    } = data;
+    dispatch(
+      createAddress({
+        firstname,
+        lastname,
+        phone,
+        city,
+        state,
+        country,
+        zipcode,
+        streetAddress,
+        user: userInfo._id,
+      })
+    );
     // console.log(data);
   };
 
@@ -42,10 +61,10 @@ const MyAddress = () => {
             Delivery method
           </legend> */}
 
-          <div className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4 justify-items-start items-start">
+          <div className="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-4 justify-items-start items-start">
             <label
               htmlFor="address"
-              className="relative bg-pale-orange border rounded-md shadow-sm p-4 flex cursor-pointer focus:outline-none border-transparent"
+              className="relative hidden bg-pale-orange border rounded-md shadow-sm p-4 flex cursor-pointer focus:outline-none border-transparent"
             >
               <input
                 type="radio"
@@ -91,7 +110,7 @@ const MyAddress = () => {
             </label>
             <label
               htmlFor="address"
-              className="relative bg-white border rounded-md shadow-sm p-4 flex cursor-pointer focus:outline-none border-transparent"
+              className="relative hidden bg-white border rounded-md shadow-sm p-4 flex cursor-pointer focus:outline-none border-transparent"
             >
               <input
                 type="radio"
@@ -135,6 +154,60 @@ const MyAddress = () => {
                 aria-hidden="true"
               ></div>
             </label>
+            {addresses.map((userAddress) => (
+              <label
+              key={userAddress._id}
+                htmlFor="address"
+                className="w-full relative bg-white border rounded-md shadow-sm p-4 flex cursor-pointer focus:outline-none border-transparent"
+              >
+                <input
+                  type="radio"
+                  name="address"
+                  value="Standard"
+                  className="sr-only"
+                  aria-labelledby="address-label"
+                  aria-describedby="address-description-0 address-description-1"
+                />
+                <i className="absolute right-4 hidden">
+                  <ion-icon
+                    name="checkmark-circle"
+                    class="text-orange"
+                  ></ion-icon>
+                </i>
+                <address className="not-italic text-very-dark-blue w-full">
+                  <p className="fullname mb-4">
+                    {userAddress.firstname} {userAddress.lastname}
+                  </p>
+                  <p className="location text-dark-grayish-blue">
+                    {/* Lorem ipsum dolor sit amet consectetur, adipisicing elit. */}
+                    {userAddress.streetAddress}
+                  </p>
+                  <p className="city-state mb-4 text-dark-grayish-blue">{userAddress.city}, {userAddress.state}</p>
+                  <p className="telephone text-dark-grayish-blue mb-7">
+                    {/* 08043408320 */}
+                    {userAddress.phone}
+                  </p>
+                  <div className=" w-full flex justify-end">
+                    <button
+                      type="button"
+                      className="bg-pale-orange rounded-md font-medium focus:outline-none text-orange px-3 py-1 transition-all text-sm"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      type="button"
+                      className="ml-3 bg-light-grayish-blue rounded-md font-medium text-grayish-blue hover:text-indigo-500 focus:outline-none p-2 flex justify-center items-center"
+                    >
+                      <ion-icon name="close" class="text-lg"></ion-icon>
+                    </button>
+                  </div>
+                </address>
+                <div
+                  className="absolute -inset-px rounded-md border pointer-events-none border-grayish-blue"
+                  aria-hidden="true"
+                ></div>
+              </label>
+            ))}
             {!showAddressForm && (
               <button
                 className="cursor-pointer"
@@ -164,8 +237,8 @@ const MyAddress = () => {
             <button
               className="absolute top-4 right-4 sm:top-6 sm:right-6 text-dark-blue hover:text-dark-grayish-blue"
               onClick={() => {
-                dispatch(hideAddressForm())
-                clearErrors()
+                dispatch(hideAddressForm());
+                clearErrors();
               }}
             >
               <ion-icon name="close" class="text-lg"></ion-icon>
