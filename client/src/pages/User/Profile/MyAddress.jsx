@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addressFormDisplay,
   createAddress,
+  deleteAddress,
   hideAddressForm,
 } from "../../../redux/reducers/addressSlice";
 
@@ -156,7 +157,7 @@ const MyAddress = () => {
             </label>
             {addresses.map((userAddress) => (
               <label
-              key={userAddress._id}
+                key={userAddress._id}
                 htmlFor="address"
                 className="w-full relative bg-white border rounded-md shadow-sm p-4 flex cursor-pointer focus:outline-none border-transparent"
               >
@@ -182,7 +183,9 @@ const MyAddress = () => {
                     {/* Lorem ipsum dolor sit amet consectetur, adipisicing elit. */}
                     {userAddress.streetAddress}
                   </p>
-                  <p className="city-state mb-4 text-dark-grayish-blue">{userAddress.city}, {userAddress.state}</p>
+                  <p className="city-state mb-4 text-dark-grayish-blue">
+                    {userAddress.city}, {userAddress.state}
+                  </p>
                   <p className="telephone text-dark-grayish-blue mb-7">
                     {/* 08043408320 */}
                     {userAddress.phone}
@@ -197,6 +200,9 @@ const MyAddress = () => {
                     <button
                       type="button"
                       className="ml-3 bg-light-grayish-blue rounded-md font-medium text-grayish-blue hover:text-indigo-500 focus:outline-none p-2 flex justify-center items-center"
+                      onClick={() =>
+                        dispatch(deleteAddress({ address: userAddress._id, user: userInfo._id }))
+                      }
                     >
                       <ion-icon name="close" class="text-lg"></ion-icon>
                     </button>

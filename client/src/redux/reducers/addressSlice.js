@@ -40,14 +40,39 @@ export const createAddress = createAsyncThunk('address/createAddress', async (
     }
 
     // const { firstname, lastname, phone, zipcode, streetAddress, user } = addressData
-    await axios.post(`/api/address/`, 
-    // { firstname, lastname, phone, zipcode, streetAddress, user }
-    (addressData)
-    , config)
+    await axios.post(`/api/address/`,
+      // { firstname, lastname, phone, zipcode, streetAddress, user }
+      (addressData)
+      , config)
     let { data } = await axios.get(`/api/address/${addressData.user}`, config)
 
 
     console.log(data)
+    return data
+  } catch (err) {
+    console.log(err)
+    return rejectWithValue(err.response.data)
+  }
+}
+)
+
+export const deleteAddress = createAsyncThunk('address/deleteAddress', async (
+  { address, user }
+  , { getState, rejectWithValue }) => {
+  try {
+    const userToken = localStorage.getItem('userToken')
+      ? localStorage.getItem('userToken')
+      : null
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        'x-auth-token': userToken,
+      },
+    }
+
+    await axios.delete(`/api/address/${address}`, config)
+    let { data } = await axios.get(`/api/address/${user}`, config)
+    console.log('address deleted')
     return data
   } catch (err) {
     console.log(err)
@@ -86,17 +111,17 @@ const addressSlice = createSlice({
     success: false,
     errMsg: '',
     addresses: [],
-    showAddressForm: false 
+    showAddressForm: false
   },
-  reducers:{
-   addressFormDisplay: (state, action)=>{
-    state.showAddressForm = true
-   },
-   hideAddressForm: (state, action)=>{
-    state.showAddressForm = false
-   } 
+  reducers: {
+    addressFormDisplay: (state, action) => {
+      state.showAddressForm = true
+    },
+    hideAddressForm: (state, action) => {
+      state.showAddressForm = false
+    }
   },
-  extraReducers:{
+  extraReducers: {
     [getUserAddress.pending]: (state) => {
       state.loading = true
       state.error = false
@@ -110,7 +135,7 @@ const addressSlice = createSlice({
     [getUserAddress.rejected]: (state, { payload }) => {
       state.loading = false
       state.error = true
-      state.errorMsg =  payload
+      state.errorMsg = payload
     },
     [createAddress.pending]: (state) => {
       state.loading = true
@@ -123,6 +148,21 @@ const addressSlice = createSlice({
       state.showAddressForm = false
     },
     [createAddress.rejected]: (state, { payload }) => {
+      state.loading = false
+      state.error = true
+      state.errorMsg = payload.msg ? payload.msg : payload
+    },
+    [deleteAddress.pending]: (state) => {
+      state.loading = true
+      state.error = false
+    },
+    [deleteAddress.fulfilled]: (state, { payload }) => {
+      state.loading = false
+      state.addresses = payload
+      state.errorMsg = ''
+      state.showAddressForm = false
+    },
+    [deleteAddress.rejected]: (state, { payload }) => {
       state.loading = false
       state.error = true
       state.errorMsg = payload.msg ? payload.msg : payload
