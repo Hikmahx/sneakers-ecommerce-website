@@ -61,7 +61,7 @@ router.post(
     try {
       let address = new Address(req.body);
 
-      let newAddress = await Address.save();
+      let newAddress = await address.save();
 
       res.status(200).json(newAddress);
     } catch (err) {
