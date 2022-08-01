@@ -3,12 +3,16 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addressFormDisplay,
+  createAddress,
+  getAddress,
   hideAddressForm,
 } from "../../../redux/reducers/addressSlice";
 
 const MyAddress = () => {
-  // const { userInfo } = useSelector((state) => state.auth);
-  const { showAddressForm } = useSelector((state) => state.address);
+  const { userInfo } = useSelector((state) => state.auth);
+  const { showAddressForm, errMsg, error } = useSelector(
+    (state) => state.address
+  );
   const dispatch = useDispatch();
   const {
     register,
@@ -16,13 +20,14 @@ const MyAddress = () => {
     // reset,
     formState: { errors },
     // getValues,
-    clearErrors
+    clearErrors,
   } = useForm();
 
-
   const submitForm = (data) => {
-    // dispatch(registerUser(data))
-    console.log(data);
+    const {firstname, lastname, phone, city, state, country, zipcode, streetAddress} = data
+    dispatch(createAddress({firstname, lastname, phone, city, state, country, zipcode, streetAddress, user: userInfo._id }));
+    // dispatch(getAddress({user:userInfo._id}))
+    // console.log(data);
   };
 
   return (
@@ -147,9 +152,15 @@ const MyAddress = () => {
         {/* USER ADDRESS FORM */}
 
         {showAddressForm && (
-          <form 
+          <form
             onSubmit={handleSubmit(submitForm)}
-          className="mt-6 w-full flex flex-wrap justify-between px-6 sm:px-12 py-12 border border-grayish-blue relative rounded-md">
+            className="mt-6 w-full flex flex-wrap justify-between px-6 sm:px-12 py-12 border border-grayish-blue relative rounded-md"
+          >
+            {error && (
+              <p className=" absolute text-[#f96464] text-sm top-28">
+                {errMsg}
+              </p>
+            )}
             <button
               className="absolute top-4 right-4 sm:top-6 sm:right-6 text-dark-blue hover:text-dark-grayish-blue"
               onClick={() => {
@@ -160,7 +171,7 @@ const MyAddress = () => {
               <ion-icon name="close" class="text-lg"></ion-icon>
             </button>
 
-            <div className="relative w-full lg:w-[45%]">
+            <div className="relative mt-5 w-full lg:w-[45%]">
               <input
                 id="firstname"
                 name="firstname"
@@ -236,13 +247,13 @@ const MyAddress = () => {
                 type="text"
                 className="peer h-10 w-full border-b-2 border-grayish-blue text-very-dark-blue placeholder-transparent focus:outline-none focus:border-orange"
                 placeholder="Address"
-                {...register("address", {
+                {...register("streetAddress", {
                   required: "Please enter your address",
                 })}
               />
               {errors.address && (
                 <p className="text-sm text-[red] italic">
-                  {errors.address.message}
+                  {errors.streetAddress.message}
                 </p>
               )}
               <label
@@ -267,7 +278,7 @@ const MyAddress = () => {
                 <p className="text-sm text-[red] italic">
                   {errors.state.message}
                 </p>
-              )}              
+              )}
               <label
                 htmlFor="state"
                 className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
@@ -290,7 +301,7 @@ const MyAddress = () => {
                 <p className="text-sm text-[red] italic">
                   {errors.city.message}
                 </p>
-              )}              
+              )}
               <label
                 htmlFor="city"
                 className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
@@ -324,7 +335,7 @@ const MyAddress = () => {
                 {...register("country")}
               />
               <label
-                htmlFor="email"
+                htmlFor="country"
                 className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
               >
                 Country
