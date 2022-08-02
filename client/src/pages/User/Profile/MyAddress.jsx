@@ -10,7 +10,7 @@ import {
 
 const MyAddress = () => {
   const { userInfo } = useSelector((state) => state.auth);
-  const { showAddressForm, errMsg, error, addresses } = useSelector(
+  const { showAddressForm, errMsg, error, addresses, loading } = useSelector(
     (state) => state.address
   );
   const dispatch = useDispatch();
@@ -98,9 +98,22 @@ const MyAddress = () => {
                   </button>
                   <button
                     type="button"
-                    className="ml-3 bg-light-grayish-blue rounded-md font-medium text-grayish-blue hover:text-indigo-500 focus:outline-none p-2 flex justify-center items-center"
+                    className={
+                      "ml-3 bg-light-grayish-blue rounded-md font-medium text-grayish-blue hover:text-indigo-500 focus:outline-none p-2 flex justify-center items-center" +
+                      (loading ? " cursor-not-allowed" : " ")
+                    }
+                    disabled={loading}
                   >
-                    <ion-icon name="close" class="text-lg"></ion-icon>
+                    {loading ? (
+                      <div
+                        className="spinner-border animate-spin inline-block w-4 h-4 border rounded-full"
+                        role="status"
+                      >
+                        <span className="visually-hidden">Loading...</span>
+                      </div>
+                    ) : (
+                      <ion-icon name="close" class="text-lg"></ion-icon>
+                    )}
                   </button>
                 </div>
               </address>
@@ -199,10 +212,19 @@ const MyAddress = () => {
                     </button>
                     <button
                       type="button"
-                      className="ml-3 bg-light-grayish-blue rounded-md font-medium text-grayish-blue hover:text-indigo-500 focus:outline-none p-2 flex justify-center items-center"
-                      onClick={() =>
-                        dispatch(deleteAddress({ address: userAddress._id, user: userInfo._id }))
+                      className={
+                        "ml-3 bg-light-grayish-blue rounded-md font-medium text-grayish-blue hover:text-indigo-500 focus:outline-none p-2 flex justify-center items-center" +
+                        (loading ? " cursor-not-allowed" : " ")
                       }
+                      onClick={() =>
+                        dispatch(
+                          deleteAddress({
+                            address: userAddress._id,
+                            user: userInfo._id,
+                          })
+                        )
+                      }
+                      disabled={loading}
                     >
                       <ion-icon name="close" class="text-lg"></ion-icon>
                     </button>
@@ -420,8 +442,23 @@ const MyAddress = () => {
                 Country
               </label>
             </div>
-            <button className=" w-full h-14 max-w-lg lg:max-w-none bg-orange rounded-lg lg:rounded-xl mt-10 lg:ml-auto mb-2 text-white flex items-center justify-center lg:w-2/5 shadow-[inset_0_-1px_0_0_#ffede1] hover:shadow-[inset_0_-4rem_0_0_#ffede1] hover:text-orange border transition-all duration-300">
-              Submit
+            <button
+              className={
+                " w-full h-14 max-w-lg lg:max-w-none bg-orange rounded-lg lg:rounded-xl mt-10 lg:ml-auto mb-2 text-white flex items-center justify-center lg:w-2/5 shadow-[inset_0_-1px_0_0_#ffede1] hover:shadow-[inset_0_-4rem_0_0_#ffede1] hover:text-orange border transition-all duration-300" +
+                (loading ? " cursor-not-allowed" : " ")
+              }
+              disabled={loading}
+            >
+              {loading ? (
+                <div
+                  className="spinner-border animate-spin inline-block w-4 h-4 border rounded-full"
+                  role="status"
+                >
+                  <span className="visually-hidden">Loading...</span>
+                </div>
+              ) : (
+                <>Submit</>
+              )}
             </button>
           </form>
         )}
