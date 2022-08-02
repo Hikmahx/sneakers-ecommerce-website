@@ -20,6 +20,8 @@ const AddressSchema = new mongoose.Schema(
     state: { type: String, required: true },
     country: String,
     zipcode: String,
+    checked: {type: Boolean, default: false},
+
     //   }
     // ]
   },
