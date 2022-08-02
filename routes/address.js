@@ -95,6 +95,46 @@ router.put("/:id", verifyTokenAndUser , async (req, res) => {
   }
 });
 
+
+// @ route    PUT api/address/default/id
+// @desc      Set checked address
+// @ access   Private
+router.put("/default/:id", verifyToken, async (req, res) => {
+  try {
+    // ALL THE USER ADDRESSES
+    const addresses = await Address.find({ user: req.body.user });
+
+    const { checked } = req.body
+    addresses.forEach(async (userAddress) => {
+      // IF NOT THE CHECKED ONE, SET TO FALSE
+      await Address.findByIdAndUpdate(
+        userAddress.id !== req.params.id ? userAddress._id : req.params.id,
+        {
+          $set: {
+            checked: userAddress.id !== req.params.id ? false : true
+          }
+        },
+        { new: true }
+      )
+    })
+
+    let updatedAddress = await Address.find({ user: req.body.user })
+
+    // addresses.markModified('checked')
+    // await addresses.save()
+
+    res.status(200).json(updatedAddress);
+  } catch (err) {
+    if (err.name === "CastError") {
+      return res.status(400).json({ msg: "address doesn't exist" });
+    }
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+
+
+});
+
 // @ route    DELETE api/address
 // @ desc     Delete address
 // @ access   Private
