@@ -81,7 +81,7 @@ export const deleteAddress = createAsyncThunk('address/deleteAddress', async (
 }
 )
 
-export const updateAddress = createAsyncThunk('address/updateAddress', async ({ addressInfo, _id }, { getState, rejectWithValue }) => {
+export const updateAddress = createAsyncThunk('address/updateAddress', async (addressInfo, { getState, rejectWithValue }) => {
   try {
     const userToken = localStorage.getItem('userToken')
       ? localStorage.getItem('userToken')
@@ -93,7 +93,9 @@ export const updateAddress = createAsyncThunk('address/updateAddress', async ({ 
       },
     }
 
-    let { data } = await axios.put(`/api/address/${_id}`, { addressInfo, _id }, config)
+    await axios.put(`/api/address/${addressInfo._id}`, addressInfo, config)
+    let { data } = await axios.get(`/api/address/${addressInfo.user}`, config)
+
     return data
   } catch (err) {
     console.log(err)
@@ -112,7 +114,9 @@ const addressSlice = createSlice({
     errMsg: '',
     addresses: [],
     showAddressForm: false,
-    deleting: false
+    deleting: false,
+    updateForm: false,
+    addressIndex: null
   },
   reducers: {
     addressFormDisplay: (state, action) => {
@@ -120,6 +124,15 @@ const addressSlice = createSlice({
     },
     hideAddressForm: (state, action) => {
       state.showAddressForm = false
+      state.updateForm = false
+      state.addressIndex = null
+    },
+    updateFormDisplay: (state, action) => {
+      state.updateForm = true
+      state.showAddressForm = false
+
+      // TO GET THE INDEX OF THE CLICKED ADDRESS YOU WANT TO UPDATE
+      state.addressIndex = action.payload.addressIndex
     }
   },
   extraReducers: {
@@ -180,9 +193,27 @@ const addressSlice = createSlice({
       state.deleting = false
       state.success = false
     },
+    [updateAddress.pending]: (state) => {
+      state.loading = true
+      state.error = false
+      state.success = false
+    },
+    [updateAddress.fulfilled]: (state, { payload }) => {
+      state.loading = false
+      state.addresses = payload
+      state.errorMsg = ''
+      state.updateForm = false
+      state.success = true
+    },
+    [updateAddress.rejected]: (state, { payload }) => {
+      state.loading = false
+      state.error = true
+      state.errorMsg = payload
+      state.success = false
+    },
   }
 })
 
 
-export const { addressFormDisplay, hideAddressForm } = addressSlice.actions;
+export const { addressFormDisplay, hideAddressForm, updateFormDisplay } = addressSlice.actions;
 export default addressSlice.reducer
