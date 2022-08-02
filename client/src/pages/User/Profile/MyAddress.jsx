@@ -10,14 +10,20 @@ import {
 
 const MyAddress = () => {
   const { userInfo } = useSelector((state) => state.auth);
-  const { showAddressForm, errMsg, error, addresses, loading } = useSelector(
-    (state) => state.address
-  );
+  const {
+    showAddressForm,
+    errMsg,
+    error,
+    addresses,
+    loading,
+    deleting,
+    success,
+  } = useSelector((state) => state.address);
   const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
-    // reset,
+    reset,
     formState: { errors },
     // getValues,
     clearErrors,
@@ -47,6 +53,18 @@ const MyAddress = () => {
         user: userInfo._id,
       })
     );
+    // reset({...data})
+    success &&
+      reset({
+        firstname: "",
+        lastname: "",
+        phone: "",
+        city: "",
+        state: "",
+        country: "",
+        zipcode: "",
+        streetAddress: "",
+      });
     // console.log(data);
   };
 
@@ -55,8 +73,9 @@ const MyAddress = () => {
       <h3 className="text-xl leading-6 font-bold text-gray-900">My Address</h3>
       <p className="mt-1 max-w-2xl text-sm text-gray-500">Address details.</p>
       <hr className="border-b border-grayish-blue mt-3 mb-8" />
-      <div className="">
+      <div className="relative">
         {/* USER ADDRESS DISPLAY SECTION */}
+        {deleting && <p className="absolute -top-7 text-sm">Deleting...</p>}
         <fieldset>
           {/* <legend className="text-lg font-medium text-gray-900">
             Delivery method
@@ -352,7 +371,7 @@ const MyAddress = () => {
                   required: "Please enter your address",
                 })}
               />
-              {errors.address && (
+              {errors.streetAddress && (
                 <p className="text-sm text-[red] italic">
                   {errors.streetAddress.message}
                 </p>

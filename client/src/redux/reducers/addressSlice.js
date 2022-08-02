@@ -111,7 +111,8 @@ const addressSlice = createSlice({
     success: false,
     errMsg: '',
     addresses: [],
-    showAddressForm: false
+    showAddressForm: false,
+    deleting: false
   },
   reducers: {
     addressFormDisplay: (state, action) => {
@@ -125,47 +126,59 @@ const addressSlice = createSlice({
     [getUserAddress.pending]: (state) => {
       state.loading = true
       state.error = false
+      state.success = false
     },
     [getUserAddress.fulfilled]: (state, { payload }) => {
       state.loading = false
       state.addresses = payload
       state.errorMsg = ''
       state.showAddressForm = false
+      state.success = true
     },
     [getUserAddress.rejected]: (state, { payload }) => {
       state.loading = false
       state.error = true
       state.errorMsg = payload
+      state.success = false
     },
     [createAddress.pending]: (state) => {
       state.loading = true
       state.error = false
+      state.success = false
     },
     [createAddress.fulfilled]: (state, { payload }) => {
       state.loading = false
       state.addresses = payload
       state.errorMsg = ''
       state.showAddressForm = false
+      state.success = true
     },
     [createAddress.rejected]: (state, { payload }) => {
       state.loading = false
       state.error = true
       state.errorMsg = payload.msg ? payload.msg : payload
+      state.success = false
     },
     [deleteAddress.pending]: (state) => {
       state.loading = true
       state.error = false
+      state.deleting = true
+      state.success = false
     },
     [deleteAddress.fulfilled]: (state, { payload }) => {
       state.loading = false
       state.addresses = payload
       state.errorMsg = ''
       state.showAddressForm = false
+      state.deleting = false
+      state.success = true
     },
     [deleteAddress.rejected]: (state, { payload }) => {
       state.loading = false
       state.error = true
       state.errorMsg = payload.msg ? payload.msg : payload
+      state.deleting = false
+      state.success = false
     },
   }
 })
