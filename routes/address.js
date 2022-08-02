@@ -5,6 +5,7 @@ const Address = require("../models/Address");
 const {
   verifyTokenAndAdmin,
   verifyTokenAndAuthorization,
+  verifyTokenAndUser,
   verifyToken,
 } = require("../middleware/auth");
 const dotenv = require("dotenv");
@@ -76,7 +77,7 @@ router.post(
 // @ route    PUT api/address
 // @desc      Update address
 // @ access   Private
-router.put("/:id", verifyTokenAndAuthorization , async (req, res) => {
+router.put("/:id", verifyTokenAndUser , async (req, res) => {
   try {
     const address = await Address.findById(req.params.id);
     const updatedAddress = await Address.findByIdAndUpdate(
