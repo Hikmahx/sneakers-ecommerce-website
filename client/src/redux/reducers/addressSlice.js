@@ -103,7 +103,29 @@ export const updateAddress = createAsyncThunk('address/updateAddress', async (ad
   }
 }
 )
+export const setDefaultAddress = createAsyncThunk('address/setDefaultAddress', async (addressInfo, { getState, rejectWithValue }) => {
 
+  try {
+    const userToken = localStorage.getItem('userToken')
+      ? localStorage.getItem('userToken')
+      : null
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        'x-auth-token': userToken,
+      },
+    }
+
+    let { data } = await axios.put(`/api/address/default/${addressInfo.id}`, addressInfo, config)
+    // await axios.get(`  /api/address/${addressInfo.user}`, config)
+
+    return data
+  } catch (err) {
+    console.log(err)
+    return rejectWithValue(err.response.data)
+  }
+}
+)
 
 const addressSlice = createSlice({
   name: "address",
@@ -116,11 +138,13 @@ const addressSlice = createSlice({
     showAddressForm: false,
     deleting: false,
     updateForm: false,
-    addressIndex: null
+    addressIndex: null,
+    settingDefault: false
   },
   reducers: {
     addressFormDisplay: (state, action) => {
       state.showAddressForm = true
+      state.success = false
     },
     hideAddressForm: (state, action) => {
       state.showAddressForm = false
@@ -130,6 +154,7 @@ const addressSlice = createSlice({
     updateFormDisplay: (state, action) => {
       state.updateForm = true
       state.showAddressForm = false
+      state.success = false
 
       // TO GET THE INDEX OF THE CLICKED ADDRESS YOU WANT TO UPDATE
       state.addressIndex = action.payload.addressIndex
@@ -210,6 +235,24 @@ const addressSlice = createSlice({
       state.error = true
       state.errorMsg = payload
       state.success = false
+    },
+    [setDefaultAddress.pending]: (state) => {
+      state.loading = true
+      state.error = false
+      state.settingDefault = true
+    },
+    [setDefaultAddress.fulfilled]: (state, { payload }) => {
+      state.loading = false
+      state.addresses = payload
+      state.errorMsg = ''
+      state.updateForm = false
+      state.settingDefault = false
+    },
+    [setDefaultAddress.rejected]: (state, { payload }) => {
+      state.loading = false
+      state.error = true
+      state.errorMsg = payload
+      state.settingDefault = false
     },
   }
 })
