@@ -25,15 +25,15 @@ const MyAddress = () => {
   return (
     <>
       <h3 className="text-xl leading-6 font-bold text-gray-900">My Address</h3>
-      <p className="mt-1 max-w-2xl text-sm text-gray-500">Address details.</p>
+      <p className="mt-1 max-w-2xl text-sm text-gray-500">Set default address by clicking on any of your created addresses below.</p>
       <hr className="border-b border-grayish-blue mt-3 mb-8" />
       <div className="relative">
-        {deleting && <p className="absolute -top-7 text-sm">Deleting...</p>}
+        {deleting && <p className="absolute -top-7 text-sm text-orange">Deleting...</p>}
         {error && (
           <p className="absolute -top-7 text-sm text-[red]">{errorMsg}</p>
         )}
         {settingDefault && (
-          <p className="absolute -top-7 text-sm">Setting Default Address...</p>
+          <p className="absolute -top-7 text-sm text-orange">Setting Default Address...</p>
         )}
         {updateForm ? (
           <>

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <footer className="text-white bg-very-dark-blue">
-      <div className="wrapper px-5 py-12 lg:py-16 md:px-0 lg:mx-20 xl:mx-28 2xl:mx-40 3xl:mx-auto lg:pb-2 lg:px-1 xl:px-3 2xl:px-1  max-w-xl md:max-w-2xl mx-auto lg:max-w-7xl flex flex-col md:flex-row justify-center lg:justify-between items-center md:items-start">
+      <div className="wrapper px-5 py-12 lg:py-16 md:px-0 lg:mx-20 xl:mx-28 2xl:mx-40 3xl:mx-auto lg:pb-12 lg:px-1 xl:px-3 2xl:px-1  max-w-xl md:max-w-2xl mx-auto lg:max-w-7xl flex flex-col md:flex-row justify-center lg:justify-between items-center md:items-start">
         <div className="w-[138px] my-10 md:my-0">
           <div className="logo">
           <Link to="/"  className="cursor-pointer">
