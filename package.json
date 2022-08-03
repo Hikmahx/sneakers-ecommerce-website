@@ -23,6 +23,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.3.1",
     "react-hook-form": "^7.33.1",
-    "redux-persist": "^6.0.0"
+    "redux-persist": "^6.0.0",
+    "stripe": "^10.0.0"
   }
 }
