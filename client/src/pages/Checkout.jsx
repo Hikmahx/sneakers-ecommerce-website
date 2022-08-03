@@ -10,14 +10,12 @@ const Checkout = () => {
     (state) => state.cart
   );
   const { userInfo } = useSelector((state) => state.auth);
+  const { addresses } = useSelector((state) => state.address);
 
   useEffect(() => {
     dispatch(cartDisplay(false));
     // eslint-disable-next-line
   }, []);
-
-  // const { errMsg, error, addresses, loading, success, addressIndex } =
-  //   useSelector((state) => state.address);
 
   const {
     register,
@@ -35,263 +33,341 @@ const Checkout = () => {
           <h2 className="sr-only">Checkout</h2>
 
           <form className="lg:flex  lg:gap-x-12 xl:gap-x-16">
-            <div className="bg-white mt-4 border border-gray-200 rounded-lg shadow-sm p-6 lg:w-3/5 py-16">
-              <div>
-                <div className="flex flex-wrap justify-between text-dark-grayish-blue">
-                  <h3 className="text-lg font-bold text-very-dark-blue">
-                    Customer Details
-                  </h3>
-                  {!userInfo && (
-                    <Link to="/login">
-                      <p className="text-sm border-b border-b-orange">
-                        <span aria-hidden="true">Already have an account?</span>
-                        <span className="visually-hidden">
-                          Already have an account?
-                        </span>
-                        {""} Log in
-                      </p>
-                    </Link>
-                  )}
-                </div>
+            <div className="bg-white mt-4 border border-gray-200 rounded-lg shadow-sm p-6 lg:w-3/5 py-16 h-fit">
+              {!userInfo ? (
+                <>
+                  <div>
+                    <div className="flex flex-wrap justify-between text-dark-grayish-blue">
+                      <h3 className="text-lg font-bold text-very-dark-blue">
+                        Customer Details
+                      </h3>
 
-                <div className="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
-                  <div className="relative mt-5 w-full">
-                    <input
-                      id="firstname"
-                      name="firstname"
-                      type="text"
-                      className="peer h-10 w-full border-b-2 border-grayish-blue text-very-dark-blue placeholder-transparent focus:outline-none focus:border-orange"
-                      placeholder="First Name"
-                      {...register("firstname", {
-                        required: "Please enter your first name",
-                      })}
-                    />
-                    {errors.firstname && (
-                      <p className="text-sm text-[red] italic">
-                        {errors.firstname.message}
-                      </p>
-                    )}
-                    <label
-                      htmlFor="firstname"
-                      className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
-                    >
-                      First Name
-                    </label>
+                      <Link to="/login">
+                        <p className="text-sm border-b border-b-orange">
+                          <span aria-hidden="true">
+                            Already have an account?
+                          </span>
+                          <span className="visually-hidden">
+                            Already have an account?
+                          </span>
+                          {""} Log in
+                        </p>
+                      </Link>
+                    </div>
+                    <div className="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
+                      <div className="relative mt-5 w-full">
+                        <input
+                          id="firstname"
+                          name="firstname"
+                          type="text"
+                          className="peer h-10 w-full border-b-2 border-grayish-blue text-very-dark-blue placeholder-transparent focus:outline-none focus:border-orange"
+                          placeholder="First Name"
+                          {...register("firstname", {
+                            required: "Please enter your first name",
+                          })}
+                        />
+                        {errors.firstname && (
+                          <p className="text-sm text-[red] italic">
+                            {errors.firstname.message}
+                          </p>
+                        )}
+                        <label
+                          htmlFor="firstname"
+                          className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
+                        >
+                          First Name
+                        </label>
+                      </div>
+                      <div className="relative mt-5 w-full">
+                        <input
+                          id="lastname"
+                          name="lastname"
+                          type="text"
+                          className="peer h-10 w-full border-b-2 border-grayish-blue text-very-dark-blue placeholder-transparent focus:outline-none focus:border-orange"
+                          placeholder="Last Name"
+                          {...register("lastname", {
+                            required: "Please enter your last name",
+                          })}
+                        />
+                        {errors.lastname && (
+                          <p className="text-sm text-[red] italic">
+                            {errors.lastname.message}
+                          </p>
+                        )}
+                        <label
+                          htmlFor="lastname"
+                          className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
+                        >
+                          Last Name
+                        </label>
+                      </div>
+                      <div className="relative mt-5 w-full">
+                        <input
+                          id="number"
+                          name="number"
+                          type="text"
+                          className="peer h-10 w-full border-b-2 border-grayish-blue text-very-dark-blue placeholder-transparent focus:outline-none focus:border-orange"
+                          placeholder="number"
+                          {...register("phone", {
+                            required: "Please enter your phone number",
+                          })}
+                        />
+                        {errors.phone && (
+                          <p className="text-sm text-[red] italic">
+                            {errors.phone.message}
+                          </p>
+                        )}
+                        <label
+                          htmlFor="number"
+                          className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
+                        >
+                          Phone Number
+                        </label>
+                      </div>
+                      <div className="relative mt-5 w-full">
+                        <input
+                          type="email"
+                          id="email"
+                          name="email"
+                          autoComplete="email"
+                          className="peer h-10 w-full border-b-2 border-grayish-blue text-very-dark-blue placeholder-transparent focus:outline-none focus:border-orange"
+                          placeholder="email"
+                          {...register("email", {
+                            required: "Please enter your email",
+                          })}
+                        />
+                        {errors.email && (
+                          <p className="text-sm text-[red] italic">
+                            {errors.email.message}
+                          </p>
+                        )}
+                        <label
+                          htmlFor="email"
+                          className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
+                        >
+                          Email address
+                        </label>
+                      </div>
+                    </div>
                   </div>
-                  <div className="relative mt-5 w-full">
-                    <input
-                      id="lastname"
-                      name="lastname"
-                      type="text"
-                      className="peer h-10 w-full border-b-2 border-grayish-blue text-very-dark-blue placeholder-transparent focus:outline-none focus:border-orange"
-                      placeholder="Last Name"
-                      {...register("lastname", {
-                        required: "Please enter your last name",
-                      })}
-                    />
-                    {errors.lastname && (
-                      <p className="text-sm text-[red] italic">
-                        {errors.lastname.message}
-                      </p>
-                    )}
-                    <label
-                      htmlFor="lastname"
-                      className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
-                    >
-                      Last Name
-                    </label>
+
+                  <div className="mt-10 border-t border-gray-200 pt-10">
+                    <h3 className="text-lg font-bold text-very-dark-blue">
+                      Shipping information
+                    </h3>
+
+                    <div className="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
+                      <div className="sm:col-span-2 relative mt-5 w-full">
+                        <input
+                          id="company"
+                          name="company"
+                          type="text"
+                          className="peer h-10 w-full border-b-2 border-grayish-blue text-very-dark-blue placeholder-transparent focus:outline-none focus:border-orange"
+                          placeholder="company"
+                          {...register("company")}
+                        />
+                        <label
+                          htmlFor="company"
+                          className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
+                        >
+                          Company
+                        </label>
+                      </div>
+                      <div className="sm:col-span-2 relative mt-5 w-full">
+                        <input
+                          id="address"
+                          name="address"
+                          type="text"
+                          className="peer h-10 w-full border-b-2 border-grayish-blue text-very-dark-blue placeholder-transparent focus:outline-none focus:border-orange"
+                          placeholder="address"
+                          {...register("address", {
+                            required: "Please enter your address",
+                          })}
+                        />
+                        {errors.address && (
+                          <p className="text-sm text-[red] italic">
+                            {errors.address.message}
+                          </p>
+                        )}
+                        <label
+                          htmlFor="address"
+                          className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
+                        >
+                          Address
+                        </label>
+                      </div>
+                      <div className="sm:col-span-2 relative mt-5 w-full">
+                        <input
+                          id="apartment"
+                          name="apartment"
+                          type="text"
+                          className="peer h-10 w-full border-b-2 border-grayish-blue text-very-dark-blue placeholder-transparent focus:outline-none focus:border-orange"
+                          placeholder="Apartment, suite, etc. (optional)"
+                          {...register("apartment")}
+                        />
+                        <label
+                          htmlFor="apartment"
+                          className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
+                        >
+                          Apartment, suite, etc. (optional)
+                        </label>
+                      </div>
+                      <div className="relative mt-5 w-full">
+                        <input
+                          id="city"
+                          name="city"
+                          type="text"
+                          className="peer h-10 w-full border-b-2 border-grayish-blue text-very-dark-blue placeholder-transparent focus:outline-none focus:border-orange"
+                          placeholder="city"
+                          {...register("city", {
+                            required: "Please enter your city",
+                          })}
+                        />
+                        {errors.city && (
+                          <p className="text-sm text-[red] italic">
+                            {errors.city.message}
+                          </p>
+                        )}
+                        <label
+                          htmlFor="city"
+                          className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
+                        >
+                          City
+                        </label>
+                      </div>
+                      <div className="relative mt-5 w-full">
+                        <input
+                          id="state"
+                          name="state"
+                          type="text"
+                          className="peer h-10 w-full border-b-2 border-grayish-blue text-very-dark-blue placeholder-transparent focus:outline-none focus:border-orange"
+                          placeholder="state"
+                          {...register("state", {
+                            required: "Please enter your state",
+                          })}
+                        />
+                        {errors.state && (
+                          <p className="text-sm text-[red] italic">
+                            {errors.state.message}
+                          </p>
+                        )}
+                        <label
+                          htmlFor="state"
+                          className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
+                        >
+                          State / Province
+                        </label>
+                      </div>
+                      <div className="relative mt-5 w-full">
+                        <input
+                          id="country"
+                          name="country"
+                          type="text"
+                          className="peer h-10 w-full border-b-2 border-grayish-blue text-very-dark-blue placeholder-transparent focus:outline-none focus:border-orange"
+                          placeholder="country"
+                          {...register("country")}
+                        />
+                        <label
+                          htmlFor="country"
+                          className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
+                        >
+                          Country
+                        </label>
+                      </div>
+                      <div className="relative mt-5 w-full">
+                        <input
+                          id="zipcode"
+                          name="zipcode"
+                          type="text"
+                          className="peer h-10 w-full border-b-2 border-grayish-blue text-very-dark-blue placeholder-transparent focus:outline-none focus:border-orange"
+                          placeholder="zip-code"
+                          {...register("zipcode")}
+                        />
+                        <label
+                          htmlFor="zipcode"
+                          className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
+                        >
+                          Postal code
+                        </label>
+                      </div>
+                    </div>
                   </div>
-                  <div className="relative mt-5 w-full">
-                    <input
-                      id="number"
-                      name="number"
-                      type="text"
-                      className="peer h-10 w-full border-b-2 border-grayish-blue text-very-dark-blue placeholder-transparent focus:outline-none focus:border-orange"
-                      placeholder="number"
-                      {...register("phone", {
-                        required: "Please enter your phone number",
-                      })}
-                    />
-                    {errors.phone && (
-                      <p className="text-sm text-[red] italic">
-                        {errors.phone.message}
-                      </p>
+                </>
+              ) : (
+                <div>
+                  <div className="flex flex-wrap justify-between text-dark-grayish-blue mb-4">
+                    <h3 className="text-lg font-bold text-very-dark-blue">
+                      Delivery Information
+                    </h3>
+                    {addresses.length > 0 && (
+                      <Link to="/user-profile/addresses">
+                        <p className="text-sm border-b border-b-orange">
+                          Change Default Address
+                        </p>
+                      </Link>
                     )}
-                    <label
-                      htmlFor="number"
-                      className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
-                    >
-                      Phone Number
-                    </label>
                   </div>
-                  <div className="relative mt-5 w-full">
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      autoComplete="email"
-                      className="peer h-10 w-full border-b-2 border-grayish-blue text-very-dark-blue placeholder-transparent focus:outline-none focus:border-orange"
-                      placeholder="email"
-                      {...register("email", {
-                        required: "Please enter your email",
-                      })}
-                    />
-                    {errors.email && (
-                      <p className="text-sm text-[red] italic">
-                        {errors.email.message}
-                      </p>
+                  <div className="border-t border-gray-200">
+                    {/* CHECKING IF THE USER HAS A DEFAULT ADDRESS OR EVEN HAVE ANY ADDRESSES AT ALL */}
+                    {addresses.length > 0 ? (
+                      // FIRST IF THE USER HAS ANY ADDRESSES
+                      <>
+                        {/* CHECK IF THERE IS A DEFAULT ADDRESS */}
+                        {addresses.filter((address) => address.checked).length >
+                        0 ? (
+                          <>
+                            {addresses
+                              .filter((address) => address.checked)
+                              .map((address) => (
+                                <div
+                                  key={address._id}
+                                  className="text-dark-grayish-blue mt-6"
+                                >
+                                  <p className="text-very-dark-blue">
+                                    {address.firstname} {address.lastname}
+                                  </p>
+                                  <p className="">{address.streetAddress}</p>
+                                  <p className="">
+                                    {address.city}, {address.state}
+                                  </p>
+                                  <p className="">{address.country}</p>
+                                  <p className="">{address.phone}</p>
+                                </div>
+                              ))}
+                          </>
+                        ) : (
+                          // IF NO DEFAULT ADDRESS, SET THE DELIVERY INFO TO THE USER'S FIRST ADDRESS
+                          <>
+                            <div
+                              key={addresses[0]._id}
+                              className="text-dark-grayish-blue mt-6"
+                            >
+                              <p className="text-very-dark-blue">
+                                {addresses[0].firstname} {addresses[0].lastname}
+                              </p>
+                              <p className="">{addresses[0].streetAddress}</p>
+                              <p className="">
+                                {addresses[0].city}, {addresses[0].state}
+                              </p>
+                              <p className="">{addresses[0].country}</p>
+                              <p className="">{addresses[0].phone}</p>
+                            </div>
+                          </>
+                        )}
+                      </>
+                    ) : (
+                      // IF NO ADDRESS
+                      <>
+                        <Link to="/user-profile/addresses">
+                          <p className="w-fit mt-8 mb-6 text-very-dark-blue border-b border-b-orange hover:border-b-transparent transition-all">
+                            Please Add An Address
+                          </p>
+                        </Link>
+                      </>
                     )}
-                    <label
-                      htmlFor="email"
-                      className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
-                    >
-                      Email address
-                    </label>
                   </div>
                 </div>
-              </div>
-
-              <div className="mt-10 border-t border-gray-200 pt-10">
-                <h3 className="text-lg font-bold text-very-dark-blue">
-                  Shipping information
-                </h3>
-
-                <div className="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
-                  <div className="sm:col-span-2 relative mt-5 w-full">
-                    <input
-                      id="company"
-                      name="company"
-                      type="text"
-                      className="peer h-10 w-full border-b-2 border-grayish-blue text-very-dark-blue placeholder-transparent focus:outline-none focus:border-orange"
-                      placeholder="company"
-                      {...register("company")}
-                    />
-                    <label
-                      htmlFor="company"
-                      className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
-                    >
-                      Company
-                    </label>
-                  </div>
-                  <div className="sm:col-span-2 relative mt-5 w-full">
-                    <input
-                      id="address"
-                      name="address"
-                      type="text"
-                      className="peer h-10 w-full border-b-2 border-grayish-blue text-very-dark-blue placeholder-transparent focus:outline-none focus:border-orange"
-                      placeholder="address"
-                      {...register("address", {
-                        required: "Please enter your address",
-                      })}
-                    />
-                    {errors.address && (
-                      <p className="text-sm text-[red] italic">
-                        {errors.address.message}
-                      </p>
-                    )}
-                    <label
-                      htmlFor="address"
-                      className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
-                    >
-                      Address
-                    </label>
-                  </div>
-                  <div className="sm:col-span-2 relative mt-5 w-full">
-                    <input
-                      id="apartment"
-                      name="apartment"
-                      type="text"
-                      className="peer h-10 w-full border-b-2 border-grayish-blue text-very-dark-blue placeholder-transparent focus:outline-none focus:border-orange"
-                      placeholder="Apartment, suite, etc. (optional)"
-                      {...register("apartment")}
-                    />
-                    <label
-                      htmlFor="apartment"
-                      className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
-                    >
-                      Apartment, suite, etc. (optional)
-                    </label>
-                  </div>
-                  <div className="relative mt-5 w-full">
-                    <input
-                      id="city"
-                      name="city"
-                      type="text"
-                      className="peer h-10 w-full border-b-2 border-grayish-blue text-very-dark-blue placeholder-transparent focus:outline-none focus:border-orange"
-                      placeholder="city"
-                      {...register("city", {
-                        required: "Please enter your city",
-                      })}
-                    />
-                    {errors.city && (
-                      <p className="text-sm text-[red] italic">
-                        {errors.city.message}
-                      </p>
-                    )}
-                    <label
-                      htmlFor="city"
-                      className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
-                    >
-                      City
-                    </label>
-                  </div>
-                  <div className="relative mt-5 w-full">
-                    <input
-                      id="state"
-                      name="state"
-                      type="text"
-                      className="peer h-10 w-full border-b-2 border-grayish-blue text-very-dark-blue placeholder-transparent focus:outline-none focus:border-orange"
-                      placeholder="state"
-                      {...register("state", {
-                        required: "Please enter your state",
-                      })}
-                    />
-                    {errors.state && (
-                      <p className="text-sm text-[red] italic">
-                        {errors.state.message}
-                      </p>
-                    )}
-                    <label
-                      htmlFor="state"
-                      className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
-                    >
-                      State / Province
-                    </label>
-                  </div>
-                  <div className="relative mt-5 w-full">
-                    <input
-                      id="country"
-                      name="country"
-                      type="text"
-                      className="peer h-10 w-full border-b-2 border-grayish-blue text-very-dark-blue placeholder-transparent focus:outline-none focus:border-orange"
-                      placeholder="country"
-                      {...register("country")}
-                    />
-                    <label
-                      htmlFor="country"
-                      className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
-                    >
-                      Country
-                    </label>
-                  </div>
-                  <div className="relative mt-5 w-full">
-                    <input
-                      id="zipcode"
-                      name="zipcode"
-                      type="text"
-                      className="peer h-10 w-full border-b-2 border-grayish-blue text-very-dark-blue placeholder-transparent focus:outline-none focus:border-orange"
-                      placeholder="zip-code"
-                      {...register("zipcode")}
-                    />
-                    <label
-                      htmlFor="zipcode"
-                      className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
-                    >
-                      Postal code
-                    </label>
-                  </div>
-                </div>
-              </div>
+              )}
             </div>
             {/* <!-- Order summary --> */}
             <div className="mt-16 sm:mt-10 lg:mt-4">
