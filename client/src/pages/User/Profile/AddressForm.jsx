@@ -9,14 +9,11 @@ import {
 
 const AddressForm = () => {
   const {
-    showAddressForm,
     errMsg,
     error,
     addresses,
     loading,
-    deleting,
     success,
-    updateForm,
     addressIndex,
   } = useSelector((state) => state.address);
   const dispatch = useDispatch();
