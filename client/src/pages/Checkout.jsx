@@ -2,16 +2,31 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { deleteItem, cartDisplay } from "../redux/reducers/cartSlice";
+import { useForm } from "react-hook-form";
 
 const Checkout = () => {
   const dispatch = useDispatch();
-  const { userCartItems, cartItems, amountTotal } = useSelector((state) => state.cart);
+  const { userCartItems, cartItems, amountTotal } = useSelector(
+    (state) => state.cart
+  );
   const { userInfo } = useSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(cartDisplay(false));
     // eslint-disable-next-line
   }, []);
+
+  // const { errMsg, error, addresses, loading, success, addressIndex } =
+  //   useSelector((state) => state.address);
+
+  const {
+    register,
+    // handleSubmit,
+    // reset,
+    formState: { errors },
+    // getValues,
+    // clearErrors,
+  } = useForm();
 
   return (
     <div className="bg-[#f9f9f9]">
@@ -20,7 +35,7 @@ const Checkout = () => {
           <h2 className="sr-only">Checkout</h2>
 
           <form className="lg:flex  lg:gap-x-12 xl:gap-x-16">
-            <div className="bg-white mt-4 border border-gray-200 rounded-lg shadow-sm p-6 lg:w-3/5 pb-12">
+            <div className="bg-white mt-4 border border-gray-200 rounded-lg shadow-sm p-6 lg:w-3/5 py-16">
               <div>
                 <div className="flex flex-wrap justify-between text-dark-grayish-blue">
                   <h3 className="text-lg font-bold text-very-dark-blue">
@@ -38,75 +53,100 @@ const Checkout = () => {
                     </Link>
                   )}
                 </div>
-                <div className="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
-                  <div>
-                    <label
-                      htmlFor="first-name"
-                      className="block text-sm font-medium text-gray-700"
-                    >
-                      First name
-                    </label>
-                    <div className="mt-1">
-                      <input
-                        type="text"
-                        id="first-name"
-                        name="first-name"
-                        autoComplete="given-name"
-                        className="block w-full border border-grayish-blue rounded-md h-10 sm:text-sm pl-2 focus:outline-none focus:border-orange"
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="last-name"
-                      className="block text-sm font-medium text-gray-700"
-                    >
-                      Last name
-                    </label>
-                    <div className="mt-1">
-                      <input
-                        type="text"
-                        id="last-name"
-                        name="last-name"
-                        autoComplete="family-name"
-                        className="block w-full border border-grayish-blue rounded-md h-10 sm:text-sm pl-2 focus:outline-none focus:border-orange"
-                      />
-                    </div>
-                  </div>
 
-                  <div>
+                <div className="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
+                  <div className="relative mt-5 w-full">
+                    <input
+                      id="firstname"
+                      name="firstname"
+                      type="text"
+                      className="peer h-10 w-full border-b-2 border-grayish-blue text-very-dark-blue placeholder-transparent focus:outline-none focus:border-orange"
+                      placeholder="First Name"
+                      {...register("firstname", {
+                        required: "Please enter your first name",
+                      })}
+                    />
+                    {errors.firstname && (
+                      <p className="text-sm text-[red] italic">
+                        {errors.firstname.message}
+                      </p>
+                    )}
                     <label
-                      htmlFor="email-address"
-                      className="block text-sm font-medium text-gray-700"
+                      htmlFor="firstname"
+                      className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
+                    >
+                      First Name
+                    </label>
+                  </div>
+                  <div className="relative mt-5 w-full">
+                    <input
+                      id="lastname"
+                      name="lastname"
+                      type="text"
+                      className="peer h-10 w-full border-b-2 border-grayish-blue text-very-dark-blue placeholder-transparent focus:outline-none focus:border-orange"
+                      placeholder="Last Name"
+                      {...register("lastname", {
+                        required: "Please enter your last name",
+                      })}
+                    />
+                    {errors.lastname && (
+                      <p className="text-sm text-[red] italic">
+                        {errors.lastname.message}
+                      </p>
+                    )}
+                    <label
+                      htmlFor="lastname"
+                      className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
+                    >
+                      Last Name
+                    </label>
+                  </div>
+                  <div className="relative mt-5 w-full">
+                    <input
+                      id="number"
+                      name="number"
+                      type="text"
+                      className="peer h-10 w-full border-b-2 border-grayish-blue text-very-dark-blue placeholder-transparent focus:outline-none focus:border-orange"
+                      placeholder="number"
+                      {...register("phone", {
+                        required: "Please enter your phone number",
+                      })}
+                    />
+                    {errors.phone && (
+                      <p className="text-sm text-[red] italic">
+                        {errors.phone.message}
+                      </p>
+                    )}
+                    <label
+                      htmlFor="number"
+                      className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
+                    >
+                      Phone Number
+                    </label>
+                  </div>
+                  <div className="relative mt-5 w-full">
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      autoComplete="email"
+                      className="peer h-10 w-full border-b-2 border-grayish-blue text-very-dark-blue placeholder-transparent focus:outline-none focus:border-orange"
+                      placeholder="email"
+                      {...register("email", {
+                        required: "Please enter your email",
+                      })}
+                    />
+                    {errors.email && (
+                      <p className="text-sm text-[red] italic">
+                        {errors.email.message}
+                      </p>
+                    )}
+                    <label
+                      htmlFor="email"
+                      className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
                     >
                       Email address
                     </label>
-                    <div className="mt-1">
-                      <input
-                        type="email"
-                        id="email-address"
-                        name="email-address"
-                        autoComplete="email"
-                        className="block w-full border border-grayish-blue rounded-md h-10 sm:text-sm pl-2 focus:outline-none focus:border-orange"
-                      />
-                    </div>
-                  </div>
-                  <div className="">
-                    <label
-                      htmlFor="phone"
-                      className="block text-sm font-medium text-gray-700"
-                    >
-                      Phone
-                    </label>
-                    <div className="mt-1">
-                      <input
-                        type="text"
-                        name="phone"
-                        id="phone"
-                        autoComplete="tel"
-                        className="block w-full border border-grayish-blue rounded-md h-10 sm:text-sm pl-2 focus:outline-none focus:border-orange"
-                      />
-                    </div>
                   </div>
                 </div>
               </div>
@@ -117,131 +157,138 @@ const Checkout = () => {
                 </h3>
 
                 <div className="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
-                  <div className="sm:col-span-2">
+                  <div className="sm:col-span-2 relative mt-5 w-full">
+                    <input
+                      id="company"
+                      name="company"
+                      type="text"
+                      className="peer h-10 w-full border-b-2 border-grayish-blue text-very-dark-blue placeholder-transparent focus:outline-none focus:border-orange"
+                      placeholder="company"
+                      {...register("company")}
+                    />
                     <label
                       htmlFor="company"
-                      className="block text-sm font-medium text-gray-700"
+                      className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
                     >
                       Company
                     </label>
-                    <div className="mt-1">
-                      <input
-                        type="text"
-                        name="company"
-                        id="company"
-                        className="block w-full border border-grayish-blue rounded-md h-10 sm:text-sm pl-2 focus:outline-none focus:border-orange"
-                      />
-                    </div>
                   </div>
-
-                  <div className="sm:col-span-2">
+                  <div className="sm:col-span-2 relative mt-5 w-full">
+                    <input
+                      id="address"
+                      name="address"
+                      type="text"
+                      className="peer h-10 w-full border-b-2 border-grayish-blue text-very-dark-blue placeholder-transparent focus:outline-none focus:border-orange"
+                      placeholder="address"
+                      {...register("address", {
+                        required: "Please enter your address",
+                      })}
+                    />
+                    {errors.address && (
+                      <p className="text-sm text-[red] italic">
+                        {errors.address.message}
+                      </p>
+                    )}
                     <label
                       htmlFor="address"
-                      className="block text-sm font-medium text-gray-700"
+                      className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
                     >
                       Address
                     </label>
-                    <div className="mt-1">
-                      <input
-                        type="text"
-                        name="address"
-                        id="address"
-                        autoComplete="street-address"
-                        className="block w-full border border-grayish-blue rounded-md h-10 sm:text-sm pl-2 focus:outline-none focus:border-orange"
-                      />
-                    </div>
                   </div>
-
-                  <div className="sm:col-span-2">
+                  <div className="sm:col-span-2 relative mt-5 w-full">
+                    <input
+                      id="apartment"
+                      name="apartment"
+                      type="text"
+                      className="peer h-10 w-full border-b-2 border-grayish-blue text-very-dark-blue placeholder-transparent focus:outline-none focus:border-orange"
+                      placeholder="Apartment, suite, etc. (optional)"
+                      {...register("apartment")}
+                    />
                     <label
                       htmlFor="apartment"
-                      className="block text-sm font-medium text-gray-700"
+                      className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
                     >
-                      Apartment, suite, etc.
+                      Apartment, suite, etc. (optional)
                     </label>
-                    <div className="mt-1">
-                      <input
-                        type="text"
-                        name="apartment"
-                        id="apartment"
-                        className="block w-full border border-grayish-blue rounded-md h-10 sm:text-sm pl-2 focus:outline-none focus:border-orange"
-                      />
-                    </div>
                   </div>
-
-                  <div>
+                  <div className="relative mt-5 w-full">
+                    <input
+                      id="city"
+                      name="city"
+                      type="text"
+                      className="peer h-10 w-full border-b-2 border-grayish-blue text-very-dark-blue placeholder-transparent focus:outline-none focus:border-orange"
+                      placeholder="city"
+                      {...register("city", {
+                        required: "Please enter your city",
+                      })}
+                    />
+                    {errors.city && (
+                      <p className="text-sm text-[red] italic">
+                        {errors.city.message}
+                      </p>
+                    )}
                     <label
                       htmlFor="city"
-                      className="block text-sm font-medium text-gray-700"
+                      className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
                     >
                       City
                     </label>
-                    <div className="mt-1">
-                      <input
-                        type="text"
-                        name="city"
-                        id="city"
-                        autoComplete="address-level2"
-                        className="block w-full border border-grayish-blue rounded-md h-10 sm:text-sm pl-2 focus:outline-none focus:border-orange"
-                      />
-                    </div>
                   </div>
-
-                  <div>
+                  <div className="relative mt-5 w-full">
+                    <input
+                      id="state"
+                      name="state"
+                      type="text"
+                      className="peer h-10 w-full border-b-2 border-grayish-blue text-very-dark-blue placeholder-transparent focus:outline-none focus:border-orange"
+                      placeholder="state"
+                      {...register("state", {
+                        required: "Please enter your state",
+                      })}
+                    />
+                    {errors.state && (
+                      <p className="text-sm text-[red] italic">
+                        {errors.state.message}
+                      </p>
+                    )}
                     <label
-                      htmlFor="country"
-                      className="block text-sm font-medium text-gray-700"
-                    >
-                      Country
-                    </label>
-                    <div className="mt-1">
-                      <select
-                        id="country"
-                        name="country"
-                        autoComplete="country-name"
-                        className="block w-full border border-grayish-blue rounded-md h-10 sm:text-sm pl-2 focus:outline-none focus:border-orange"
-                      >
-                        <option>United States</option>
-                        <option>Canada</option>
-                        <option>Mexico</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="region"
-                      className="block text-sm font-medium text-gray-700"
+                      htmlFor="state"
+                      className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
                     >
                       State / Province
                     </label>
-                    <div className="mt-1">
-                      <input
-                        type="text"
-                        name="region"
-                        id="region"
-                        autoComplete="address-level1"
-                        className="block w-full border border-grayish-blue rounded-md h-10 sm:text-sm pl-2 focus:outline-none focus:border-orange"
-                      />
-                    </div>
                   </div>
-
-                  <div>
+                  <div className="relative mt-5 w-full">
+                    <input
+                      id="country"
+                      name="country"
+                      type="text"
+                      className="peer h-10 w-full border-b-2 border-grayish-blue text-very-dark-blue placeholder-transparent focus:outline-none focus:border-orange"
+                      placeholder="country"
+                      {...register("country")}
+                    />
                     <label
-                      htmlFor="postal-code"
-                      className="block text-sm font-medium text-gray-700"
+                      htmlFor="country"
+                      className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
+                    >
+                      Country
+                    </label>
+                  </div>
+                  <div className="relative mt-5 w-full">
+                    <input
+                      id="zipcode"
+                      name="zipcode"
+                      type="text"
+                      className="peer h-10 w-full border-b-2 border-grayish-blue text-very-dark-blue placeholder-transparent focus:outline-none focus:border-orange"
+                      placeholder="zip-code"
+                      {...register("zipcode")}
+                    />
+                    <label
+                      htmlFor="zipcode"
+                      className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
                     >
                       Postal code
                     </label>
-                    <div className="mt-1">
-                      <input
-                        type="text"
-                        name="postal-code"
-                        id="postal-code"
-                        autoComplete="postal-code"
-                        className="block w-full border border-grayish-blue rounded-md h-10 sm:text-sm pl-2 focus:outline-none focus:border-orange"
-                      />
-                    </div>
                   </div>
                 </div>
               </div>
