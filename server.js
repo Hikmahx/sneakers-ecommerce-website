@@ -19,5 +19,6 @@ app.use("/api/products", require("./routes/product"));
 app.use("/api/cart", require("./routes/cart"));
 app.use("/api/orders", require("./routes/order"));
 app.use("/api/address", require("./routes/address"));
+app.use("", require("./routes/stripe"));
 
 app.listen(PORT, ()=> console.log('This is listening on PORT: ' + PORT))
