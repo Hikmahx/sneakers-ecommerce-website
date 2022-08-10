@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { deleteItem, cartDisplay } from "../redux/reducers/cartSlice";
 import { useForm } from "react-hook-form";
+import StripePay from "../components/StripePay";
 
 const Checkout = () => {
   const dispatch = useDispatch();
@@ -32,7 +33,7 @@ const Checkout = () => {
         <div className="max-w-2xl mx-auto lg:max-w-none">
           <h2 className="sr-only">Checkout</h2>
 
-          <form className="lg:flex  lg:gap-x-12 xl:gap-x-16">
+          <div className="lg:flex  lg:gap-x-12 xl:gap-x-16">
             <div className="bg-white mt-4 border border-gray-200 rounded-lg shadow-sm p-6 lg:w-3/5 py-16 h-fit">
               {!userInfo ? (
                 <>
@@ -368,6 +369,12 @@ const Checkout = () => {
                   </div>
                 </div>
               )}
+              <div className="payment mt-12 ">
+                <h3 className="text-lg font-bold text-very-dark-blue pb-4 mb-10 border-b border-gray-200">
+                  Payment Details
+                </h3>
+                <StripePay />
+              </div>
             </div>
             {/* <!-- Order summary --> */}
             <div className="mt-16 sm:mt-10 lg:mt-4">
@@ -459,7 +466,7 @@ const Checkout = () => {
                 </div>
               </div>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>
