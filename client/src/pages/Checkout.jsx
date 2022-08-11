@@ -4,13 +4,14 @@ import { Link } from "react-router-dom";
 import { deleteItem, cartDisplay } from "../redux/reducers/cartSlice";
 import { useForm } from "react-hook-form";
 import StripePay from "../components/StripePay";
+import Loading from "../components/Loading";
 
 const Checkout = () => {
   const dispatch = useDispatch();
   const { userCartItems, cartItems, amountTotal } = useSelector(
     (state) => state.cart
   );
-  const { userInfo } = useSelector((state) => state.auth);
+  const { userInfo, error, userErrorMsg, userToken, loading } = useSelector((state) => state.auth);
   const { addresses } = useSelector((state) => state.address);
 
   useEffect(() => {
@@ -33,8 +34,25 @@ const Checkout = () => {
         <div className="max-w-2xl mx-auto lg:max-w-none">
           <h2 className="sr-only">Checkout</h2>
 
-          <div className="lg:flex  lg:gap-x-12 xl:gap-x-16">
+          <div className="relative lg:flex  lg:gap-x-12 xl:gap-x-16">
             <div className="bg-white mt-4 border border-gray-200 rounded-lg shadow-sm p-6 lg:w-3/5 py-16 h-fit">
+            {userToken && (
+              <>
+                {!error ? (
+                  <>
+                    {loading && (
+                      <div className=" w-full h-full flex items-center justify-center">
+                        <Loading />
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <p className="absolute text-sm text-center text-[red] -top-4 left-0">
+                    {userErrorMsg}. Please reload page
+                  </p>
+                )}
+              </>
+            )}
               {!userInfo ? (
                 <>
                   <div>
