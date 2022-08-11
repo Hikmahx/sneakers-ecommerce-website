@@ -119,9 +119,11 @@ import StripeCheckoutForm from "./StripeCheckoutForm";
 import React, { useState, useEffect } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
+import axios from "axios";
 
 // import CheckoutForm from "./CheckoutForm";
 import "./App.css";
+import { useSelector } from "react-redux";
 
 // Make sure to call loadStripe outside of a component’s render to avoid
 // recreating the Stripe object on every render.
@@ -129,17 +131,31 @@ import "./App.css";
 const stripePromise = loadStripe("pk_test_51L3oS1Lj3Xad5MDbuwibR39eqyYgzLhlqDTjsHf78IheGc2LII7oebuvQuvgHk67XQ2ls1exBh8SS0eYvsG9Z2Cp00XoA82Y8t");
 
 export default function StripePay() {
+  const { cartItems, amountTotal } = useSelector(
+    (state) => state.cart
+  );
+  const { userInfo } = useSelector((state) => state.auth);
   const [clientSecret, setClientSecret] = useState("");
+  const [error, setError] = useState("");
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
-    fetch("/create-payment-intent", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ items: [{ id: "xl-tshirt" }] }),
-    })
-      .then((res) => res.json())
-      .then((data) => setClientSecret(data.clientSecret));
+
+    const fetchData = async()=> {
+
+      try {
+        // amount = amount total plus tax and delivery
+        let res = await axios.post('/create-payment-intent', { items: cartItems, amount:(amountTotal + 5 + 5.52).toFixed(2)}, {headers: { "Content-Type": "application/json" }})
+        let data = await res.data
+        setClientSecret(data.clientSecret)
+      } catch (error) {
+        console.log(error)
+        setError(error.message)
+      }
+    }
+    fetchData();
+
+
   }, []);
 
   const appearance = {
