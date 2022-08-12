@@ -10,17 +10,39 @@ const calculateOrderAmount = (items) => {
 };
 
 router.post("/create-payment-intent", async (req, res) => {
-  const { items, amount } = req.body;
+  const { items, amount, customer } = req.body;
 
+  // ORDER SUMMARY
+  let orderSummary = () => {
+    return (
+      `${customer.firstname} ${customer.lastname} ordered:` +
+      items.map(item => (
+        `\n${item.product.title} X ${item.quantity}`)
+      ).join(', ')
+    )
+  }
   // Create a PaymentIntent with the order amount and currency
   const paymentIntent = await stripe.paymentIntents.create(
     {
-    amount: amount * 100,
-    currency: "usd",
-    automatic_payment_methods: {
-      enabled: true,
-    },
-  },
+      amount: amount * 100,
+      currency: "usd",
+      automatic_payment_methods: {
+        enabled: true,
+      },
+      description: orderSummary(),
+      shipping: {
+        address: {
+          city: customer?.city,
+          state: customer?.state,
+          country: customer?.country,
+          line1: customer?.streetAddress,
+          postal_code: customer?.zipcode,
+        },
+        name: `${customer?.firstname}  ${customer?.lastname}`,
+        phone: customer?.phone,
+      },
+      receipt_email: customer.email,
+    }
   );
 
   res.send({
