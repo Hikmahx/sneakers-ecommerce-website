@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { deleteItem, cartDisplay } from "../redux/reducers/cartSlice";
@@ -13,6 +13,7 @@ const Checkout = () => {
   );
   const { userInfo, error, userErrorMsg, userToken, loading } = useSelector((state) => state.auth);
   const { addresses } = useSelector((state) => state.address);
+  const [formData, setFormData] = useState("");
 
   useEffect(() => {
     dispatch(cartDisplay(false));
@@ -21,12 +22,18 @@ const Checkout = () => {
 
   const {
     register,
-    // handleSubmit,
+    handleSubmit,
     // reset,
     formState: { errors },
     // getValues,
     // clearErrors,
   } = useForm();
+
+    const submitForm = (data) => {
+      console.log(data);
+      setFormData(data)
+      return data;
+  };
 
   return (
     <div className="bg-[#f9f9f9]">
@@ -54,7 +61,10 @@ const Checkout = () => {
               </>
             )}
               {!userInfo ? (
-                <>
+                <form
+                  onSubmit={handleSubmit(submitForm)}
+                >
+                {/* {!userInfo && <form>} */}
                   <div>
                     <div className="flex flex-wrap justify-between text-dark-grayish-blue">
                       <h3 className="text-lg font-bold text-very-dark-blue">
@@ -300,8 +310,15 @@ const Checkout = () => {
                           type="text"
                           className="peer h-10 w-full border-b-2 border-grayish-blue text-very-dark-blue placeholder-transparent focus:outline-none focus:border-orange"
                           placeholder="zip-code"
-                          {...register("zipcode")}
+                          {...register("zipcode", {
+                            required: "Please enter your zipcode",
+                          })}
                         />
+                        {errors.zipcode && (
+                          <p className="text-sm text-[red] italic">
+                            {errors.zipcode.message}
+                          </p>
+                        )}
                         <label
                           htmlFor="zipcode"
                           className="absolute left-0 -top-3.5 text-dark-grayish-blue text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-grayish-blue peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-dark-grayish-blue peer-focus:text-sm"
@@ -311,7 +328,16 @@ const Checkout = () => {
                       </div>
                     </div>
                   </div>
-                </>
+
+                <div className="mt-8 py-6 flex">
+                  <button
+                    type="submit"
+                    className="w-full lg:w-60 lg:ml-auto bg-orange border border-transparent rounded-md py-3 px-4 text-base font-medium text-white shadow-[inset_0_0_0_0_#ffede1] hover:shadow-[inset_0_-4rem_0_0_#ffede1] hover:text-orange transition-all duration-300"
+                  >
+                    Proceed to Payment
+                  </button>
+                </div>
+                </form>
               ) : (
                 <div>
                   <div className="flex flex-wrap justify-between text-dark-grayish-blue mb-4">
@@ -391,7 +417,7 @@ const Checkout = () => {
                 <h3 className="text-lg font-bold text-very-dark-blue pb-4 mb-10 border-b border-gray-200">
                   Payment Details
                 </h3>
-                <StripePay />
+                <StripePay formData={formData} />
               </div>
             </div>
             {/* <!-- Order summary --> */}
