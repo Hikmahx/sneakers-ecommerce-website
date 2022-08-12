@@ -473,15 +473,6 @@ const Checkout = () => {
                     <dd className="">${(amountTotal + 5 + 5.52).toFixed(2)}</dd>
                   </div>
                 </dl>
-
-                <div className="border-t border-gray-200 py-6">
-                  <button
-                    type="submit"
-                    className="w-full bg-orange border border-transparent rounded-md py-3 px-4 text-base font-medium text-white shadow-[inset_0_0_0_0_#ffede1] hover:shadow-[inset_0_-4rem_0_0_#ffede1] hover:text-orange transition-all duration-300"
-                  >
-                    Continue on to payment
-                  </button>
-                </div>
               </div>
             </div>
           </div>
