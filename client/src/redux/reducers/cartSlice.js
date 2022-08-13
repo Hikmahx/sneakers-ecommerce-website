@@ -144,6 +144,10 @@ const cartSlice = createSlice({
     emptyCartOnLogoout: (state, action)=>{
       state.cartItems =[]
       state.userCartItems =[]
+    },
+    emptyCart: (state, action)=>{
+      state.cartItems =[]
+      state.userCartItems =[]
     }
   },
   extraReducers: {
@@ -180,5 +184,5 @@ const cartSlice = createSlice({
 }
 )
 
-export const { cartDisplay, addToCart, quantityCount, deleteItem, setTotals, emptyCartOnLogoout } = cartSlice.actions;
+export const { cartDisplay, addToCart, quantityCount, deleteItem, setTotals, emptyCartOnLogoout, emptyCart } = cartSlice.actions;
 export default cartSlice.reducer;
