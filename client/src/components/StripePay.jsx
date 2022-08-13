@@ -120,10 +120,7 @@ import { useSelector } from "react-redux";
 // Make sure to call loadStripe outside of a component’s render to avoid
 // recreating the Stripe object on every render.
 // This is your test publishable API key.
-const stripePromise = loadStripe(
-  "pk_test_51L3oS1Lj3Xad5MDbuwibR39eqyYgzLhlqDTjsHf78IheGc2LII7oebuvQuvgHk67XQ2ls1exBh8SS0eYvsG9Z2Cp00XoA82Y8t"
-);
-
+let stripePromise
 export default function StripePay(formData) {
   const { cartItems, amountTotal } = useSelector((state) => state.cart);
   const { userInfo } = useSelector((state) => state.auth);
@@ -134,6 +131,24 @@ export default function StripePay(formData) {
     (item) => item !== ""
   ).length;
 
+
+  useEffect(() => {
+    // GET THE SECURED PUBLISH KEY FROM THE BACKEND
+    const getPublishKey = async()=>{
+      try {
+        let {data} = await axios.get('/publish-key')
+        stripePromise = loadStripe(`${data}`);
+
+      } catch (err) {
+        console.log(err)
+      }
+    }
+
+    getPublishKey()
+  }, [])
+
+  // console.log(stripePromise)
+  
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
 

@@ -52,4 +52,9 @@ router.post("/create-payment-intent", async (req, res) => {
 });
 
 
+// GET SECURED PUBLISH KEY FOR FRONTEND SIDE
+router.get("/publish-key", async(req, res)=>{
+  res.send(process.env.REACT_APP_PUBLISH_KEY)
+})
+
 module.exports = router;
