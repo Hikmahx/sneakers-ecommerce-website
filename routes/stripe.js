@@ -11,7 +11,7 @@ const calculateOrderAmount = (items) => {
 
 router.post("/create-payment-intent", async (req, res) => {
   const { items, amount, customer } = req.body;
-
+ try{
   // ORDER SUMMARY
   let orderSummary = () => {
     return (
@@ -47,8 +47,11 @@ router.post("/create-payment-intent", async (req, res) => {
 
   res.send({
     clientSecret: paymentIntent.client_secret,
+    id:paymentIntent.id
   });
-
+ }catch(err){
+  console.log(err) 
+ }
 });
 
 
