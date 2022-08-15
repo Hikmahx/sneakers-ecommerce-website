@@ -13,7 +13,7 @@ export const getUserOrder = createAsyncThunk('order/getUserOrder', async ({ user
       },
     }
 
-    let { data } = await axios.get(`/api/order/find/${user}`, config)
+    let { data } = await axios.get(`/api/orders/${user}`, config)
     console.log(data)
     return data
 

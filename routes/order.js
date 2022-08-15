@@ -26,9 +26,9 @@ router.get("/", verifyTokenAndAdmin, async (req, res) => {
 // @ route GET api/order
 // @ desc  Get user orders
 // @ access Private
-router.get("/find/:userId", verifyTokenAndAuthorization, async (req, res) => {
+router.get("/:id", verifyTokenAndAuthorization, async (req, res) => {
   try {
-    const order = await Order.find({ userId: req.params.id });
+    const order = await Order.find({ id: req.params.id });
     res.status(200).json(order);
   } catch (err) {
     if (err.name === "CastError") {
