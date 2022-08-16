@@ -14,6 +14,7 @@ const Checkout = () => {
   const { userInfo, error, userErrorMsg, userToken, loading } = useSelector((state) => state.auth);
   const { addresses } = useSelector((state) => state.address);
   const [formData, setFormData] = useState("");
+  const [disabled, setDisabled] = useState(false);
 
   useEffect(() => {
     dispatch(cartDisplay(false));
@@ -32,6 +33,7 @@ const Checkout = () => {
     const submitForm = (data) => {
       console.log(data);
       setFormData(data)
+      setDisabled(true)
       return data;
   };
 
@@ -328,7 +330,8 @@ const Checkout = () => {
                       </div>
                     </div>
                   </div>
-
+                {
+                  !disabled &&
                 <div className="mt-8 py-6 flex">
                   <button
                     type="submit"
@@ -337,6 +340,7 @@ const Checkout = () => {
                     Proceed to Payment
                   </button>
                 </div>
+                }
                 </form>
               ) : (
                 <div>
@@ -413,12 +417,15 @@ const Checkout = () => {
                   </div>
                 </div>
               )}
+{
+  ((userInfo && addresses.length>0 )|| !userInfo) &&
+
               <div className="payment mt-12 ">
                 <h3 className="text-lg font-bold text-very-dark-blue pb-4 mb-10 border-b border-gray-200">
                   Payment Details
-                </h3>
+                </h3>   
                 <StripePay formData={formData} />
-              </div>
+              </div>}
             </div>
             {/* <!-- Order summary --> */}
             <div className="mt-16 sm:mt-10 lg:mt-4">
