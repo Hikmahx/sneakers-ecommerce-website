@@ -50,12 +50,15 @@ export default function StripePay(formData) {
           "/create-payment-intent",
           {
             items: cartItems,
-            amount: (amountTotal + 5 + 5.52).toFixed(2),
+            amount: parseInt((amountTotal + 5 + 5.52).toFixed(2)),
             customer: customerDetails,
           },
           { headers: { "Content-Type": "application/json" } }
         );
         let data = await res.data;
+
+        // For getting payment id after payment and redirecting
+        localStorage.setItem('paymentID', data.id)
         setClientSecret(data.clientSecret);
       } catch (error) {
         console.log(error);
@@ -87,11 +90,26 @@ export default function StripePay(formData) {
 
   return (
     <div className="App">
-      {clientSecret && (
+      {clientSecret ? (
         <Elements options={options} stripe={stripePromise}>
           <StripeCheckoutForm />
         </Elements>
-      )}
+      ):(
+        // IF USER ADDRESS ISN'T LOADED OR FORM ISN'T FILLED
+        <>
+        {
+          userInfo?
+          <>
+          <p className="text-dark-grayish-blue">Please hold on while address loads</p>
+          </>
+          :
+          <>
+          <p className="text-dark-grayish-blue">Fill the form above to proceed with payment</p>
+          </>
+        }
+        </>
+      )
+    }
     </div>
   );
 }
