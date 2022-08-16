@@ -37,11 +37,20 @@ export const createOrder = createAsyncThunk('order/createOrder', async (
         'x-auth-token': userToken,
       },
     }
+    let res = await axios.get(`/api/orders/${orderData.user}`, config)
 
-    await axios.post(`/api/order/`,
-      (orderData)
-      , config)
-    let { data } = await axios.get(`/api/order/${orderData.user}`, config)
+
+    // PREVENT DUPLICATED ORDER
+    if (res.data.filter(item => item.paymentID === orderData.paymentID).length > 0) {
+      console.log('order already made')
+    } else {
+
+      await axios.post(`/api/orders/`,
+        (orderData)
+        , config)
+    }
+
+    let { data } = await axios.get(`/api/orders/${orderData.user}`, config)
 
 
     console.log(data)
