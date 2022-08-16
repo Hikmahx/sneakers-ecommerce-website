@@ -68,7 +68,7 @@ router.get("/income", verifyTokenAndAdmin, async (req, res) => {
 router.post(
   "/",
   verifyToken,
-  body("userId", "Please enter a user id").not().isEmpty(),
+  body("user", "Please enter a user id").not().isEmpty(),
   body("products", "Please enter atleast one product").not().isEmpty(),
   body("amount", "Please enter its amount").not().isEmpty(),
   body("address", "Please enter the address").not().isEmpty(),
