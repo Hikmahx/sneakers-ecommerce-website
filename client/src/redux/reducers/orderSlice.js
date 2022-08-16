@@ -78,13 +78,11 @@ const orderSlice = createSlice({
     [getUserOrder.pending]: (state) => {
       state.loading = true
       state.error = false
-      state.success = false
     },
     [getUserOrder.fulfilled]: (state, { payload }) => {
       state.loading = false
       state.orders = payload
       state.errorMsg = ''
-      state.success = true
     },
     [getUserOrder.rejected]: (state, { payload }) => {
       state.loading = false

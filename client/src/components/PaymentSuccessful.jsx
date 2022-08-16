@@ -1,16 +1,18 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { emptyCart } from "../redux/reducers/cartSlice";
 import { createOrder, getUserOrder } from "../redux/reducers/orderSlice";
 
 const PaymentSuccessful = () => {
-  const { userInfo } = useSelector((state) => state.auth);
-  const { cartItems, amountTotal } = useSelector((state) => state.cart);
-  // const { orders } = useSelector((state) => state.order);
+  const { userInfo, userToken } = useSelector((state) => state.auth);
+  const { userCartItems, cartItems, amountTotal } = useSelector((state) => state.cart);
+  const { success } = useSelector((state) => state.order);
   const { addresses } = useSelector((state) => state.address);
 
   const dispatch = useDispatch();
   const paymentID = localStorage.getItem("paymentID");
+
   useEffect(() => {
     if (userInfo && addresses.length > 0) {
       dispatch(getUserOrder({ user: userInfo._id }));
@@ -29,6 +31,13 @@ const PaymentSuccessful = () => {
               : null,
         })
       );
+
+      // EMPTY CART AFTER CREATING  ORDER FOR USER
+      success&& dispatch(emptyCart())
+    }
+    // IF IT'S A UNREGISTERED/NON-USER
+    if(!userToken ){
+      dispatch(emptyCart)
     }
     // eslint-disable-next-line
   }, [userInfo, addresses.length > 0]);
