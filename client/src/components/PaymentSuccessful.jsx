@@ -1,9 +1,37 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { createOrder, getUserOrder } from "../redux/reducers/orderSlice";
 
 const PaymentSuccessful = () => {
   const { userInfo } = useSelector((state) => state.auth);
+  const { cartItems, amountTotal } = useSelector((state) => state.cart);
+  // const { orders } = useSelector((state) => state.order);
+  const { addresses } = useSelector((state) => state.address);
+
+  const dispatch = useDispatch();
+  const paymentID = localStorage.getItem("paymentID");
+  useEffect(() => {
+    if (userInfo && addresses.length > 0) {
+      dispatch(getUserOrder({ user: userInfo._id }));
+
+      dispatch(
+        createOrder({
+          user: userInfo._id,
+          paymentID,
+          products: cartItems,
+          amount: amountTotal,
+          address:
+            addresses.length > 0
+              ? addresses.filter((address) => address.checked)
+                ? addresses.filter((address) => address.checked)[0]
+                : addresses[0]
+              : null,
+        })
+      );
+    }
+    // eslint-disable-next-line
+  }, [userInfo, addresses.length > 0]);
 
   return (
     <section className="h-auto pt-2 min-h-[80vh] flex justify-center text-center">
@@ -15,19 +43,27 @@ const PaymentSuccessful = () => {
             <ion-icon name="checkmark"></ion-icon>
           </span>
         </span>
-        <h3 class="text-xl leading-6 font-bold text-gray-900 mt-12">
+        <h3 className="text-xl leading-6 font-bold text-gray-900 mt-12">
           Payment Successful!
         </h3>
-        {userInfo && (
+        {userInfo ? (
           <div className="mt-8">
-            <p className="text-grayish-blue mb-8">Congratulation on your order. Check your orders in your profile.</p>
+            <p className="text-grayish-blue mb-8">
+              Congratulation on your order. Check your orders in your profile.
+            </p>
             <Link to="/user-profile/orders">
               <button className="w-full max-w-xs m-auto bg-orange border border-orange rounded-md py-3 px-4 text-base font-medium text-white shadow-[inset_0_0_0_0_#ffede0] hover:shadow-[inset_0_-4rem_0_0_#ffede1] hover:text-orange transition-all duration-300">
-
-              View Orders
+                View Orders
               </button>
             </Link>
           </div>
+        ) : (
+          <>
+            <p className="text-grayish-blue my-8">
+              Congratulation on your order. Be sure to check your emails for
+              order updates.
+            </p>
+          </>
         )}
       </div>
     </section>
