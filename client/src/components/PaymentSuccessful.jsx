@@ -31,16 +31,24 @@ const PaymentSuccessful = () => {
               : null,
         })
       );
+    }
+    // eslint-disable-next-line
+  }, [userInfo, addresses.length > 0]);
 
-      // EMPTY CART AFTER CREATING  ORDER FOR USER
+  
+  useEffect(() => {
+    if (userInfo && addresses.length > 0) {
+
+      // EMPTY CART AFTER CREATING  ORDER FOR USER 
       success&& dispatch(emptyCart())
     }
     // IF IT'S A UNREGISTERED/NON-USER
     if(!userToken ){
-      dispatch(emptyCart)
+      dispatch(emptyCart())
     }
     // eslint-disable-next-line
-  }, [userInfo, addresses.length > 0]);
+  }, [success, userCartItems.length>0, cartItems.length>0])
+  
 
   return (
     <section className="h-auto pt-2 min-h-[80vh] flex justify-center text-center">
