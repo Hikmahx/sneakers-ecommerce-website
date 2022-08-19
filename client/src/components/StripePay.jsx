@@ -100,7 +100,7 @@ export default function StripePay(formData) {
         {
           userInfo?
           <>
-          <p className="text-dark-grayish-blue">Please hold on while address loads</p>
+          <p className="text-dark-grayish-blue">Please hold on...</p>
           </>
           :
           <>
