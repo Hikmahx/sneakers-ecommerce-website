@@ -1,9 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import Loading from "../Loading";
 import ProductItem from "./ProductItem";
 const HomeProductsSection = () => {
-  const products = useSelector((state) => state.product.products);
+const {products, errMsg, error, loading } = useSelector((state) => state.product);
   const containFilters = useSelector((state) => state.product.containFilters);
 
   return (
@@ -17,15 +18,31 @@ const HomeProductsSection = () => {
           className="flex flex-wrap justify-center items-center mx-auto px-4 xl:-mx-2"
         > */}
         <div className="max-w-2xl mx-auto lg:max-w-7xl px-4 lg:px-0">
+      {!error ? (
+          <>
+                    {loading ? (
+            <div className="my-20 mx-auto">
+              <Loading />
+            </div>
+          ) : (
           <div className="grid grid-cols-1 gap-y-12 sm:y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
             {products.slice(0, 4).map((product, index) => (
               <ProductItem
                 key={product._id}
                 product={product}
-                containFilter={containFilters[index]}
+                containFilter={containFilters[index]} 
               />
             ))}
           </div>
+              )}
+              </>      
+      ) : (
+        <>
+        <p className=" mt-20 text-center text-very-dark-blue">
+          {errMsg}. Reload page
+        </p>
+      </>
+      )}
         </div>
         {/* </div> */}
         <div className="mx-8 mt-28 sm:mt-20 lg:mt-14">
