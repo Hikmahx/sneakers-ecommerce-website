@@ -5,7 +5,9 @@ import { deleteItem } from "../../redux/reducers/cartSlice";
 
 const Cart = () => {
   const dispatch = useDispatch();
-  const { userCartItems, cartItems, amountTotal } = useSelector((state) => state.cart);
+  const { userCartItems, cartItems, amountTotal } = useSelector(
+    (state) => state.cart
+  );
   const { userInfo } = useSelector((state) => state.auth);
 
   return (
@@ -15,12 +17,14 @@ const Cart = () => {
       <div
         className={
           "cart-content flex flex-col flex-1 items-center pt-5 " +
-          ((userInfo? userCartItems: cartItems).length < 1 ? "justify-center" : "justify-start pt-6")
+          ((userInfo ? userCartItems : cartItems).length < 1
+            ? "justify-center"
+            : "justify-start pt-6")
         }
       >
-        {(userInfo? userCartItems: cartItems).length > 0 ? (
+        {(userInfo ? userCartItems : cartItems).length > 0 ? (
           <>
-            {(userInfo? userCartItems: cartItems).map((item) => (
+            {(userInfo ? userCartItems : cartItems).map((item) => (
               <div
                 key={item.id}
                 className="item w-full flex items-center justify-between text-grayish-blue pb-5"
@@ -31,30 +35,34 @@ const Cart = () => {
                   className="w-14 h-14 rounded-lg "
                 />
                 <div className="px-3 flex-1">
-                <div className="flex justify-between">
-                            <p
-                              // ref={productTitleRef}
-                              className="product capitalize font-bold text-md text-dark-grayish-blue"
-                            >
-                              {item.product.title}
-                            </p>
-                            <div className="delete">
-                            <i
-                              onClick={(e) =>
-                                dispatch(
-                                  deleteItem(
-                                    e.target.parentElement.parentElement
-                                      .previousElementSibling
-                                      .innerText
-                                  )
-                                )
-                              }
-                              className="cursor-pointer hover:text-very-dark-blue transition-all"
-                            >
-                              <ion-icon name="trash-outline"></ion-icon>
-                            </i>
-                          </div>
-                            </div>
+                  <div className="flex justify-between">
+                      <p
+                        // ref={productTitleRef}
+                        className="product capitalize font-bold text-md text-dark-grayish-blue"
+                      >
+                    <a
+                      href={`/products/${item.product._id}`}
+                      className="cursor-pointer hover:opacity-70 transition"
+                    >
+                        {item.product.title}
+                    </a>
+                      </p>
+                    <div className="delete">
+                      <i
+                        onClick={(e) =>
+                          dispatch(
+                            deleteItem(
+                              e.target.parentElement.parentElement
+                                .previousElementSibling.innerText
+                            )
+                          )
+                        }
+                        className="cursor-pointer hover:text-very-dark-blue transition-all"
+                      >
+                        <ion-icon name="trash-outline"></ion-icon>
+                      </i>
+                    </div>
+                  </div>
                   <div className="price flex justify-between">
                     <span className="">
                       {item.product.discountPrice} x {item.quantity}

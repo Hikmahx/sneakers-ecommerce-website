@@ -11,7 +11,9 @@ const Checkout = () => {
   const { userCartItems, cartItems, amountTotal } = useSelector(
     (state) => state.cart
   );
-  const { userInfo, error, userErrorMsg, userToken, loading } = useSelector((state) => state.auth);
+  const { userInfo, error, userErrorMsg, userToken, loading } = useSelector(
+    (state) => state.auth
+  );
   const { addresses } = useSelector((state) => state.address);
   const [formData, setFormData] = useState("");
   const [disabled, setDisabled] = useState(false);
@@ -30,11 +32,11 @@ const Checkout = () => {
     // clearErrors,
   } = useForm();
 
-    const submitForm = (data) => {
-      console.log(data);
-      setFormData(data)
-      setDisabled(true)
-      return data;
+  const submitForm = (data) => {
+    console.log(data);
+    setFormData(data);
+    setDisabled(true);
+    return data;
   };
 
   return (
@@ -45,28 +47,26 @@ const Checkout = () => {
 
           <div className="relative lg:flex  lg:gap-x-12 xl:gap-x-16">
             <div className="bg-white mt-4 border border-gray-200 rounded-lg shadow-sm p-6 lg:w-3/5 py-16 h-fit">
-            {userToken && (
-              <>
-                {!error ? (
-                  <>
-                    {loading && (
-                      <div className=" w-full h-full flex items-center justify-center">
-                        <Loading />
-                      </div>
-                    )}
-                  </>
-                ) : (
-                  <p className="absolute text-sm text-center text-[red] -top-4 left-0">
-                    {userErrorMsg}. Please reload page
-                  </p>
-                )}
-              </>
-            )}
+              {userToken && (
+                <>
+                  {!error ? (
+                    <>
+                      {loading && (
+                        <div className=" w-full h-full flex items-center justify-center">
+                          <Loading />
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    <p className="absolute text-sm text-center text-[red] -top-4 left-0">
+                      {userErrorMsg}. Please reload page
+                    </p>
+                  )}
+                </>
+              )}
               {!userInfo ? (
-                <form
-                  onSubmit={handleSubmit(submitForm)}
-                >
-                {/* {!userInfo && <form>} */}
+                <form onSubmit={handleSubmit(submitForm)}>
+                  {/* {!userInfo && <form>} */}
                   <div>
                     <div className="flex flex-wrap justify-between text-dark-grayish-blue">
                       <h3 className="text-lg font-bold text-very-dark-blue">
@@ -330,17 +330,16 @@ const Checkout = () => {
                       </div>
                     </div>
                   </div>
-                {
-                  !disabled &&
-                <div className="mt-8 py-6 flex">
-                  <button
-                    type="submit"
-                    className="w-full lg:w-60 lg:ml-auto bg-orange border border-transparent rounded-md py-3 px-4 text-base font-medium text-white shadow-[inset_0_0_0_0_#ffede1] hover:shadow-[inset_0_-4rem_0_0_#ffede1] hover:text-orange transition-all duration-300"
-                  >
-                    Proceed to Payment
-                  </button>
-                </div>
-                }
+                  {!disabled && (
+                    <div className="mt-8 py-6 flex">
+                      <button
+                        type="submit"
+                        className="w-full lg:w-60 lg:ml-auto bg-orange border border-transparent rounded-md py-3 px-4 text-base font-medium text-white shadow-[inset_0_0_0_0_#ffede1] hover:shadow-[inset_0_-4rem_0_0_#ffede1] hover:text-orange transition-all duration-300"
+                      >
+                        Proceed to Payment
+                      </button>
+                    </div>
+                  )}
                 </form>
               ) : (
                 <div>
@@ -417,15 +416,14 @@ const Checkout = () => {
                   </div>
                 </div>
               )}
-{
-  ((userInfo && addresses.length>0 )|| !userInfo) &&
-
-              <div className="payment mt-12 ">
-                <h3 className="text-lg font-bold text-very-dark-blue pb-4 mb-10 border-b border-gray-200">
-                  Payment Details
-                </h3>   
-                <StripePay formData={formData} />
-              </div>}
+              {((userInfo && addresses.length > 0) || !userInfo) && (
+                <div className="payment mt-12 ">
+                  <h3 className="text-lg font-bold text-very-dark-blue pb-4 mb-10 border-b border-gray-200">
+                    Payment Details
+                  </h3>
+                  <StripePay formData={formData} />
+                </div>
+              )}
             </div>
             {/* <!-- Order summary --> */}
             <div className="mt-16 sm:mt-10 lg:mt-4">
@@ -451,7 +449,12 @@ const Checkout = () => {
                             // ref={productTitleRef}
                             className="product capitalize font-bold text-md text-dark-grayish-blue"
                           >
-                            {item.product.title}
+                            <Link
+                              to={`/products/${item.product._id}`}
+                              className="cursor-pointer hover:opacity-70 transition"
+                            >
+                              {item.product.title}
+                            </Link>
                           </p>
                           <div className="delete pl-2">
                             <i

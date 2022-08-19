@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const MyOrders = () => {
   const { orders } = useSelector((state) => state.order);
@@ -23,7 +24,7 @@ const MyOrders = () => {
             </h3>
             {orders.map((order, index) => (
               <>
-                <div className="flex items-center p-4 border-b border-t border-grayish-blue sm:p-6 w-full">
+                <div key={order._id} className="flex items-center p-4 border-b border-t border-grayish-blue sm:p-6 w-full">
                   <dl
                     // className="flex-1 grid grid-cols-2 gap-x-6 text-sm sm:col-span-3 sm:grid-cols-3 lg:col-span-2"
                     className="flex flex-col lg:flex-row justify-between w-full text-sm relative"
@@ -91,32 +92,38 @@ const MyOrders = () => {
                 <div className="orders flex flex-col lg:-mx-3 mt-7 mb-16">
                   {order.products.map((item, index) => (
                     <div className="">
-                      <div>
-                        <div
-                          key={index}
-                          className="w-full h-full rounded-md relative my-2 lg:mx-3 lg:my-3 flex "
-                        >
-                          <div className="flex flex-row">
-                            <img
-                              className="w-22 h-22 hover:opacity-80 object-cover"
-                              src={item[0].product.img[0]}
-                              alt="order-img"
-                            />
-                            <div className="flex flex-col">
-                              <div className="flex flex-row text-sm lg:text-base">
-                                <p className="ml-4 mr-2">
-                                  {item[0].product.title}
-                                </p>
-                                X<p className="ml-2">{item[0].quantity}</p>
-                              </div>
-                              <div className="amount ml-4 mt-2 text-dark-grayish-blue">
-                                ${item[0].itemTotal}
+                      {/* <Link to */}
+                      <Link
+                        to={`/products/${item[0].product._id}`}
+                        className="cursor-pointer hover:opacity-70 transition"
+                      >
+                        <div>
+                          <div
+                            key={index}
+                            className="w-full h-full rounded-md relative my-2 lg:mx-3 lg:my-3 flex "
+                          >
+                            <div className="flex flex-row">
+                              <img
+                                className="w-22 h-22 hover:opacity-80 object-cover"
+                                src={item[0].product.img[0]}
+                                alt="order-img"
+                              />
+                              <div className="flex flex-col">
+                                <div className="flex flex-row text-sm lg:text-base">
+                                  <p className="ml-4 mr-2">
+                                    {item[0].product.title}
+                                  </p>
+                                  X<p className="ml-2">{item[0].quantity}</p>
+                                </div>
+                                <div className="amount ml-4 mt-2 text-dark-grayish-blue">
+                                  ${item[0].itemTotal}
+                                </div>
                               </div>
                             </div>
                           </div>
+                          <hr className="text-gray-200" />
                         </div>
-                        <hr className="text-gray-200" />
-                      </div>
+                      </Link>
                     </div>
                   ))}
                 </div>
