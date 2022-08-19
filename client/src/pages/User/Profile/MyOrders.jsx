@@ -30,8 +30,8 @@ const MyOrders = () => {
                   >
                     <div className="absolute bg-light-grayish-blue -inset-x-4 -top-6 -bottom-6 my-2"></div>
                     <div className="flex flex-col lg:flex-row relative">
-                      <div className="lg:px-2 flex lg:flex-col flex-row justify-between py-1 lg:py-0 h-fit">
-                        <dt className="font-medium text-very-dark-blue">
+                      <div className="lg:px-2 xl:px-6 flex lg:flex-col flex-row justify-between py-1 lg:py-0 h-fit">
+                        <dt className="font-bold text-very-dark-blue">
                           Order number
                         </dt>
                         <dd className="mt-1 text-dark-grayish-blue uppercase text-[0.6rem]">
@@ -39,16 +39,20 @@ const MyOrders = () => {
                           {order.paymentID.slice(3)}
                         </dd>
                       </div>
-                      <div className="lg:px-2 flex lg:flex-col flex-row justify-between py-1 lg:py-0 h-fit hidden sm:flex">
-                        <dt className="font-medium text-very-dark-blue">
+                      <div className="lg:px-2 xl:px-6 flex lg:flex-col flex-row justify-between py-1 lg:py-0 h-fit hidden sm:flex">
+                        <dt className="font-bold text-very-dark-blue">
                           Date placed
                         </dt>
                         <dd className="mt-1 text-dark-grayish-blue">
-                          <time dateTime={`${order.createdAt.slice(0, 10)}`}>{(new Date(order.createdAt.slice(0, 10)).toDateString()).slice(3)}</time>
+                          <time dateTime={`${order.createdAt.slice(0, 10)}`}>
+                            {new Date(order.createdAt.slice(0, 10))
+                              .toDateString()
+                              .slice(3)}
+                          </time>
                         </dd>
                       </div>
-                      <div className="lg:px-2 flex lg:flex-col flex-row justify-between py-1 lg:py-0 h-fit">
-                        <dt className="font-medium text-very-dark-blue">
+                      <div className="lg:px-2 xl:px-6 flex lg:flex-col flex-row justify-between py-1 lg:py-0 h-fit">
+                        <dt className="font-bold text-very-dark-blue">
                           Total amount
                         </dt>
                         <dd className="mt-1 font-medium text-very-dark-blue">
@@ -56,8 +60,8 @@ const MyOrders = () => {
                         </dd>
                       </div>
                     </div>
-                    <div className="flex lg:flex-col flex-row relative justify-between py-1 lg:py-0 h-fit">
-                      <dt className="font-medium text-very-dark-blue">
+                    <div className="flex lg:flex-col flex-row relative justify-between py-1 lg:py-0 h-fit lg:min-w-[20%]">
+                      <dt className="font-bold text-very-dark-blue">
                         Delivery Details
                       </dt>
                       <dd className="mt-1 font-medium text-very-dark-blue text-end lg:text-start text-xs">
