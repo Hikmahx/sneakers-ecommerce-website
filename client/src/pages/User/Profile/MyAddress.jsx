@@ -141,10 +141,10 @@ const MyAddress = () => {
                   </address>
                   <div
                     className={
-                      "absolute -inset-px rounded-md pointer-events-none border-grayish-blue " +
+                      "absolute -inset-px rounded-md pointer-events-none " +
                       (userAddress.checked
                         ? "border-2 border-orange"
-                        : "border")
+                        : "border  border-grayish-blue")
                     }
                     aria-hidden="true"
                   ></div>
