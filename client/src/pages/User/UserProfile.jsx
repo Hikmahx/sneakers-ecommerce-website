@@ -21,7 +21,7 @@ const UserProfile = () => {
         <div className="flex gap-x-4 flex-col lg:flex-row">
           <div className="lg:bg-white lg:w-1/4 rounded-lg lg:shadow-md py-4 h-fit">
             <div className="profile-img-wrapper w-32 h-32 bg-grayish-blue rounded-full mx-auto relative">
-              <button className="w-5 h-5 absolute right-3">
+              <button className="w-5 h-5 absolute right-3 hidden">
                 <ion-icon
                   class="text-very-dark-blue text-xl"
                   name="create"
