@@ -2,12 +2,6 @@ const router = require("express").Router();
 // This is your test secret API key.
 const stripe = require("stripe")(process.env.STRIPE_KEY);
 
-const calculateOrderAmount = (items) => {
-  // Replace this constant with a calculation of the order's amount
-  // Calculate the order total on the server to prevent
-  // people from directly manipulating the amount on the client
-  return 1400;
-};
 
 router.post("/create-payment-intent", async (req, res) => {
   const { items, amount, customer } = req.body;

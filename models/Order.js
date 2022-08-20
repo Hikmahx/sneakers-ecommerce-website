@@ -8,7 +8,7 @@ const OrderSchema = new mongoose.Schema(
       required: true
     },
     products: [
-      { type: Array, required: true } 
+      { type: Array, required: true }
     ],
     amount: { type: Number, required: true },
     address: { type: Object, required: true },

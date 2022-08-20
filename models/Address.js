@@ -7,9 +7,6 @@ const AddressSchema = new mongoose.Schema(
       ref: 'User',
       required: true
     },
-    // addresses: [
-    //   {
-    //     type: Array,
     firstname: { type: String, required: true },
     lastname: { type: String, required: true },
     phone: { type: String, required: true },
@@ -21,9 +18,6 @@ const AddressSchema = new mongoose.Schema(
     country: String,
     zipcode: String,
     checked: {type: Boolean, default: false},
-
-    //   }
-    // ]
   },
   { timestamps: true }
 );
