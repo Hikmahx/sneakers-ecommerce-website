@@ -35,7 +35,7 @@ const MyOrders = () => {
                         <dt className="font-bold text-very-dark-blue">
                           Order number
                         </dt>
-                        <dd className="mt-1 text-dark-grayish-blue uppercase text-[0.6rem]">
+                        <dd className="mt-1 text-dark-grayish-blue uppercase flex-wrap text-[0.5rem] sm:[0.6rem]">
                           {order.paymentID.slice(3)}
                         </dd>
                       </div>

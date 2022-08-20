@@ -40,7 +40,7 @@ const Settings = () => {
         Edit and update your personal details.
       </p>
       <hr className="border-b border-grayish-blue mt-3 mb-8" />
-      <form className="lg:mb-24" onSubmit={handleSubmit(submitForm)}>
+      <form className="lg:mb-24 w-full" onSubmit={handleSubmit(submitForm)}>
         {error && (
           <p className=" absolute text-[#f96464] text-sm top-28">
             {userUpdateErrorMsg}

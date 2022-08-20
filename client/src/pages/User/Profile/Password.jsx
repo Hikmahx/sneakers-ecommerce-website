@@ -31,7 +31,7 @@ const Password = () => {
       <hr className="border-b border-grayish-blue mt-3 mb-8" />
       <form
         onSubmit={handleSubmit(submitForm)}
-        className="grid grid-cols-1 gap-y-6 sm:gap-x-4 relative"
+        className="grid grid-cols-1 gap-y-6 sm:gap-x-4 relative w-full"
       >
         {userUpdateError && (
           <p className=" absolute text-[#f96464] text-sm -top-6">
