@@ -7,6 +7,7 @@ export const createUserCart = createAsyncThunk('cart/createUserCart', async ({ p
     const userToken = localStorage.getItem('userToken')
       ? localStorage.getItem('userToken')
       : null
+      
     const config = {
       headers: {
         'Content-Type': 'application/json',
@@ -19,17 +20,13 @@ export const createUserCart = createAsyncThunk('cart/createUserCart', async ({ p
 
     // CHECK IF THE USER HAS A CART IN DB
     if ((res.data === null)) {
-      console.log("you dont have a cart")
-
       // IF NO CART, CREATE CART
       await axios.post(`/api/cart/`, { products, _id }, config)
     } else {
       // IF CART EXIST, RETURN CART
-      console.log(res.data.products)
     }
     return res.data.products
   } catch (err) {
-    console.log(err)
     return rejectWithValue(err.response.data)
   }
 }
@@ -47,25 +44,15 @@ export const updateUserCart = createAsyncThunk('cart/updateUserCart', async ({ p
       },
     }
     await axios.get(`/api/cart/${_id}`, config)
-    // const { cart } = getState()
     //  UPDATE USER'S CART
     let res = await axios.put(`/api/cart/${_id}`, { products, _id }, config)
     let data = res.data
-    console.log(data)
     return data.products
   } catch (err) {
-    console.log(err)
     return rejectWithValue(err.response.data)
   }
 }
 )
-
-
-// for the cart when a user exist, dont use the post request, use put request to add to the cart and delete from the cart
-// i dont think i need to use delete either to delete, just PUT and GET request 
-// i think i need to use the reducer function, like if i have a user login,  i will make a request
-// also if user logs out, i shd empty the cart
-// i think i'll do something similar for the order
 
 const cartSlice = createSlice({
   name: 'cart',
@@ -123,7 +110,7 @@ const cartSlice = createSlice({
           'id': action.payload.product._id,
           'product': action.payload.product,
           // IF THERE IS A USER OR IF THE USER CART ITEM IS GREATER THAN ONE, CHANGE TO THAT QUANTITY
-          'quantity': action.payload.quantity? action.payload.quantity: state.quantity,
+          'quantity': action.payload.quantity ? action.payload.quantity : state.quantity,
           'itemTotal': action.payload.product.discountPrice * state.quantity
         }])
       }
@@ -141,13 +128,13 @@ const cartSlice = createSlice({
       state.total = state.cartItems.map(item => item.quantity).reduce((a, b) => a + b, 0)
       state.amountTotal = state.cartItems.map(item => item.itemTotal).reduce((a, b) => a + b, 0)
     },
-    emptyCartOnLogoout: (state, action)=>{
-      state.cartItems =[]
-      state.userCartItems =[]
+    emptyCartOnLogoout: (state, action) => {
+      state.cartItems = []
+      state.userCartItems = []
     },
-    emptyCart: (state, action)=>{
-      state.cartItems =[]
-      state.userCartItems =[]
+    emptyCart: (state, action) => {
+      state.cartItems = []
+      state.userCartItems = []
     }
   },
   extraReducers: {
@@ -161,7 +148,7 @@ const cartSlice = createSlice({
       state.errMsg = ''
       state.userCartItems = payload
     },
-    [createUserCart.rejected]: (state, {payload}) => {
+    [createUserCart.rejected]: (state, { payload }) => {
       state.loading = false
       state.error = true
       state.errMsg = payload.msg ? payload.msg : payload
@@ -170,7 +157,7 @@ const cartSlice = createSlice({
       state.loading = true
       state.error = false
     },
-    [updateUserCart.fulfilled]: (state, {payload}) => {
+    [updateUserCart.fulfilled]: (state, { payload }) => {
       state.loading = false
       state.userCartItems = payload
       state.errMsg = ''

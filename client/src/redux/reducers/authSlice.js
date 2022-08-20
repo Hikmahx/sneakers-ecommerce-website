@@ -1,113 +1,78 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios';
 
-// userAction.js
-export const registerUser = createAsyncThunk(
-  // action type string
-  'auth/registerUser',
-  // callback function
-  async ({ firstname, lastname, email, password, username }, { rejectWithValue }) => {
-    try {
-      // configure header's Content-Type as JSON
-      const config = {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }
-      // make request to backend
-      await axios.post('/api/users', { firstname, lastname, email, password, username }, config)
-    } catch (err) {
-      console.log(err)
-      return rejectWithValue(err.response.data)
+export const registerUser = createAsyncThunk('auth/registerUser', async ({ firstname, lastname, email, password, username }, { rejectWithValue }) => {
+  try {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
     }
+    await axios.post('/api/users', { firstname, lastname, email, password, username }, config)
+
+  } catch (err) {
+    return rejectWithValue(err.response.data)
   }
+}
 )
 
-export const loginUser = createAsyncThunk(
-  "auth/loginUser",
-  async ({ email, password }, { rejectWithValue }) => {
-    try {
-      // configure header's Content-Type as JSON
-      const config = {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }
-      let res = await axios.post("/api/auth", { email, password }, config)
-      let data = res.data
-      console.log(data)
-
-      // store user's token in local storage
-      localStorage.setItem('userToken', data.token)
-      return data
-
-    } catch (err) {
-      console.log(err)
-      return rejectWithValue(err.response.data)
-
-      // return custom err message from API if any
-      // if (err.response && err.response.data.message) {
-      //   return rejectWithValue(err.response.data.message)
-      // } else {
-      //   return rejectWithValue(err.message)
-      // }
+export const loginUser = createAsyncThunk("auth/loginUser", async ({ email, password }, { rejectWithValue }) => {
+  try {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
     }
+    
+    let res = await axios.post("/api/auth", { email, password }, config)
+    let data = res.data
+
+    localStorage.setItem('userToken', data.token)
+    return data
+
+  } catch (err) {
+    return rejectWithValue(err.response.data)
   }
+}
 )
 
-export const getUserDetails = createAsyncThunk(
-  'user/getUserDetails',
-  async (arg, { getState, rejectWithValue }) => {
-    try {
+export const getUserDetails = createAsyncThunk('user/getUserDetails', async (arg, { getState, rejectWithValue }) => {
+  try {
+    const { auth } = getState()
 
-      // get user data from store
-      const { auth } = getState()
-
-      // configure authorization header with user's token
-      const config = {
-        headers: {
-          'x-auth-token': auth.userToken,
-        },
-      }
-      const { data } = await axios.get(`/api/auth`, config)
-
-      return data
-    } catch (err) {
-      console.log(err)
-      return rejectWithValue(err.response.data)
-      // if (error.response && error.response.data.message) {
-      //   return rejectWithValue(error.response.data.message)
-      // } else {
-      //   return rejectWithValue(error.message)
-      // }
+    const config = {
+      headers: {
+        'x-auth-token': auth.userToken,
+      },
     }
+    const { data } = await axios.get(`/api/auth`, config)
+    return data
+
+  } catch (err) {
+    return rejectWithValue(err.response.data)
   }
+}
 )
 
 
-export const updateUser = createAsyncThunk(
-  "auth/updateUser",
-  async (userData, { getState, rejectWithValue }) => {
-    try {
-      // get user data from store
-      const { auth } = getState()
+export const updateUser = createAsyncThunk("auth/updateUser", async (userData, { getState, rejectWithValue }) => {
+  try {
+    const { auth } = getState()
 
-
-      // configure header's Content-Type as JSON
-      const config = {
-        headers: {
-          'x-auth-token': auth.userToken,
-        },
-      }
-      let res = await axios.put(`/api/auth/${auth.userInfo._id}`, userData, config)
-      let data = res.data
-      console.log(data)
-      return data
-    } catch (err) {
-      console.log(err)
-      return rejectWithValue(err.response.data)
+    const config = {
+      headers: {
+        'x-auth-token': auth.userToken,
+      },
     }
+
+    let res = await axios.put(`/api/auth/${auth.userInfo._id}`, userData, config)
+    let data = res.data
+    return data
+
+  } catch (err) {
+    return rejectWithValue(err.response.data)
   }
+}
 )
 
 // initialize userToken from local storage
@@ -131,7 +96,6 @@ const authSlice = createSlice({
     editable: false,
     updating: false
   },
-  //authSlice
   reducers: {
     removeError: (state, { payload }) => {
       state.error = false

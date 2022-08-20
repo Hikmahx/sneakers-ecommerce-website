@@ -39,8 +39,6 @@ const productSlice = createSlice({
     brands: [],
     collection: []
   },
-
-  // productSlice
   reducers: {
     getProducts: (state, action) => {
       state.products = action.payload.products
@@ -94,16 +92,13 @@ const productSlice = createSlice({
     getProductItem: (state, action) => {
       state.productId = action.payload.productId
       state.product = state.products.filter((item) => item._id === state.productId)[0]
-      state.images = state.error? null : state.product.img
+      state.images = state.error ? null : state.product.img
     },
     getFilters: (state, action) => {
-      // state.colors = Array.prototype.concat.apply([], state.products.map(item=>item.categories.at(-1).color))
-
       // GET LIST OF ALL COLORS FROM PRODUCTS
       state.colors = Array.from(new Set(state.colors.concat.apply([], (state.filteredProducts.length > 0 ? state.filteredProducts : state.products).map(item => item.categories.at(-1).color)))).sort()
       // GET LIST OF ALL BRANDS/COMPANIES FROM PRODUCTS 
       state.brands = Array.from(new Set(state.brands.concat.apply([], (state.filteredProducts.length > 0 ? state.filteredProducts : state.products).map(item => item.company)))).sort()
-
     },
     selectFilters: (state, action) => {
       state.filter = action.payload.filter

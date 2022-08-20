@@ -6,6 +6,7 @@ export const getUserAddress = createAsyncThunk('address/getUserAddress', async (
     const userToken = localStorage.getItem('userToken')
       ? localStorage.getItem('userToken')
       : null
+
     const config = {
       headers: {
         'Content-Type': 'application/json',
@@ -14,24 +15,20 @@ export const getUserAddress = createAsyncThunk('address/getUserAddress', async (
     }
 
     let { data } = await axios.get(`/api/address/${user}`, config)
-    console.log(data)
     return data
 
   } catch (err) {
-    console.log(err)
     return rejectWithValue(err.response.data)
   }
 }
 )
 
-export const createAddress = createAsyncThunk('address/createAddress', async (
-  // { firstname, lastname, phone, zipcode, streetAddress, user }
-  addressData
-  , { getState, rejectWithValue }) => {
+export const createAddress = createAsyncThunk('address/createAddress', async (addressData, { getState, rejectWithValue }) => {
   try {
     const userToken = localStorage.getItem('userToken')
       ? localStorage.getItem('userToken')
       : null
+
     const config = {
       headers: {
         'Content-Type': 'application/json',
@@ -39,30 +36,25 @@ export const createAddress = createAsyncThunk('address/createAddress', async (
       },
     }
 
-    // const { firstname, lastname, phone, zipcode, streetAddress, user } = addressData
     await axios.post(`/api/address/`,
-      // { firstname, lastname, phone, zipcode, streetAddress, user }
       (addressData)
       , config)
+
     let { data } = await axios.get(`/api/address/${addressData.user}`, config)
-
-
-    console.log(data)
     return data
+
   } catch (err) {
-    console.log(err)
     return rejectWithValue(err.response.data)
   }
 }
 )
 
-export const deleteAddress = createAsyncThunk('address/deleteAddress', async (
-  { address, user }
-  , { getState, rejectWithValue }) => {
+export const deleteAddress = createAsyncThunk('address/deleteAddress', async ({ address, user }, { getState, rejectWithValue }) => {
   try {
     const userToken = localStorage.getItem('userToken')
       ? localStorage.getItem('userToken')
       : null
+
     const config = {
       headers: {
         'Content-Type': 'application/json',
@@ -71,11 +63,11 @@ export const deleteAddress = createAsyncThunk('address/deleteAddress', async (
     }
 
     await axios.delete(`/api/address/${address}`, config)
+
     let { data } = await axios.get(`/api/address/${user}`, config)
-    console.log('address deleted')
     return data
+
   } catch (err) {
-    console.log(err)
     return rejectWithValue(err.response.data)
   }
 }
@@ -86,6 +78,7 @@ export const updateAddress = createAsyncThunk('address/updateAddress', async (ad
     const userToken = localStorage.getItem('userToken')
       ? localStorage.getItem('userToken')
       : null
+
     const config = {
       headers: {
         'Content-Type': 'application/json',
@@ -94,21 +87,21 @@ export const updateAddress = createAsyncThunk('address/updateAddress', async (ad
     }
 
     await axios.put(`/api/address/${addressInfo._id}`, addressInfo, config)
-    let { data } = await axios.get(`/api/address/${addressInfo.user}`, config)
 
+    let { data } = await axios.get(`/api/address/${addressInfo.user}`, config)
     return data
+
   } catch (err) {
-    console.log(err)
     return rejectWithValue(err.response.data)
   }
 }
 )
 export const setDefaultAddress = createAsyncThunk('address/setDefaultAddress', async (addressInfo, { getState, rejectWithValue }) => {
-
   try {
     const userToken = localStorage.getItem('userToken')
       ? localStorage.getItem('userToken')
       : null
+      
     const config = {
       headers: {
         'Content-Type': 'application/json',
@@ -117,11 +110,9 @@ export const setDefaultAddress = createAsyncThunk('address/setDefaultAddress', a
     }
 
     let { data } = await axios.put(`/api/address/default/${addressInfo.id}`, addressInfo, config)
-    // await axios.get(`  /api/address/${addressInfo.user}`, config)
-
     return data
+
   } catch (err) {
-    console.log(err)
     return rejectWithValue(err.response.data)
   }
 }

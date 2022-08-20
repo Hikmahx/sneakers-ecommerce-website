@@ -6,6 +6,7 @@ export const getUserOrder = createAsyncThunk('order/getUserOrder', async ({ user
     const userToken = localStorage.getItem('userToken')
       ? localStorage.getItem('userToken')
       : null
+
     const config = {
       headers: {
         'Content-Type': 'application/json',
@@ -14,49 +15,43 @@ export const getUserOrder = createAsyncThunk('order/getUserOrder', async ({ user
     }
 
     let { data } = await axios.get(`/api/orders/${user}`, config)
-    console.log(data)
     return data
 
   } catch (err) {
-    console.log(err)
     return rejectWithValue(err.response.data)
   }
 }
 )
 
-export const createOrder = createAsyncThunk('order/createOrder', async (
-  orderData
-  , { getState, rejectWithValue }) => {
+export const createOrder = createAsyncThunk('order/createOrder', async (orderData, { getState, rejectWithValue }) => {
   try {
     const userToken = localStorage.getItem('userToken')
       ? localStorage.getItem('userToken')
       : null
+
     const config = {
       headers: {
         'Content-Type': 'application/json',
         'x-auth-token': userToken,
       },
     }
+    
     let res = await axios.get(`/api/orders/${orderData.user}`, config)
 
 
     // PREVENT DUPLICATED ORDER
     if (res.data.filter(item => item.paymentID === orderData.paymentID).length > 0) {
-      console.log('order already made')
+      // ORDER ALREADY MADE
     } else {
-
       await axios.post(`/api/orders/`,
         (orderData)
         , config)
     }
 
     let { data } = await axios.get(`/api/orders/${orderData.user}`, config)
-
-
-    console.log(data)
     return data
+
   } catch (err) {
-    console.log(err)
     return rejectWithValue(err.response.data)
   }
 }
