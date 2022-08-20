@@ -25,15 +25,21 @@ const MyAddress = () => {
   return (
     <>
       <h3 className="text-xl leading-6 font-bold text-gray-900">My Address</h3>
-      <p className="mt-1 max-w-2xl text-sm text-gray-500">Set default address by clicking on any of your created addresses below.</p>
+      <p className="mt-1 max-w-2xl text-sm text-gray-500">
+        Set default address by clicking on any of your created addresses below.
+      </p>
       <hr className="border-b border-grayish-blue mt-3 mb-8" />
       <div className="relative">
-        {deleting && <p className="absolute -top-7 text-sm text-orange">Deleting...</p>}
+        {deleting && (
+          <p className="absolute -top-7 text-sm text-orange">Deleting...</p>
+        )}
         {error && (
           <p className="absolute -top-7 text-sm text-[red]">{errorMsg}</p>
         )}
         {settingDefault && (
-          <p className="absolute -top-7 text-sm text-orange">Setting Default Address...</p>
+          <p className="absolute -top-7 text-sm text-orange">
+            Setting Default Address...
+          </p>
         )}
         {updateForm ? (
           <>
@@ -41,10 +47,6 @@ const MyAddress = () => {
           </>
         ) : (
           <fieldset>
-            {/* <legend className="text-lg font-medium text-gray-900">
-            Delivery method
-          </legend> */}
-
             <div className="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-4 justify-items-start items-start">
               {addresses.map((userAddress, index) => (
                 <label
@@ -93,14 +95,12 @@ const MyAddress = () => {
                       {userAddress.firstname} {userAddress.lastname}
                     </p>
                     <p className="location text-dark-grayish-blue">
-                      {/* Lorem ipsum dolor sit amet consectetur, adipisicing elit. */}
                       {userAddress.streetAddress}
                     </p>
                     <p className="city-state mb-4 text-dark-grayish-blue">
                       {userAddress.city}, {userAddress.state}
                     </p>
                     <p className="telephone text-dark-grayish-blue mb-7">
-                      {/* 08043408320 */}
                       {userAddress.phone}
                     </p>
                     <div className=" w-full flex justify-end">

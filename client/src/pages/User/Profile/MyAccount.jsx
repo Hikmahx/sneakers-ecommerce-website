@@ -11,7 +11,6 @@ const MyAccount = () => {
       </p>
       <hr className="border-b border-grayish-blue mt-3 mb-8" />
       <dl className="grid grid-cols-1 gap-x-4 sm:grid-cols-1 divide-y divide-gray-200">
-        {/* <div className="mt-5 sm:col-span-1"> */}
         <div className="sm:grid sm:grid-cols-3 sm:gap-4 py-4">
           <dt className="text-sm font-medium text-dark-grayish-blue px-2">
             Full Name
@@ -56,7 +55,6 @@ const MyAccount = () => {
         :
         ''
         }
-        {/* </div> */}
       </dl>
     </>
   );

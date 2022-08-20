@@ -10,10 +10,10 @@ const UserProfile = () => {
     (state) => state.auth
   );
   const dispatch = useDispatch();
-  const onLogOut = ()=>{
-    dispatch(logout())
-    dispatch(emptyCartOnLogoout())
-  }
+  const onLogOut = () => {
+    dispatch(logout());
+    dispatch(emptyCartOnLogoout());
+  };
 
   return (
     <section className="h-auto pt-2 min-h-[80vh] bg-[#f9f9f9]">
@@ -29,7 +29,6 @@ const UserProfile = () => {
               </button>
             </div>
             <h3 className="capitalize text-lg text-center my-6">
-              {/* Welcome back{" "} */}
               <div className="font-bold ">
                 {userInfo && (
                   <>
@@ -52,10 +51,7 @@ const UserProfile = () => {
                 aria-current="page"
                 x-state-description='Current: "bg-pale-orange border-orange text-dark-grayish-blue", Default: "border-transparent text-gray-900 hover:bg-gray-50 hover:text-gray-900"'
               >
-                {/* <ion-icon class="p-2 text-base" name="contact"></ion-icon> */}
                 <ion-icon class="p-2 text-base" name="person"></ion-icon>
-                {/* <i clasName="fa-light fa-circle-user text-lg"></i> */}
-
                 <span className="truncate">My Account</span>
               </NavLink>
 
@@ -111,7 +107,6 @@ const UserProfile = () => {
                 }
                 x-state-description='undefined: "bg-pale-orange border-orange text-dark-grayish-blue", undefined: "border-transparent text-gray-900 hover:bg-gray-50 hover:text-gray-900"'
               >
-                {/* <ion-icon class="p-2 text-base" name="unlock"></ion-icon> */}
                 <ion-icon class="p-2 text-base" name="key"></ion-icon>
                 <span className="truncate">Password</span>
               </NavLink>
@@ -131,7 +126,7 @@ const UserProfile = () => {
               </NavLink>
               <hr className="text-grayish-blue" />
               <button
-                onClick={() =>onLogOut()}
+                onClick={() => onLogOut()}
                 className="text-grayish-blue flex items-center px-3 py-2"
               >
                 <ion-icon class="p-2 text-base" name="log-out"></ion-icon>

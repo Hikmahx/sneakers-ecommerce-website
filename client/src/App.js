@@ -5,7 +5,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App font-kumbh-sans w-full min-h-screen relative overflow-hidden">
-          <MyRoutes />
+        <MyRoutes />
       </div>
     </BrowserRouter>
   );

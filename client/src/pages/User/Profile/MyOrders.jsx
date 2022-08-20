@@ -24,11 +24,11 @@ const MyOrders = () => {
             </h3>
             {orders.map((order, index) => (
               <>
-                <div key={order._id} className="flex items-center p-4 border-b border-t border-grayish-blue sm:p-6 w-full">
-                  <dl
-                    // className="flex-1 grid grid-cols-2 gap-x-6 text-sm sm:col-span-3 sm:grid-cols-3 lg:col-span-2"
-                    className="flex flex-col lg:flex-row justify-between w-full text-sm relative"
-                  >
+                <div
+                  key={order._id}
+                  className="flex items-center p-4 border-b border-t border-grayish-blue sm:p-6 w-full"
+                >
+                  <dl className="flex flex-col lg:flex-row justify-between w-full text-sm relative">
                     <div className="absolute bg-light-grayish-blue -inset-x-4 -top-6 -bottom-6 my-2"></div>
                     <div className="flex flex-col lg:flex-row relative">
                       <div className="lg:px-2 xl:px-6 flex lg:flex-col flex-row justify-between py-1 lg:py-0 h-fit">
@@ -36,7 +36,6 @@ const MyOrders = () => {
                           Order number
                         </dt>
                         <dd className="mt-1 text-dark-grayish-blue uppercase text-[0.6rem]">
-                          {/* WU88191111 */}
                           {order.paymentID.slice(3)}
                         </dd>
                       </div>
@@ -57,7 +56,7 @@ const MyOrders = () => {
                           Total amount
                         </dt>
                         <dd className="mt-1 font-medium text-very-dark-blue">
-                          {/* $160.00 */}$ {order.amount.toFixed(2)}
+                          $ {order.amount.toFixed(2)}
                         </dd>
                       </div>
                     </div>
@@ -68,19 +67,15 @@ const MyOrders = () => {
                       <dd className="mt-1 font-medium text-very-dark-blue text-end lg:text-start text-xs">
                         <address className="not-italic text-very-dark-blue w-full">
                           <p className="fullname mb-2">
-                            {/* Jane Doe */}
                             {order.address.firstname} {order.address.lastname}
                           </p>
                           <p className="location text-dark-grayish-blue">
-                            {/* 10, red Tress estate, New York */}
                             {order.address.streetAddress}
                           </p>
                           <p className="city-state mb-2 text-dark-grayish-blue">
-                            {/* New City, New York */}
                             {order.address.city}, {order.address.state}
                           </p>
                           <p className="telephone text-dark-grayish-blue mb-3">
-                            {/* 08066778899 */}
                             {order.address.phone}
                           </p>
                         </address>
@@ -92,7 +87,6 @@ const MyOrders = () => {
                 <div className="orders flex flex-col lg:-mx-3 mt-7 mb-16">
                   {order.products.map((item, index) => (
                     <div className="">
-                      {/* <Link to */}
                       <Link
                         to={`/products/${item[0].product._id}`}
                         className="cursor-pointer hover:opacity-70 transition"

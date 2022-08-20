@@ -8,7 +8,8 @@ import {
 } from "../../../redux/reducers/authSlice";
 
 const Settings = () => {
-  const { userInfo, editable, updating, error, userUpdateErrorMsg } = useSelector((state) => state.auth);
+  const { userInfo, editable, updating, error, userUpdateErrorMsg } =
+    useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const { register, handleSubmit, reset } = useForm();
 
@@ -40,10 +41,13 @@ const Settings = () => {
       </p>
       <hr className="border-b border-grayish-blue mt-3 mb-8" />
       <form className="lg:mb-24" onSubmit={handleSubmit(submitForm)}>
-      {error && <p className=" absolute text-[#f96464] text-sm top-28">{userUpdateErrorMsg}</p> }
+        {error && (
+          <p className=" absolute text-[#f96464] text-sm top-28">
+            {userUpdateErrorMsg}
+          </p>
+        )}
 
         <dl className="grid grid-cols-1 gap-x-4 sm:grid-cols-1 divide-y divide-gray-200">
-          {/* <div className="mt-5 sm:col-span-1"> */}
           <div className="sm:grid sm:grid-cols-3 sm:gap-4 py-4">
             <dt className="text-sm font-medium text-dark-grayish-blue px-2">
               Full Name
@@ -136,16 +140,6 @@ const Settings = () => {
               Gender
             </dt>
             <dd className="mt-1 flex text-sm text-very-dark-blue sm:mt-0 sm:col-span-2">
-              {/* <input
-                className={
-                  "border-b-2 border-transparent  text-very-dark-blue placeholder-transparent focus:outline-none focus:!border-orange px-2 md:p-2 bg-white w-full" +
-                  (editable && " !border-grayish-blue")
-                }
-                type="text"
-                value="Female"
-                disabled={!editable}
-                {...register("gender")}
-              /> */}
               <div className="flex-grow sm:text-center">
                 <label htmlFor="gender" className="hidden">
                   gender
@@ -168,8 +162,6 @@ const Settings = () => {
               </div>
             </dd>
           </div>
-
-          {/* </div> */}
         </dl>
         <hr className="text-gray-200" />
 
@@ -195,7 +187,6 @@ const Settings = () => {
                   (editable ? " !bg-orange !text-white" : "") +
                   (updating ? " cursor-not-allowed" : " ")
                 }
-                // onClick={() => submitForm()}
                 disabled={updating}
               >
                 {updating ? (
@@ -215,9 +206,8 @@ const Settings = () => {
                 onClick={() => cancel()}
                 disabled={updating}
               >
-                {/* Cancel */}
                 <ion-icon name="close" class="text-lg"></ion-icon>
-              </button>{" "}
+              </button>
             </>
           )}
         </span>

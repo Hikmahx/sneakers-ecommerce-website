@@ -26,14 +26,10 @@ const Checkout = () => {
   const {
     register,
     handleSubmit,
-    // reset,
     formState: { errors },
-    // getValues,
-    // clearErrors,
   } = useForm();
 
   const submitForm = (data) => {
-    console.log(data);
     setFormData(data);
     setDisabled(true);
     return data;
@@ -66,7 +62,6 @@ const Checkout = () => {
               )}
               {!userInfo ? (
                 <form onSubmit={handleSubmit(submitForm)}>
-                  {/* {!userInfo && <form>} */}
                   <div>
                     <div className="flex flex-wrap justify-between text-dark-grayish-blue">
                       <h3 className="text-lg font-bold text-very-dark-blue">
@@ -446,7 +441,6 @@ const Checkout = () => {
                       <div className="pl-3 flex-1">
                         <div className="flex justify-between">
                           <p
-                            // ref={productTitleRef}
                             className="product capitalize font-bold text-md text-dark-grayish-blue"
                           >
                             <Link

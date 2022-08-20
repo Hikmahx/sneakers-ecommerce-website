@@ -1,5 +1,5 @@
-import React from 'react'
-import heroImg from '../../assets/hero-sneaker.png' 
+import React from "react";
+import heroImg from "../../assets/hero-sneaker.png";
 
 const Hero = () => {
   return (
@@ -39,6 +39,6 @@ const Hero = () => {
       </figure>
     </section>
   );
-}
+};
 
-export default Hero
+export default Hero;

@@ -27,8 +27,7 @@ const MyRoutes = () => {
   const user = false;
   const { cartItems, userCartItems } = useSelector((state) => state.cart);
   const { userInfo } = useSelector((state) => state.auth);
-  // const location = useLocation();
-  // console.log(location.pathname.split("/")[2]);
+
   return (
     <Layout>
       <Routes>

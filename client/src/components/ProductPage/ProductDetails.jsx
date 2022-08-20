@@ -7,46 +7,33 @@ const ProductDetails = () => {
   const product = useSelector((state) => state.product.product);
   const quantity = useSelector((state) => state.cart.quantity);
   const cartItems = useSelector((state) => state.cart.cartItems);
- 
-    useEffect(() => {
-      dispatch(quantityCount(1))
+
+  useEffect(() => {
+    dispatch(quantityCount(1));
     // eslint-disable-next-line
-    }, [cartItems])
-    
+  }, [cartItems]);
 
   return (
     <>
       <h2 className="company uppercase text-orange font-bold text-sm sm:text-md tracking-wider pb-3 sm:pb-5">
         {product.company}
       </h2>
-      <h3
-        //  ref={productTitleRef}
-        className="product capitalize text-very-dark-blue font-bold text-3xl sm:text-4xl sm:leading-none pb-3"
-      >
+      <h3 className="product capitalize text-very-dark-blue font-bold text-3xl sm:text-4xl sm:leading-none pb-3">
         {product.title}
-        {/* fall limited edition <span className="block lg:mt-1">sneakers</span> */}
       </h3>
       <p className="text-dark-grayish-blue pb-6 lg:py-7 lg:leading-6">
         {product.desc}
-        {/* These low-profile sneakers are your perfect casual wear companion.
-        Featuring a durable rubber outer sole, they'll withstand everything the
-        weather can offer. */}
       </p>
       <div className="amount font-bold flex items-center justify-between lg:flex-col lg:items-start mb-6">
         <div className="discount-price items-center flex  lg:w-1/3 justify-between">
-          <div
-            // ref={productPriceRef}
-            className="price text-3xl"
-          >
-            ${product.discountPrice}
-          </div>
+          <div className="price text-3xl">${product.discountPrice}</div>
           <div className="discount text-orange bg-pale-orange w-max px-2 rounded mx-5 h-6 lg:mr-0">
             {Math.floor(
               (product.price / product.price -
                 product.discountPrice / product.price) *
                 100
             )}
-            %{/* 50% */}
+            %
           </div>
         </div>
         <div className="original-price text-grayish-blue line-through lg:mt-2">
@@ -62,7 +49,6 @@ const ProductDetails = () => {
             -
           </button>
           <input
-            // ref={productQuantityRef}
             min={0}
             max={100}
             onChange={(e) => dispatch(quantityCount(e.target.value))}
@@ -81,7 +67,7 @@ const ProductDetails = () => {
         </div>
 
         <button
-          onClick={() => dispatch(addToCart({product}))}
+          onClick={() => dispatch(addToCart({ product }))}
           className="cart w-full h-14 bg-orange rounded-lg lg:rounded-xl mb-2 shadow-orange-shadow shadow-2xl text-white flex items-center justify-center lg:w-3/5 hover:opacity-60"
         >
           <i className="cursor-pointer text-white text-xl leading-0 pr-3">

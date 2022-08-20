@@ -36,17 +36,14 @@ const Cart = () => {
                 />
                 <div className="px-3 flex-1">
                   <div className="flex justify-between">
-                      <p
-                        // ref={productTitleRef}
-                        className="product capitalize font-bold text-md text-dark-grayish-blue"
+                    <p className="product capitalize font-bold text-md text-dark-grayish-blue">
+                      <a
+                        href={`/products/${item.product._id}`}
+                        className="cursor-pointer hover:opacity-70 transition"
                       >
-                    <a
-                      href={`/products/${item.product._id}`}
-                      className="cursor-pointer hover:opacity-70 transition"
-                    >
                         {item.product.title}
-                    </a>
-                      </p>
+                      </a>
+                    </p>
                     <div className="delete">
                       <i
                         onClick={(e) =>

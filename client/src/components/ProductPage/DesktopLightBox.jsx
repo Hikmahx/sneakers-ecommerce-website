@@ -26,24 +26,24 @@ const DesktopLightBox = () => {
           <div className="modal-content">
             <DesktopPreview />
           </div>
-        <div className="directions absolute inset-x-0 top-0 mt-3 h-[448px] flex items-center justify-between z-40 -mx-4">
-          <button
-            onClick={()=>dispatch(prevPreview())}
-            className="back-arrow w-14 h-14 bg-white rounded-full"
-          >
-            <i className="flex items-center justify-center m-auto text-2xl hover:text-orange">
-              <ion-icon name="chevron-back-outline"></ion-icon>
-            </i>
-          </button>
-          <button
-            onClick={()=>dispatch(nextPreview())}
-            className="next-arrow w-14 h-14 bg-white rounded-full"
-          >
-            <i className="flex items-center justify-center m-auto text-2xl hover:text-orange">
-              <ion-icon name="chevron-forward-outline"></ion-icon>
-            </i>
-          </button>
-        </div>
+          <div className="directions absolute inset-x-0 top-0 mt-3 h-[448px] flex items-center justify-between z-40 -mx-4">
+            <button
+              onClick={() => dispatch(prevPreview())}
+              className="back-arrow w-14 h-14 bg-white rounded-full"
+            >
+              <i className="flex items-center justify-center m-auto text-2xl hover:text-orange">
+                <ion-icon name="chevron-back-outline"></ion-icon>
+              </i>
+            </button>
+            <button
+              onClick={() => dispatch(nextPreview())}
+              className="next-arrow w-14 h-14 bg-white rounded-full"
+            >
+              <i className="flex items-center justify-center m-auto text-2xl hover:text-orange">
+                <ion-icon name="chevron-forward-outline"></ion-icon>
+              </i>
+            </button>
+          </div>
         </div>
       </section>
     </div>

@@ -22,15 +22,18 @@ const Register = () => {
   const navigate = useNavigate();
   useEffect(() => {
     // redirect user to login page if registration was successful
-    if (success){ navigate("/login")};
+    if (success) {
+      navigate("/login");
+    }
     // redirect authenticated user to profile screen
-    if (userInfo){ navigate("/user-profile")};
+    if (userInfo) {
+      navigate("/user-profile");
+    }
     // eslint-disable-next-line
   }, [navigate, userInfo, success]);
 
   const submitForm = (data) => {
-    dispatch(registerUser(data))
-    console.log(data);
+    dispatch(registerUser(data));
   };
 
   const removeErrMsg = () => {

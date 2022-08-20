@@ -62,12 +62,10 @@ const Header = () => {
     // eslint-disable-next-line
   }, [userInfo, cartItems]);
 
-
   useEffect(() => {
     if (userInfo) {
-      dispatch(getUserAddress({user: userInfo._id}));
+      dispatch(getUserAddress({ user: userInfo._id }));
       dispatch(getUserOrder({ user: userInfo._id }));
-      
     }
     // eslint-disable-next-line
   }, [userInfo]);

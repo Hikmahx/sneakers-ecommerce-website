@@ -8,14 +8,8 @@ import {
 } from "../../../redux/reducers/addressSlice";
 
 const AddressForm = () => {
-  const {
-    errMsg,
-    error,
-    addresses,
-    loading,
-    success,
-    addressIndex,
-  } = useSelector((state) => state.address);
+  const { errMsg, error, addresses, loading, success, addressIndex } =
+    useSelector((state) => state.address);
   const dispatch = useDispatch();
 
   const {
@@ -23,7 +17,6 @@ const AddressForm = () => {
     handleSubmit,
     reset,
     formState: { errors },
-    // getValues,
     clearErrors,
   } = useForm();
   const { userInfo } = useSelector((state) => state.auth);
@@ -54,7 +47,6 @@ const AddressForm = () => {
           user: userInfo._id,
         })
       );
-      // reset({...data})
     } else {
       // UPDATE MODE
       dispatch(
@@ -83,12 +75,10 @@ const AddressForm = () => {
         zipcode: "",
         streetAddress: "",
       });
-    // console.log(data);
   };
 
   return (
     <>
-      {/* {showAddressForm || updateForm && ( */}
       <form
         onSubmit={handleSubmit(submitForm)}
         className="mt-6 w-full flex flex-wrap justify-between px-6 sm:px-12 py-12 border border-grayish-blue relative rounded-md"
@@ -166,7 +156,6 @@ const AddressForm = () => {
             type="text"
             className="peer h-10 w-full border-b-2 border-grayish-blue text-very-dark-blue placeholder-transparent focus:outline-none focus:border-orange"
             placeholder="number"
-            // defaultValue={.phone}
             defaultValue={
               addressIndex !== null ? addresses[addressIndex].phone : ""
             }
@@ -315,7 +304,6 @@ const AddressForm = () => {
           )}
         </button>
       </form>
-      {/* )} */}
     </>
   );
 };

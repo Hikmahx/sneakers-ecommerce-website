@@ -3,15 +3,10 @@ import React, { useState, useEffect } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import axios from "axios";
-
-// import CheckoutForm from "./CheckoutForm";
 import "./App.css";
 import { useSelector } from "react-redux";
 
-// Make sure to call loadStripe outside of a component’s render to avoid
-// recreating the Stripe object on every render.
-// This is your test publishable API key.
-let stripePromise
+let stripePromise;
 export default function StripePay(formData) {
   const { cartItems, amountTotal } = useSelector((state) => state.cart);
   const { userInfo } = useSelector((state) => state.auth);
@@ -22,24 +17,21 @@ export default function StripePay(formData) {
     (item) => item !== ""
   ).length;
 
-
   useEffect(() => {
     // GET THE SECURED PUBLISH KEY FROM THE BACKEND
-    const getPublishKey = async()=>{
+    const getPublishKey = async () => {
       try {
-        let {data} = await axios.get('/publish-key')
+        let { data } = await axios.get("/publish-key");
         stripePromise = loadStripe(`${data}`);
-
       } catch (err) {
-        console.log(err)
+        console.log(err);
       }
-    }
+    };
 
-    getPublishKey()
-  }, [])
+    getPublishKey();
+  }, []);
 
-  // console.log(stripePromise)
-  
+
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
 
@@ -58,7 +50,7 @@ export default function StripePay(formData) {
         let data = await res.data;
 
         // For getting payment id after payment and redirecting
-        localStorage.setItem('paymentID', data.id)
+        localStorage.setItem("paymentID", data.id);
         setClientSecret(data.clientSecret);
       } catch (error) {
         console.log(error);
@@ -72,10 +64,6 @@ export default function StripePay(formData) {
         fetchData(addresses.filter((address) => address.checked)[0])
       : // IF ITS NOT A USER
         formLength > 6 && fetchData(formData.formData);
-
-    // console.log(customer);
-    // console.log(Object.keys(formData.formData).length)
-    console.log(formLength);
 
     // eslint-disable-next-line
   }, [addresses, formLength > 7]);
@@ -94,22 +82,22 @@ export default function StripePay(formData) {
         <Elements options={options} stripe={stripePromise}>
           <StripeCheckoutForm />
         </Elements>
-      ):(
+      ) : (
         // IF USER ADDRESS ISN'T LOADED OR FORM ISN'T FILLED
         <>
-        {
-          userInfo?
-          <>
-          <p className="text-dark-grayish-blue">Please hold on...</p>
-          </>
-          :
-          <>
-          <p className="text-dark-grayish-blue">Fill the form above to proceed with payment</p>
-          </>
-        }
+          {userInfo ? (
+            <>
+              <p className="text-dark-grayish-blue">Please hold on...</p>
+            </>
+          ) : (
+            <>
+              <p className="text-dark-grayish-blue">
+                Fill the form above to proceed with payment
+              </p>
+            </>
+          )}
         </>
-      )
-    }
+      )}
     </div>
   );
 }
