@@ -44,7 +44,7 @@ const Login = () => {
             SIGN IN
           </h1>
           <form
-            className="flex flex-wrap justify-between"
+            className="flex flex-wrap justify-between w-full"
             onSubmit={handleSubmit(submitForm)}
             onChange={removeErrMsg}
           >
