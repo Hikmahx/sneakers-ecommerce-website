@@ -55,7 +55,7 @@ export default function StripeCheckoutForm() {
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: "http://localhost:3000/payment",
+        return_url: "https://sneakers-ecommerce-website.herokuapp.com/payment",
       },
     });
     if (error.type === "card_error" || error.type === "validation_error") {
