@@ -220,13 +220,13 @@ const Header = () => {
             </div>
             {!userInfo ? (
               <NavLink to="/login">
-                <button className="h-10 sm:block bg-orange px-4 rounded-lg lg:rounded-xl ml-2 text-white flex items-center justify-center border shadow-[inset_0_-1px_0_0_#ffede1] hover:shadow-[inset_0_-4rem_0_0_#ffede1] hover:text-orange overflow-hidden transition-all duration-300">
+                <button className="h-10 hidden sm:block bg-orange px-4 rounded-lg lg:rounded-xl ml-2 text-white flex items-center justify-center border shadow-[inset_0_-1px_0_0_#ffede1] hover:shadow-[inset_0_-4rem_0_0_#ffede1] hover:text-orange overflow-hidden transition-all duration-300">
                   Login
                 </button>
               </NavLink>
             ) : (
-              <NavLink to="/user-profile" className="ml-2 lg:ml-0 lg:mt-2">
-                <i className="cursor-pointer text-3xl !leading-none lg:text-xl transition-colors mt-2 text-grayish-blue hover:text-very-dark-blue">
+              <NavLink to="/user-profile" className="ml-4 lg:ml-0 lg:mt-2">
+                <i className="cursor-pointer text-2xl !leading-none lg:text-xl transition-colors mt-2 text-grayish-blue hover:text-very-dark-blue">
                   <ion-icon name="person">
                     <title>Username</title>
                   </ion-icon>
