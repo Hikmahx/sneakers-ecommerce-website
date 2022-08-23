@@ -111,7 +111,7 @@ const cartSlice = createSlice({
           'product': action.payload.product,
           // IF THERE IS A USER OR IF THE USER CART ITEM IS GREATER THAN ONE, CHANGE TO THAT QUANTITY
           'quantity': action.payload.quantity ? action.payload.quantity : state.quantity,
-          'itemTotal': action.payload.product.discountPrice * state.quantity
+          'itemTotal': action.payload.product.discountPrice * action.payload.quantity
         }])
       }
     },

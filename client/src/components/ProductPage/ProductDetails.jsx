@@ -67,7 +67,7 @@ const ProductDetails = () => {
         </div>
 
         <button
-          onClick={() => dispatch(addToCart({ product }))}
+          onClick={() => dispatch(addToCart({ product, quantity }))}
           className="cart w-full h-14 bg-orange rounded-lg lg:rounded-xl mb-2 shadow-orange-shadow shadow-2xl text-white flex items-center justify-center lg:w-3/5 hover:opacity-60"
         >
           <i className="cursor-pointer text-white text-xl leading-0 pr-3">
