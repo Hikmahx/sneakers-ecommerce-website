@@ -202,7 +202,7 @@ const Settings = () => {
               </button>
               <button
                 type="button"
-                className="ml-3 bg-light-grayish-blue rounded-md font-medium text-grayish-blue hover:text-indigo-500 focus:outline-none p-2 flex justify-center items-center"
+                className="ml-3 bg-light-grayish-blue rounded-md font-medium text-grayish-blue focus:outline-none p-2 flex justify-center items-center"
                 onClick={() => cancel()}
                 disabled={updating}
               >
