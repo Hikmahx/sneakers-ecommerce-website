@@ -60,7 +60,8 @@ export default function StripePay(formData) {
     userInfo
       ? // IF ITS A LOGIN USER
         addresses.length > 0 &&
-        fetchData(addresses.filter((address) => address.checked)[0])
+        // USE FIRST ADDRESS IF NO ADDRESS IS CHECKED
+        fetchData((addresses.filter((address) => address.checked)[0]) || addresses[0])
       : // IF ITS NOT A USER
         formLength > 6 && fetchData(formData.formData);
 
