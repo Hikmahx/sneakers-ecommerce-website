@@ -42,7 +42,7 @@ const Header = () => {
       if (userCartItems.length > 0) {
         userCartItems.length > 0 &&
           userCartItems.forEach((item) => {
-            if (cartItems.map((citem) => citem.id).includes(item.id)) {
+            if (cartItems.map((citem) => citem.product._id).includes(item.product._id)) {
               console.log("the item is already in the cart");
             } else {
               // IF  USER ITEM IS NOT IN THE GENERAL CART, ADD IT

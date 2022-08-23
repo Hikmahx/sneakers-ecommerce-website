@@ -45,10 +45,11 @@ export const updateUserCart = createAsyncThunk('cart/updateUserCart', async ({ p
     }
     await axios.get(`/api/cart/${_id}`, config)
     //  UPDATE USER'S CART
-    let res = await axios.put(`/api/cart/${_id}`, { products, _id }, config)
+    let res = await axios.put(`/api/cart/${_id}`, { products }, config)
     let data = res.data
     return data.products
   } catch (err) {
+    console.log(err)
     return rejectWithValue(err.response.data)
   }
 }
@@ -111,7 +112,7 @@ const cartSlice = createSlice({
           'product': action.payload.product,
           // IF THERE IS A USER OR IF THE USER CART ITEM IS GREATER THAN ONE, CHANGE TO THAT QUANTITY
           'quantity': action.payload.quantity ? action.payload.quantity : state.quantity,
-          'itemTotal': action.payload.product.discountPrice * action.payload.quantity
+          'itemTotal': action.payload.product.discountPrice * (action.payload.quantity ? action.payload.quantity : state.quantity)
         }])
       }
     },

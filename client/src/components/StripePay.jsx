@@ -31,7 +31,6 @@ export default function StripePay(formData) {
     getPublishKey();
   }, []);
 
-
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
 
@@ -87,7 +86,15 @@ export default function StripePay(formData) {
         <>
           {userInfo ? (
             <>
-              <p className="text-dark-grayish-blue">Please hold on...</p>
+              {error ? (
+                <>
+                  <p className="text-dark-grayish-blue">{error}</p>
+                </>
+              ) : (
+                <>
+                  <p className="text-dark-grayish-blue">Please hold on...</p>
+                </>
+              )}
             </>
           ) : (
             <>
