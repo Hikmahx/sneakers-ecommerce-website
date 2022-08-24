@@ -5,6 +5,7 @@ import { emptyCart } from "../redux/reducers/cartSlice";
 import { createOrder, getUserOrder } from "../redux/reducers/orderSlice";
 
 const PaymentSuccessful = () => {
+  document.title = "Congratulations on your payment";
   const { userInfo, userToken } = useSelector((state) => state.auth);
   const { userCartItems, cartItems, amountTotal } = useSelector(
     (state) => state.cart
@@ -16,10 +17,8 @@ const PaymentSuccessful = () => {
   const paymentID = localStorage.getItem("paymentID");
 
   useEffect(() => {
-    document.title = "Congratulations on your payment"
     if (userInfo && addresses.length > 0) {
       dispatch(getUserOrder({ user: userInfo._id }));
-
       dispatch(
         createOrder({
           user: userInfo._id,
@@ -27,16 +26,14 @@ const PaymentSuccessful = () => {
           products: cartItems,
           amount: amountTotal,
           address:
-            addresses.length > 0
-              ? addresses.filter((address) => address.checked)
-                ? addresses.filter((address) => address.checked)[0]
-                : addresses[0]
-              : null,
+            addresses.filter((address) => address.checked).length > 0
+              ? addresses.filter((address) => address.checked)[0]
+              : addresses[0],
         })
       );
     }
     // eslint-disable-next-line
-  }, [userInfo, addresses.length > 0]);
+  }, [userInfo, addresses]);
 
   useEffect(() => {
     if (userInfo && addresses.length > 0) {
@@ -67,7 +64,9 @@ const PaymentSuccessful = () => {
           <>
             {loading ? (
               <>
-                <p className="text-grayish-blue">Please hold while order is being created...</p>
+                <p className="text-grayish-blue">
+                  Please hold while order is being created...
+                </p>
               </>
             ) : (
               <div className="mt-8">
