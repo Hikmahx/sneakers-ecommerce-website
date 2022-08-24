@@ -10,6 +10,8 @@ import {
 } from "../redux/reducers/productSlice";
 
 const Products = () => {
+  document.title = "All Sneakers"
+
   const products = useSelector((state) => state.product.products);
   const loading = useSelector((state) => state.product.loading);
   const error = useSelector((state) => state.product.error);

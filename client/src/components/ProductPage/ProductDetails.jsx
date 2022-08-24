@@ -7,6 +7,7 @@ const ProductDetails = () => {
   const product = useSelector((state) => state.product.product);
   const quantity = useSelector((state) => state.cart.quantity);
   const cartItems = useSelector((state) => state.cart.cartItems);
+  document.title = `${product.title}`
 
   useEffect(() => {
     dispatch(quantityCount(1));

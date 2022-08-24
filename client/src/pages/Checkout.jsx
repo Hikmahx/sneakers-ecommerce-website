@@ -7,6 +7,8 @@ import StripePay from "../components/StripePay";
 import Loading from "../components/Loading";
 
 const Checkout = () => {
+  document.title = "Checkout Page"
+
   const dispatch = useDispatch();
   const { userCartItems, cartItems, amountTotal } = useSelector(
     (state) => state.cart

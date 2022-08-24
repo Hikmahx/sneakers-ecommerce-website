@@ -9,6 +9,8 @@ import {
 import AddressForm from "./AddressForm";
 
 const MyAddress = () => {
+  document.title = "My Address"
+
   const { userInfo } = useSelector((state) => state.auth);
   const {
     showAddressForm,

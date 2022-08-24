@@ -19,6 +19,8 @@ const Settings = () => {
   }, []);
 
   const cancel = () => {
+  document.title = "Profile Settings"
+
     reset({
       firstname: userInfo.firstname,
       lastname: userInfo.lastname,

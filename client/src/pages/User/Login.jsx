@@ -7,6 +7,8 @@ import { loginUser, removeError } from "../../redux/reducers/authSlice";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  document.title = "Login Page"
+
   const { loading, userInfo, error, errMsg } = useSelector(
     (state) => state.auth
   );

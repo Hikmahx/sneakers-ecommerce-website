@@ -1,6 +1,8 @@
 import React from "react";
 
 const Notifications = () => {
+  document.title = "My Notifications"
+
   return (
     <>
       <h3 className="text-xl leading-6 font-bold text-gray-900">

@@ -9,13 +9,14 @@ const PaymentSuccessful = () => {
   const { userCartItems, cartItems, amountTotal } = useSelector(
     (state) => state.cart
   );
-  const { success } = useSelector((state) => state.order);
+  const { success, loading } = useSelector((state) => state.order);
   const { addresses } = useSelector((state) => state.address);
 
   const dispatch = useDispatch();
   const paymentID = localStorage.getItem("paymentID");
 
   useEffect(() => {
+    document.title = "Congratulations on your payment"
     if (userInfo && addresses.length > 0) {
       dispatch(getUserOrder({ user: userInfo._id }));
 
@@ -63,16 +64,25 @@ const PaymentSuccessful = () => {
           Payment Successful!
         </h3>
         {userInfo ? (
-          <div className="mt-8">
-            <p className="text-grayish-blue mb-8">
-              Congratulation on your order. Check your orders in your profile.
-            </p>
-            <Link to="/user-profile/orders">
-              <button className="w-full max-w-xs m-auto bg-orange border border-orange rounded-md py-3 px-4 text-base font-medium text-white shadow-[inset_0_0_0_0_#ffede0] hover:shadow-[inset_0_-4rem_0_0_#ffede1] hover:text-orange transition-all duration-300">
-                View Orders
-              </button>
-            </Link>
-          </div>
+          <>
+            {loading ? (
+              <>
+                <p className="text-grayish-blue">Please hold while order is being created...</p>
+              </>
+            ) : (
+              <div className="mt-8">
+                <p className="text-grayish-blue mb-8">
+                  Congratulation on your order. Check your orders in your
+                  profile.
+                </p>
+                <Link to="/user-profile/orders">
+                  <button className="w-full max-w-xs m-auto bg-orange border border-orange rounded-md py-3 px-4 text-base font-medium text-white shadow-[inset_0_0_0_0_#ffede0] hover:shadow-[inset_0_-4rem_0_0_#ffede1] hover:text-orange transition-all duration-300">
+                    View Orders
+                  </button>
+                </Link>
+              </div>
+            )}
+          </>
         ) : (
           <>
             <p className="text-grayish-blue my-8">

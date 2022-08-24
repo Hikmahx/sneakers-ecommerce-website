@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 const MyAccount = () => {
+  document.title = "My Account"
   const { userInfo } = useSelector((state) => state.auth);
   return (
     <>

@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "../../../redux/reducers/authSlice";
 
 const Password = () => {
+  document.title = "Password Settings"
+
   const { updating, userUpdateError, userUpdateErrorMsg } = useSelector(
     (state) => state.auth
   );

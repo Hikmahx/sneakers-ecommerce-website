@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { registerUser, removeError } from "../../redux/reducers/authSlice";
 
 const Register = () => {
+  document.title = "Registration Page"
+
   const { loading, userInfo, error, errMsg, success } = useSelector(
     (state) => state.auth
   );

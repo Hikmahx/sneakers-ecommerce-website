@@ -2,6 +2,8 @@ import React from "react";
 import heroImg from "../../assets/hero-sneaker.png";
 
 const Hero = () => {
+  document.title = "Sneakers"
+
   return (
     <section className="px-5 py-4 lg:py-24 mt-10 flex flex-col lg:flex-row items-center justify-between lg:mx-20 xl:mx-28 2xl:mx-36 3xl:mx-auto lg:px-0 xl:px-3 max-w-xl md:max-w-xl mx-auto lg:max-w-7xl">
       <div
@@ -15,7 +17,7 @@ const Hero = () => {
           With a wide range of quality and affordable sneakers to choose from,
           browse through our collections for that sneakers you’ve always wanted.
         </p>
-        <button className="w-full h-14 max-w-lg lg:max-w-none bg-orange rounded-lg lg:rounded-xl mt-3 mb-2 text-white flex items-center justify-center lg:w-3/5 hover:bg-white shadow-[inset_0_0_0_0_rgba(255,125,26,0.6)] hover:shadow-[inset_0_-4rem_0_0_rgba(255,125,26,0.6)] transition-all duration-300 mx-auto">
+        <button className="w-full h-14 max-w-lg lg:max-w-none bg-orange rounded-lg lg:rounded-xl mt-3 mb-2 text-white flex items-center justify-center lg:w-3/5 hover:bg-white shadow-[inset_0_0_0_0_rgba(255,125,26,0.6)] hover:shadow-[inset_0_-4rem_0_0_rgba(255,125,26,0.6)] transition-all duration-300 mx-auto lg:ml-0 lg:mr-auto">
           Explore Products
         </button>
       </div>
