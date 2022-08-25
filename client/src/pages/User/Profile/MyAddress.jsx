@@ -7,6 +7,7 @@ import {
   updateFormDisplay,
 } from "../../../redux/reducers/addressSlice";
 import AddressForm from "./AddressForm";
+import { motion, AnimatePresence } from "framer-motion"
 
 const MyAddress = () => {
   document.title = "My Address"
@@ -50,9 +51,14 @@ const MyAddress = () => {
         ) : (
           <fieldset>
             <div className="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-4 justify-items-start items-start">
+          <AnimatePresence mode= "sync">
               {addresses.map((userAddress, index) => (
-                <label
+                <motion.label
                   key={userAddress._id}
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0.8, opacity: 0 }}
+                  transition={{ type: "spring" }}
                   htmlFor="address"
                   className={
                     "w-full relative border rounded-md shadow-sm p-4 flex cursor-pointer focus:outline-none border-transparent " +
@@ -150,8 +156,9 @@ const MyAddress = () => {
                     }
                     aria-hidden="true"
                   ></div>
-                </label>
+                </motion.label>
               ))}
+            </AnimatePresence>
               {!showAddressForm && (
                 <button
                   className="cursor-pointer"

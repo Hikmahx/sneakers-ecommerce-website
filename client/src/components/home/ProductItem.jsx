@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 const ProductItem = ({ product, containFilter }) => {
   return (
     <AnimatePresence>
-    <motion.div 
+    <motion.div layout
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
     exit={{ opacity: 0 }}
