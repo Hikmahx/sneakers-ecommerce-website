@@ -64,10 +64,6 @@ Users should be able to:
 This is my first deployed fullstack application using the MERN stack. As I progressed with this application, I find myself improving a lot and also learnt how to avoid specific mistakes and debug my app better. I believe this project has made it easier for me to make full stack applications better and faster.
 
 
-### Continued development
-
-I think I'll learn Nextjs and TypeScript for my future projects because I always see different recommendations.
-
 
 ### Useful resources
 
