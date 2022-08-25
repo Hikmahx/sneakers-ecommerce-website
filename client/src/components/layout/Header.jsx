@@ -194,7 +194,7 @@ const Header = () => {
             onClick={displayMenu}
           ></div>
         </div>
-        {showCart && <Cart />}
+        <Cart />
         <div className="right">
           <div className="user-bar flex items-center">
             <div className="cart-container">

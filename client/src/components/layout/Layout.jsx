@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { cartDisplay } from "../../redux/reducers/cartSlice";
 import { getAllProducts } from "../../redux/reducers/productSlice";
 import Footer from "./Footer";
 import Header from "./Header";
@@ -15,7 +16,7 @@ const Layout = ({ children }) => {
   return (
     <div>
       <Header />
-      <main>{children}</main>
+      <main onClick={() => dispatch(cartDisplay(false))}>{children}</main>
       <Footer />
     </div>
   );

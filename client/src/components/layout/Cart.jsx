@@ -2,16 +2,26 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { deleteItem } from "../../redux/reducers/cartSlice";
+import { motion } from "framer-motion"
+
+const variants = {
+  open: { opacity: 1, x: 0 },
+  closed: { opacity: 0, x: "150%" },
+}
+
 
 const Cart = () => {
   const dispatch = useDispatch();
-  const { userCartItems, cartItems, amountTotal } = useSelector(
+  const { userCartItems, cartItems, amountTotal, showCart } = useSelector(
     (state) => state.cart
   );
   const { userInfo } = useSelector((state) => state.auth);
 
   return (
-    <div className="absolute top-20 lg:top-24 bottom-40 inset-x-2 lg:left-auto xl:-right-16 lg:-mr-2 p-5 max-w-xl lg:max-w-sm lg:w-full mx-auto min-h-xs h-fit flex flex-col bg-white z-20 shadow-lg lg:shadow-xl rounded-lg">
+    <motion.div
+    animate={showCart ? "open" : "closed"}
+    variants={variants}
+    className="absolute top-20 lg:top-24 bottom-40 inset-x-2 lg:left-auto xl:-right-16 lg:-mr-2 p-5 max-w-xl lg:max-w-sm lg:w-full mx-auto min-h-xs h-fit flex flex-col bg-white z-20 shadow-lg lg:shadow-xl rounded-lg">
       <h3 className="font-bold pb-5">Cart</h3>
       <hr className="text-grayish-blue -mx-5" />
       <div
@@ -95,7 +105,7 @@ const Cart = () => {
           </p>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };
 
