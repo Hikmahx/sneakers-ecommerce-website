@@ -42,7 +42,11 @@ const Header = () => {
       if (userCartItems.length > 0) {
         userCartItems.length > 0 &&
           userCartItems.forEach((item) => {
-            if (cartItems.map((citem) => citem.product._id).includes(item.product._id)) {
+            if (
+              cartItems
+                .map((citem) => citem.product._id)
+                .includes(item.product._id)
+            ) {
               console.log("the item is already in the cart");
             } else {
               // IF  USER ITEM IS NOT IN THE GENERAL CART, ADD IT
@@ -114,6 +118,7 @@ const Header = () => {
             <ul className="font-bold lg:font-normal text-center lg:text-left lg:flex lg:items-center text-lg lg:text-base pt-2 lg:p-0 lg:mx-9 lg:text-dark-grayish-blue lg:h-inherit">
               <li className="relative h-12 lg:h-inherit">
                 <NavLink
+                  onClick={displayMenu}
                   to="/collections"
                   className={({ isActive }) =>
                     "absolute inset-0 mb-5 pt-[2.5px] lg:pt-0 lg:mb-0 lg:mx-4 lg:h-inherit lg:flex lg:items-center cursor-pointer lg:relative lg:before:content-[attr(before)] before:absolute before:-bottom-1 before:left-0 before:h-full before:-z-10 before:lg:z-10 before:lg:h-1 before:bg-orange before:w-0 hover:before:w-full before:transition-all lg:hover:text-very-dark-blue " +
@@ -127,6 +132,7 @@ const Header = () => {
               </li>
               <li className="relative h-12 lg:h-inherit">
                 <NavLink
+                  onClick={displayMenu}
                   to="/products/men"
                   className={({ isActive }) =>
                     "absolute inset-0 mb-5 pt-[2.5px] lg:pt-0 lg:mb-0 lg:mx-4 lg:h-inherit lg:flex lg:items-center cursor-pointer lg:relative lg:before:content-[attr(before)] before:absolute before:-bottom-1 before:left-0 before:h-full before:-z-10 before:lg:z-10 before:lg:h-1 before:bg-orange before:w-0 hover:before:w-full before:transition-all lg:hover:text-very-dark-blue " +
@@ -140,6 +146,7 @@ const Header = () => {
               </li>
               <li className="relative h-12 lg:h-inherit">
                 <NavLink
+                  onClick={displayMenu}
                   to="/products/women"
                   className={({ isActive }) =>
                     "absolute inset-0 mb-5 pt-[2.5px] lg:pt-0 lg:mb-0 lg:mx-4 lg:h-inherit lg:flex lg:items-center cursor-pointer lg:relative lg:before:content-[attr(before)] before:absolute before:-bottom-1 before:left-0 before:h-full before:-z-10 before:lg:z-10 before:lg:h-1 before:bg-orange before:w-0 hover:before:w-full before:transition-all lg:hover:text-very-dark-blue " +
@@ -153,6 +160,7 @@ const Header = () => {
               </li>
               <li className="relative h-12 lg:h-inherit">
                 <NavLink
+                  onClick={displayMenu}
                   to="/products"
                   className={({ isActive }) =>
                     "absolute inset-0 mb-5 pt-[2.5px] lg:pt-0 lg:mb-0 lg:mx-4 lg:h-inherit lg:flex lg:items-center cursor-pointer lg:relative lg:before:content-[attr(before)] before:absolute before:-bottom-1 before:left-0 before:h-full before:-z-10 before:lg:z-10 before:lg:h-1 before:bg-orange before:w-0 hover:before:w-full before:transition-all lg:hover:text-very-dark-blue " +
@@ -167,6 +175,7 @@ const Header = () => {
               </li>
               <li className="relative h-12 lg:h-inherit">
                 <NavLink
+                  onClick={displayMenu}
                   to="/contact"
                   className={({ isActive }) =>
                     "absolute inset-0 mb-5 pt-[2.5px] lg:pt-0 lg:mb-0 lg:mx-4 lg:h-inherit lg:flex lg:items-center cursor-pointer lg:relative lg:before:content-[attr(before)] before:absolute before:-bottom-1 before:left-0 before:h-full before:-z-10 before:lg:z-10 before:lg:h-1 before:bg-orange before:w-0 hover:before:w-full before:transition-all lg:hover:text-very-dark-blue " +
@@ -180,16 +189,15 @@ const Header = () => {
               </li>
             </ul>
             {!userInfo && (
-
-            <ul className="">
-              <li>
-                <NavLink to="/login">
-                  <button className="h-10 w-full sm:hidden bg-orange px-4 rounded-lg lg:rounded-xl text-white flex items-center justify-center hover:bg-white shadow-[inset_0_0_0_0_rgba(255,125,26,0.6)] hover:shadow-[inset_0_-4rem_0_0_rgba(255,125,26,0.6)] transition-all duration-300">
-                    Login
-                  </button>
-                </NavLink>
-              </li>
-            </ul>
+              <ul className="">
+                <li>
+                  <NavLink to="/login">
+                    <button className="h-10 w-full sm:hidden bg-orange px-4 rounded-lg lg:rounded-xl text-white flex items-center justify-center hover:bg-white shadow-[inset_0_0_0_0_rgba(255,125,26,0.6)] hover:shadow-[inset_0_-4rem_0_0_rgba(255,125,26,0.6)] transition-all duration-300">
+                      Login
+                    </button>
+                  </NavLink>
+                </li>
+              </ul>
             )}
           </nav>
           <div
