@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { deleteItem } from "../../redux/reducers/cartSlice";
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 
 const variants = {
   open: { opacity: 1, x: 0 },
@@ -20,6 +20,7 @@ const Cart = () => {
   return (
     <motion.div
     animate={showCart ? "open" : "closed"}
+    initial={{ opacity: 0 }}
     variants={variants}
     className="absolute top-20 lg:top-24 bottom-40 inset-x-2 lg:left-auto xl:-right-16 lg:-mr-2 p-5 max-w-xl lg:max-w-sm lg:w-full mx-auto min-h-xs h-fit flex flex-col bg-white z-20 shadow-lg lg:shadow-xl rounded-lg">
       <h3 className="font-bold pb-5">Cart</h3>
@@ -34,8 +35,13 @@ const Cart = () => {
       >
         {(userInfo ? userCartItems : cartItems).length > 0 ? (
           <>
+          <AnimatePresence mode= "sync">
             {(userInfo ? userCartItems : cartItems).map((item) => (
-              <div
+              <motion.div
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.8, opacity: 0 }}
+                transition={{ type: "spring" }}
                 key={item.id}
                 className="item w-full flex items-center justify-between text-grayish-blue pb-5"
               >
@@ -80,8 +86,9 @@ const Cart = () => {
                     </span>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
+            </AnimatePresence>
             <div className="overall-total w-full">
               <hr className="text-grayish-blue -mx-5 mt-8" />
               <div className="font-bold flex h-8 my-5 justify-between px-3">

@@ -1,9 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion"
 
 const ProductItem = ({ product, containFilter }) => {
   return (
-    <div className={"group relative " + (containFilter ? "block" : "hidden")}>
+    <AnimatePresence>
+    <motion.div 
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+     className={"group relative " + (containFilter ? "block" : "hidden")}>
       <div className="w-full min-h-80 bg-grayish-blue aspect-w-1 aspect-h-1 rounded-md overflow-hidden  lg:h-80 lg:aspect-none relative before:absolute before:bg-[hsla(222,_4%,_48%,_0.4)] before:inset-0 text-center before:h-0 group-hover:before:h-full before:transition-all">
         <img
           src={product.img[0]}
@@ -38,7 +44,8 @@ const ProductItem = ({ product, containFilter }) => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
+    </AnimatePresence>
   );
 };
 
