@@ -42,9 +42,11 @@ const HomeProductsSection = () => {
           )}
         </div>
         <div className="mx-8 mt-28 sm:mt-20 lg:mt-14">
-          <button className="cart min-w-[4rem] w-full max-w-xs md:max-w-lg lg:max-w-none h-14 bg-pale-orange border border-orange rounded-lg mt-12 mx-auto text-orange font-bold flex items-center justify-center lg:w-52 shadow-[inset_0_0_0_0_#ff7d1a] hover:shadow-[inset_0_-4rem_0_0_#ff7d1a] hover:text-white transition-all duration-300">
-            <Link to="products">Explore More</Link>
-          </button>
+          <Link to="products">
+            <button className="cart min-w-[4rem] w-full max-w-xs md:max-w-lg lg:max-w-none h-14 bg-pale-orange border border-orange rounded-lg mt-12 mx-auto text-orange font-bold flex items-center justify-center lg:w-52 shadow-[inset_0_0_0_0_#ff7d1a] hover:shadow-[inset_0_-4rem_0_0_#ff7d1a] hover:text-white transition-all duration-300">
+              Explore More
+            </button>
+          </Link>
         </div>
       </div>
     </section>
