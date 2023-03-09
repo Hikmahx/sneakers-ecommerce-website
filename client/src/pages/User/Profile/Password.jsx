@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "../../../redux/reducers/authSlice";
 
 const Password = () => {
-  document.title = "Password Settings"
+  document.title = "Password Settings";
 
   const { updating, userUpdateError, userUpdateErrorMsg } = useSelector(
     (state) => state.auth
@@ -108,7 +108,7 @@ const Password = () => {
               className="spinner-border animate-spin inline-block w-4 h-4 border rounded-full"
               role="status"
             >
-              <span className="visually-hidden">Loading...</span>
+              <span className="sr-only">Loading...</span>
             </div>
           ) : (
             <>Save Changes</>

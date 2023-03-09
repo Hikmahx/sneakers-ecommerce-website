@@ -19,7 +19,7 @@ const Settings = () => {
   }, []);
 
   const cancel = () => {
-  document.title = "Profile Settings"
+    document.title = "Profile Settings";
 
     reset({
       firstname: userInfo.firstname,
@@ -196,7 +196,7 @@ const Settings = () => {
                     className="spinner-border animate-spin inline-block w-4 h-4 border rounded-full"
                     role="status"
                   >
-                    <span className="visually-hidden">Loading...</span>
+                    <span className="sr-only">Loading...</span>
                   </div>
                 ) : (
                   <>Update</>

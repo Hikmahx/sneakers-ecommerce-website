@@ -75,7 +75,7 @@ const Checkout = () => {
                           <span aria-hidden="true">
                             Already have an account?
                           </span>
-                          <span className="visually-hidden">
+                          <span className="sr-only">
                             Already have an account?
                           </span>
                           {""} Log in

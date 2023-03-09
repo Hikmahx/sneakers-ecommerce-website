@@ -297,7 +297,7 @@ const AddressForm = () => {
               className="spinner-border animate-spin inline-block w-4 h-4 border rounded-full"
               role="status"
             >
-              <span className="visually-hidden">Loading...</span>
+              <span className="sr-only">Loading...</span>
             </div>
           ) : (
             <>{addressIndex !== null ? <>Update Address</> : <>Submit</>}</>

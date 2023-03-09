@@ -7,7 +7,7 @@ import { loginUser, removeError } from "../../redux/reducers/authSlice";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  document.title = "Login Page"
+  document.title = "Login Page";
 
   const { loading, userInfo, error, errMsg } = useSelector(
     (state) => state.auth
@@ -102,7 +102,7 @@ const Login = () => {
                   className=" spinner-border animate-spin inline-block w-4 h-4 border rounded-full"
                   role="status"
                 >
-                  <span className="visually-hidden">Loading...</span>
+                  <span className="sr-only">Loading...</span>
                 </div>
               ) : (
                 <>LOGIN</>
