@@ -11,10 +11,10 @@
       "use": "@vercel/static"
     }
   ],
-  "rewrites": [
+  "routes": [
     {
-      "source": "/(.*)",
-      "destination": "/server.js"
+      "src": "/(.*)",
+      "dest": "server.js"
     }
   ]
 }
