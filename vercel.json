@@ -3,11 +3,11 @@
   "name": "sneakers-ecommerce-website",
   "builds": [
     {
-      "src": "server.js",
+      "src": "./server.js",
       "use": "@vercel/node"
     },
     {
-      "src": "./client/build", 
+      "src": "./client/build",
       "use": "@vercel/static"
     }
   ],
