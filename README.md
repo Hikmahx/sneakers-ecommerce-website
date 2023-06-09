@@ -72,7 +72,7 @@ This is my first deployed fullstack application using the MERN stack. As I progr
 - [Logrocket](https://blog.logrocket.com/handling-user-authentication-redux-toolkit/) - I used this to understand better login, logout and registration process.
 - [Unsplash](https://unsplash.com/) - This site is an endless reservior of images. I used this for my product images, using google image to find the names of the sneakers in the images.
 - [Stack Overflow](https://stackoverflow.com) - As always, stackoverflow is the place I go whenever I need any help.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
+
 
 
 
