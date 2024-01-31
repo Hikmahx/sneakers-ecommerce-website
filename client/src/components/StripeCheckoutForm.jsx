@@ -55,7 +55,7 @@ export default function StripeCheckoutForm() {
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: "https://sneakers-ecommerce-website.herokuapp.com/payment",
+        return_url: "https://sneakers-z66o.onrender.com/payment",
       },
     });
     if (error.type === "card_error" || error.type === "validation_error") {
@@ -74,7 +74,7 @@ export default function StripeCheckoutForm() {
       <button
         disabled={isLoading || !stripe || !elements}
         id="submit"
-        className="bg-blue-500 rounded text-white mt-6 py-3 px-4 font-semibold cursor-pointer w-full transition-all"
+        className="bg-dark-grayish-blue rounded text-white mt-6 py-3 px-4 font-semibold cursor-pointer w-full transition-all"
       >
         <span id="button-text">
           {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}

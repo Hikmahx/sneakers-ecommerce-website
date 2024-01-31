@@ -7,7 +7,7 @@ import StripePay from "../components/StripePay";
 import Loading from "../components/Loading";
 
 const Checkout = () => {
-  document.title = "Checkout Page"
+  document.title = "Checkout Page";
 
   const dispatch = useDispatch();
   const { userCartItems, cartItems, amountTotal } = useSelector(
@@ -43,8 +43,8 @@ const Checkout = () => {
         <div className="max-w-2xl mx-auto lg:max-w-none">
           <h2 className="sr-only">Checkout</h2>
 
-          <div className="relative lg:flex  lg:gap-x-12 xl:gap-x-16">
-            <div className="bg-white mt-4 border border-gray-200 rounded-lg shadow-sm p-6 lg:w-3/5 py-16 h-fit">
+          <div className="relative flex flex-col lg:flex-row lg:gap-x-12 xl:gap-x-16">
+            <div className="order-2 lg:order-1 bg-white mt-4 border border-gray-200 rounded-lg shadow-sm p-6 lg:w-3/5 py-16 h-fit">
               {userToken && (
                 <>
                   {!error ? (
@@ -423,7 +423,7 @@ const Checkout = () => {
               )}
             </div>
             {/* <!-- Order summary --> */}
-            <div className="mt-16 sm:mt-10 lg:mt-4">
+            <div className="order-1 lg:order-2 flex-1 w-auto mt-16 sm:mt-10 lg:mt-4">
               <h3 className="text-lg font-bold text-very-dark-blue">
                 Order summary
               </h3>
@@ -442,9 +442,7 @@ const Checkout = () => {
                       />
                       <div className="pl-3 flex-1">
                         <div className="flex justify-between">
-                          <p
-                            className="product capitalize font-bold text-md text-dark-grayish-blue"
-                          >
+                          <p className="product capitalize font-bold text-md text-dark-grayish-blue">
                             <Link
                               to={`/products/${item.product._id}`}
                               className="cursor-pointer hover:opacity-70 transition"
@@ -505,6 +503,29 @@ const Checkout = () => {
                     <dd className="">${(amountTotal + 5 + 5.52).toFixed(2)}</dd>
                   </div>
                 </dl>
+              </div>
+              <div className="mt-8 text-grayish-blue">
+                <h3 className="text-orange font-kumbh-sans font-bold">
+                  SIDE NOTE<sup className="text-xs">*</sup>{" "}
+                </h3>
+                <h3 className="text-dark-grayish-blue">Test Card Details</h3>
+                <p className="">
+                  When testing interactively, use a card number, such as 4242
+                  4242 4242 4242. Enter the card number in the Dashboard or in
+                  any payment form.
+                </p>
+                <ul className="list-disc pl-5">
+                  <li className="mb-2">
+                    Use a valid future date, such as 12/34.
+                  </li>
+                  <li className="mb-2">
+                    Use any three-digit CVC (four digits for American Express
+                    cards).
+                  </li>
+                  <li className="mb-2">
+                    Use any value you like for other form fields.
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
