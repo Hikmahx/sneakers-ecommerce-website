@@ -1,10 +1,16 @@
 {
   "version": 2,
-  "buildCommand": "npm run build",
-  "outputDirectory": "client/build",
-  "env": {
-    "NODE_ENV": "production"
-  },
+  "builds": [
+    {
+      "src": "client/package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "build" }
+    },
+    {
+      "src": "server.js",
+      "use": "@vercel/node"
+    }
+  ],
   "routes": [
     {
       "src": "/api/(.*)",
@@ -12,7 +18,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "/server.js"
+      "dest": "client/build/index.html"
     }
   ]
 }
