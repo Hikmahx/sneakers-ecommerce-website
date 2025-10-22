@@ -1,10 +1,13 @@
 {
   "version": 2,
-  "buildCommand": "npm run build",
-  "env": {
-    "NODE_ENV": "production"
-  },
   "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "client/build"
+      }
+    },
     {
       "src": "server.js",
       "use": "@vercel/node"
