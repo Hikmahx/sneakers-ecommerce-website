@@ -1,20 +1,18 @@
 {
   "version": 2,
-  "name": "sneakers-ecommerce-website",
-  "builds": [
-    {
-      "src": "./server.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "./client/build",
-      "use": "@vercel/static"
-    }
-  ],
+  "buildCommand": "npm run build",
+  "outputDirectory": "client/build",
+  "env": {
+    "NODE_ENV": "production"
+  },
   "routes": [
     {
+      "src": "/api/(.*)",
+      "dest": "/server.js"
+    },
+    {
       "src": "/(.*)",
-      "dest": "server.js"
+      "dest": "/server.js"
     }
   ]
 }

@@ -16,7 +16,13 @@
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^7.1.0",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "@types/react": "19.2.2",
+    "@types/react-dom": "19.2.2",
+    "@types/node": "24.9.1",
+    "tailwindcss": "4.1.15",
+    "typescript": "5.9.3",
+    "postcss": "8.5.6"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -28,6 +34,22 @@
     "mongoose": "^6.3.1",
     "react-hook-form": "^7.33.1",
     "redux-persist": "^6.0.0",
-    "stripe": "^10.0.0"
+    "stripe": "^10.0.0",
+    "react-router-dom": "7.9.4",
+    "react-redux": "9.2.0",
+    "@stripe/react-stripe-js": "5.2.0",
+    "@stripe/stripe-js": "8.1.0",
+    "axios": "1.12.2",
+    "framer-motion": "12.23.24",
+    "react-dom": "19.2.0",
+    "@reduxjs/toolkit": "2.9.1",
+    "path": "0.12.7",
+    "next": "16.0.0",
+    "react": "19.2.0",
+    "class-variance-authority": "0.7.1",
+    "clsx": "2.1.1",
+    "lucide-react": "0.546.0",
+    "tailwind-merge": "3.3.1",
+    "tailwindcss-animate": "1.0.7"
   }
 }
