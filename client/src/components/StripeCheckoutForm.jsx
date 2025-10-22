@@ -55,7 +55,7 @@ export default function StripeCheckoutForm() {
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: "https://sneakers-z66o.onrender.com/payment",
+        return_url: "https://sneakers-ecommerce-website.vercel.app/payment",
       },
     });
     if (error.type === "card_error" || error.type === "validation_error") {

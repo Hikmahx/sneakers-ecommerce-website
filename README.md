@@ -39,7 +39,7 @@ Users should be able to:
 ### Links
 
 - Solution URL: [https://github.com/Hikmahx/sneakers-ecommerce-website](https://github.com/Hikmahx/sneakers-ecommerce-website)
-- Live Site URL: [Sneakers MERN Ecommerce Website](https://sneakers-z66o.onrender.com/)
+- Live Site URL: [Sneakers MERN Ecommerce Website](https://sneakers-ecommerce-website.vercel.app)
 
 ## My process
 
