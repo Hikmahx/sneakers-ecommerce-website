@@ -1,23 +1,19 @@
 {
   "version": 2,
   "buildCommand": "npm run build",
-  "outputDirectory": "client/build",
   "env": {
     "NODE_ENV": "production"
   },
-  "functions": {
-    "server.js": {
-      "runtime": "nodejs20.x"
+  "builds": [
+    {
+      "src": "server.js",
+      "use": "@vercel/node"
     }
-  },
+  ],
   "routes": [
     {
       "src": "/api/(.*)",
       "dest": "/server.js"
-    },
-    {
-      "src": "/static/(.*)",
-      "dest": "/static/$1"
     },
     {
       "src": "/(.*)",
